@@ -1,0 +1,1833 @@
+<!doctype html>
+
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>🧊 淡人 / 浓人 🔥 浓度检测中心</title>
+  <meta name="description" content="24道题，测测你到底是佛系冰山还是情绪核弹。">
+  <style>
+    :root {
+      --cold-1: #F0F0F0;
+      --cold-2: #A8B5C0;
+      --cold-3: #4A5A6A;
+      --hot-1: #FFD93D;
+      --hot-2: #FF6B35;
+      --hot-3: #FF2E63;
+      --ink: #263039;
+      --card: rgba(255, 255, 255, .92);
+      --shadow: 0 18px 60px rgba(38, 48, 57, .18);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      min-height: 100%;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #10151a;
+      font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    .bg {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .bg::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(240, 240, 240, .95), rgba(168, 181, 192, .88) 42%, rgba(255, 107, 53, .82) 62%, rgba(255, 46, 99, .9));
+      z-index: -1;
+    }
+
+    .flow-a,
+    .flow-b {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .flow-a::after,
+    .flow-b::after {
+      content: "";
+      position: absolute;
+      width: 180%;
+      height: 180%;
+      left: -40%;
+      top: -40%;
+      opacity: .34;
+      filter: blur(36px);
+      animation: drift 17s ease-in-out infinite alternate;
+    }
+
+    .flow-a::after {
+      background:
+        radial-gradient(circle at 25% 25%, #ffffff 0, transparent 32%),
+        radial-gradient(circle at 70% 65%, var(--cold-2) 0, transparent 38%),
+        radial-gradient(circle at 45% 80%, var(--cold-3) 0, transparent 30%);
+    }
+
+    .flow-b::after {
+      background:
+        radial-gradient(circle at 30% 30%, var(--hot-1) 0, transparent 28%),
+        radial-gradient(circle at 68% 55%, var(--hot-2) 0, transparent 35%),
+        radial-gradient(circle at 52% 78%, var(--hot-3) 0, transparent 33%);
+      animation-delay: -7s;
+    }
+
+    @keyframes drift {
+      0% {
+        transform: translate(-4%, -3%) rotate(0deg) scale(1);
+      }
+      50% {
+        transform: translate(4%, 3%) rotate(9deg) scale(1.08);
+      }
+      100% {
+        transform: translate(-2%, 4%) rotate(-8deg) scale(.97);
+      }
+    }
+
+    .app {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: grid;
+      place-items: center;
+      padding: clamp(14px, 3vw, 34px) clamp(14px, 3vw, 34px) 76px;
+    }
+
+    .screen {
+      width: min(920px, 100%);
+      display: none;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    .glass {
+      background: var(--card);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, .58);
+      box-shadow: var(--shadow);
+      border-radius: 26px;
+    }
+
+    .home {
+      padding: clamp(28px, 6vw, 64px);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .home::before,
+    .home::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      border-radius: 50%;
+      filter: blur(46px);
+      opacity: .5;
+    }
+
+    .home::before {
+      width: 260px;
+      height: 260px;
+      background: var(--cold-2);
+      left: -90px;
+      bottom: -110px;
+    }
+
+    .home::after {
+      width: 300px;
+      height: 300px;
+      background: var(--hot-2);
+      right: -100px;
+      top: -120px;
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      letter-spacing: 4px;
+      font-size: 13px;
+      opacity: .62;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(31px, 8vw, 66px);
+      line-height: 1.08;
+      letter-spacing: -1px;
+    }
+
+    .subtitle {
+      max-width: 520px;
+      margin: 16px auto 0;
+      font-size: clamp(15px, 3.4vw, 19px);
+      opacity: .74;
+    }
+
+    .polar-tags {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .tag {
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .tag.cold {
+      background: rgba(168, 181, 192, .24);
+      color: #37485A;
+      border: 1px solid rgba(74, 90, 106, .24);
+    }
+
+    .tag.hot {
+      background: rgba(255, 107, 53, .15);
+      color: #B32347;
+      border: 1px solid rgba(255, 46, 99, .22);
+    }
+
+    .home-author {
+      margin-top: 18px;
+      font-size: 13px;
+      opacity: .62;
+    }
+
+    .home-author a {
+      color: #B32347;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .home-author a:hover {
+      text-decoration: underline;
+    }
+
+    .btn {
+      appearance: none;
+      border: 0;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 700;
+      color: white;
+      background: linear-gradient(135deg, var(--hot-2), var(--hot-3));
+      box-shadow: 0 12px 28px rgba(255, 46, 99, .28);
+      transition: transform .18s ease, box-shadow .18s ease, opacity .18s;
+      touch-action: manipulation;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 32px rgba(255, 46, 99, .32);
+    }
+
+    .btn:active {
+      transform: translateY(1px) scale(.99);
+    }
+
+    .btn.primary {
+      min-width: min(320px, 100%);
+      padding: 17px 30px;
+      border-radius: 999px;
+      font-size: 17px;
+      margin-top: 30px;
+    }
+
+    .btn.small {
+      padding: 11px 20px;
+      border-radius: 999px;
+      font-size: 14px;
+    }
+
+    .btn.ghost {
+      color: #41505E;
+      background: rgba(240, 240, 240, .72);
+      box-shadow: none;
+      border: 1px solid rgba(74, 90, 106, .16);
+    }
+
+    .test-head {
+      padding: 16px 18px 14px;
+      margin-bottom: 14px;
+    }
+
+    .head-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .progress-label {
+      font-weight: 800;
+      font-size: 15px;
+      white-space: nowrap;
+    }
+
+    .live-score {
+      font-size: 12px;
+      opacity: .68;
+      text-align: right;
+    }
+
+    .progress {
+      height: 13px;
+      margin-top: 12px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(74, 90, 106, .14);
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--cold-2), var(--hot-1), var(--hot-2), var(--hot-3));
+      transition: width .45s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .question-card {
+      padding: clamp(22px, 4.5vw, 40px);
+      min-height: 480px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .q-index {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      opacity: .48;
+      margin-bottom: 8px;
+    }
+
+    .q-title {
+      margin: 0;
+      font-size: clamp(21px, 5vw, 31px);
+      line-height: 1.25;
+    }
+
+    .q-desc {
+      margin: 10px 0 0;
+      color: #5A6874;
+      font-size: 14px;
+    }
+
+    .control {
+      margin-top: 26px;
+      flex: 1;
+    }
+
+    .option-grid {
+      display: grid;
+      gap: 11px;
+    }
+
+    .cols-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .cols-4,
+    .cols-5,
+    .cols-6 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .option {
+      border: 1px solid rgba(74, 90, 106, .14);
+      background: rgba(255, 255, 255, .76);
+      border-radius: 17px;
+      padding: 15px;
+      min-height: 62px;
+      cursor: pointer;
+      font-family: inherit;
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.35;
+      text-align: left;
+      transition: transform .16s, border-color .16s, background .16s, box-shadow .16s;
+      touch-action: manipulation;
+    }
+
+    .option:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px rgba(38, 48, 57, .09);
+      border-color: rgba(255, 107, 53, .44);
+    }
+
+    .option.selected {
+      border-color: var(--hot-2);
+      background: linear-gradient(135deg, rgba(255, 217, 61, .2), rgba(255, 107, 53,.18));
+      box-shadow: 0 0 0 2px rgba(255, 107, 53, .18) inset;
+    }
+
+    .emoji {
+      display: block;
+      font-size: 27px;
+      margin-bottom: 6px;
+    }
+
+    .slider-block {
+      padding: 18px 4px 8px;
+    }
+
+    .slider-tops {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 800;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .range-wrap {
+      position: relative;
+      padding-bottom: 8px;
+    }
+
+    input[type=range] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 34px;
+      margin: 0;
+      background: transparent;
+      outline: none;
+    }
+
+    input[type=range]::-webkit-slider-runnable-track {
+      height: 14px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--cold-2), var(--cold-1), var(--hot-1), var(--hot-2), var(--hot-3));
+      box-shadow: inset 0 1px 5px rgba(0, 0, 0, .12);
+    }
+
+    input[type=range]::-moz-range-track {
+      height: 14px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--cold-2), var(--cold-1), var(--hot-1), var(--hot-2), var(--hot-3));
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 30px;
+      height: 30px;
+      margin-top: -8px;
+      border: 4px solid #fff;
+      border-radius: 50%;
+      background: var(--ink);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, .22);
+      cursor: grab;
+    }
+
+    input[type=range]::-moz-range-thumb {
+      width: 24px;
+      height: 24px;
+      border: 4px solid #fff;
+      border-radius: 50%;
+      background: var(--ink);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, .22);
+      cursor: grab;
+    }
+
+    input[type=range].thin::-webkit-slider-runnable-track {
+      background: rgba(74, 90, 106, .18);
+    }
+
+    input[type=range].thin::-moz-range-track {
+      background: rgba(74, 90, 106, .18);
+    }
+
+    input[type=range].spectrum::-webkit-slider-runnable-track {
+      height: 26px;
+      background: linear-gradient(90deg, #eceff1, #b9c6cf, #ffe066, #ff8c42, #ff2e63);
+    }
+
+    input[type=range].spectrum::-moz-range-track {
+      height: 26px;
+      background: linear-gradient(90deg, #eceff1, #b9c6cf, #ffe066, #ff8c42, #ff2e63);
+    }
+
+    .range-scale {
+      display: flex;
+      justify-content: space-between;
+      color: #67757f;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .dual-track {
+      position: relative;
+      height: 54px;
+    }
+
+    .dual-track input {
+      position: absolute;
+      left: 0;
+      top: 0;
+      pointer-events: none;
+    }
+
+    .dual-track input::-webkit-slider-thumb {
+      pointer-events: auto;
+    }
+
+    .dual-track input::-moz-range-thumb {
+      pointer-events: auto;
+    }
+
+    .dual-labels {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .mini-card {
+      padding: 10px;
+      border-radius: 13px;
+      background: rgba(255, 255, 255, .68);
+      border: 1px solid rgba(74, 90, 106, .12);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .dial {
+      display: grid;
+      place-items: center;
+      margin-bottom: 8px;
+    }
+
+    .dial-face {
+      width: min(310px, 84vw);
+      aspect-ratio: 2 / 1.18;
+      position: relative;
+      border-radius: 160px 160px 12px 12px / 150px 150px 12px 12px;
+      background: conic-gradient(from 270deg, var(--cold-2) 0deg, var(--cold-1) 55deg, var(--hot-1) 105deg, var(--hot-2) 145deg, var(--hot-3) 180deg, transparent 180deg);
+      clip-path: polygon(0 100%, 0 48%, 8% 22%, 22% 7%, 43% 0, 63% 3%, 81% 14%, 94% 32%, 100% 55%, 100% 100%);
+      overflow: hidden;
+    }
+
+    .dial-pointer {
+      position: absolute;
+      left: 50%;
+      bottom: 8px;
+      width: 5px;
+      height: calc(100% - 28px);
+      background: #222b33;
+      border-radius: 4px;
+      transform-origin: 50% calc(100% - 8px);
+      transform: translateX(-50%) rotate(-90deg);
+      transition: transform .12s ease-out;
+    }
+
+    .dial-hub {
+      position: absolute;
+      left: 50%;
+      bottom: -4px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #fff;
+      border: 4px solid #222b33;
+      transform: translateX(-50%);
+    }
+
+    .value-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 92px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(38, 48, 57, .9);
+      color: #fff;
+      font-weight: 800;
+    }
+
+    .knob-scene {
+      display: grid;
+      place-items: center;
+      margin-bottom: 12px;
+    }
+
+    .knob {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: conic-gradient(from 225deg, var(--cold-2), var(--cold-1), var(--hot-1), var(--hot-2), var(--hot-3) 270deg, #dfe5e8 270deg);
+      position: relative;
+      box-shadow: inset 0 0 0 8px rgba(255, 255, 255, .75), 0 12px 28px rgba(0, 0, 0, .12);
+    }
+
+    .needle {
+      position: absolute;
+      inset: 22px;
+      border-radius: 50%;
+      background: #fff;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      font-size: 20px;
+    }
+
+    .needle::before {
+      content: "";
+      position: absolute;
+      top: 7px;
+      width: 5px;
+      height: 32px;
+      background: var(--hot-3);
+      border-radius: 4px;
+    }
+
+    .volume-bars {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 6px;
+      height: 125px;
+      margin-bottom: 8px;
+    }
+
+    .vbar {
+      width: 13px;
+      height: 18%;
+      border-radius: 8px;
+      background: linear-gradient(180deg, var(--hot-3), var(--hot-2), var(--hot-1));
+      transition: height .18s cubic-bezier(.3, 1.4, .5, 1);
+      animation: pulse 1.6s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      50% {
+        filter: brightness(1.22);
+      }
+    }
+
+    .chat-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .chat-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, .82);
+      border: 1px solid rgba(74, 90, 106, .12);
+      border-radius: 16px;
+      padding: 10px 12px;
+    }
+
+    .chat-item.dragging {
+      opacity: .4;
+    }
+
+    .bubble {
+      flex: 1;
+      background: linear-gradient(135deg, #eef3f6, #fff);
+      padding: 11px 13px;
+      border-radius: 16px;
+      border: 1px solid rgba(74, 90, 106, .1);
+      font-size: 14px;
+      cursor: grab;
+      user-select: none;
+    }
+
+    .move-btn {
+      border: 0;
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      cursor: pointer;
+      background: #e8edf0;
+      font-size: 14px;
+      touch-action: manipulation;
+    }
+
+    .toggle-row {
+      display: grid;
+      gap: 10px;
+    }
+
+    .toggle-card {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 14px;
+      background: rgba(255, 255, 255, .78);
+      border: 1px solid rgba(74, 90, 106, .12);
+      border-radius: 16px;
+    }
+
+    .switch {
+      position: relative;
+      width: 56px;
+      height: 31px;
+      flex: 0 0 auto;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      cursor: pointer;
+      position: absolute;
+      z-index: 2;
+    }
+
+    .switch-track {
+      position: absolute;
+      inset: 0;
+      border-radius: 999px;
+      background: #ccd5da;
+      transition: background .2s;
+    }
+
+    .switch-track::after {
+      content: "";
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      width: 23px;
+      height: 23px;
+      background: #fff;
+      border-radius: 50%;
+      box-shadow: 0 2px 7px rgba(0, 0, 0, .18);
+      transition: transform .2s;
+    }
+
+    .switch input:checked+.switch-track {
+      background: linear-gradient(135deg, var(--hot-2), var(--hot-3));
+    }
+
+    .switch input:checked+.switch-track::after {
+      transform: translateX(25px);
+    }
+
+    .text-analyze {
+      display: flex;
+      gap: 9px;
+      align-items: stretch;
+    }
+
+    .text-analyze input {
+      flex: 1;
+      min-width: 0;
+      border: 2px solid rgba(74, 90, 106, .16);
+      border-radius: 14px;
+      padding: 13px;
+      font-family: inherit;
+      font-size: 15px;
+      background: rgba(255, 255, 255, .86);
+    }
+
+    .analyze-result {
+      min-height: 24px;
+      margin-top: 12px;
+      color: #59656f;
+      font-size: 14px;
+    }
+
+    .vote-scenarios {
+      display: grid;
+      gap: 10px;
+    }
+
+    .vote-row {
+      padding: 11px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, .74);
+      border: 1px solid rgba(74, 90, 106, .11);
+    }
+
+    .vote-title {
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .vote-btns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+    }
+
+    .vote-btn {
+      padding: 9px 7px;
+      min-height: 48px;
+      border-radius: 12px;
+      border: 1px solid rgba(74, 90, 106, .13);
+      cursor: pointer;
+      background: rgba(248, 250, 251, .9);
+      font-size: 12px;
+      font-family: inherit;
+      line-height: 1.2;
+    }
+
+    .vote-btn.selected-cold {
+      background: rgba(168, 181, 192, .3);
+      border-color: var(--cold-3);
+      font-weight: 800;
+    }
+
+    .vote-btn.selected-hot {
+      background: rgba(255, 107, 53, .18);
+      border-color: var(--hot-3);
+      font-weight: 800;
+    }
+
+    .tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cloud-tag {
+      border: 1px solid rgba(74, 90, 106, .16);
+      background: rgba(255, 255, 255, .78);
+      border-radius: 999px;
+      padding: 9px 16px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--ink);
+    }
+
+    .cloud-tag:nth-child(odd) {
+      transform: rotate(-1deg);
+    }
+
+    .cloud-tag:nth-child(even) {
+      transform: rotate(1deg);
+    }
+
+    .cloud-tag.selected {
+      background: linear-gradient(135deg, rgba(255, 217, 61, .3), rgba(255, 46, 99, .22));
+      border-color: var(--hot-2);
+      font-weight: 800;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .hint {
+      font-size: 12px;
+      color: #71808a;
+      flex: 1;
+      text-align: center;
+    }
+
+    .result-card {
+      padding: clamp(24px, 5vw, 48px);
+      text-align: center;
+    }
+
+    .result-title {
+      font-size: clamp(26px, 7vw, 49px);
+      margin: 0;
+    }
+
+    .meter {
+      height: clamp(74px, 15vw, 104px);
+      display: flex;
+      border-radius: 24px;
+      overflow: hidden;
+      margin: 28px 0 12px;
+      box-shadow: 0 18px 45px rgba(38, 48, 57, .18);
+      border: 4px solid white;
+    }
+
+    .meter-side {
+      flex: 1;
+      display: grid;
+      place-items: center;
+      color: white;
+      font-weight: 900;
+      font-size: clamp(18px, 4.6vw, 30px);
+      text-shadow: 0 2px 10px rgba(0, 0, 0, .22);
+      min-width: 0;
+    }
+
+    .meter-side.cold-side {
+      background: linear-gradient(135deg, #6d8092, var(--cold-3));
+      width: 50%;
+      transition: width 1s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .meter-side.hot-side {
+      background: linear-gradient(135deg, var(--hot-1), var(--hot-2), var(--hot-3));
+      width: 50%;
+      transition: width 1s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .meter-caption {
+      font-weight: 800;
+      opacity: .66;
+      font-size: 14px;
+    }
+
+    .verdict {
+      margin-top: 26px;
+      text-align: left;
+      background: rgba(255, 255, 255, .68);
+      border-radius: 20px;
+      padding: 20px;
+      border: 1px solid rgba(255, 255, 255, .6);
+    }
+
+    .verdict-name {
+      margin: 0;
+      font-size: clamp(21px, 5vw, 29px);
+    }
+
+    .verdict-text {
+      margin: 10px 0 0;
+      color: #4d5a65;
+      font-size: 15px;
+    }
+
+    .result-actions {
+      display: grid;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .follow-card {
+      margin-top: 22px;
+      padding: 20px 18px;
+      border-radius: 20px;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(255, 217, 61, .2), rgba(255, 107, 53, .14), rgba(255, 46, 99, .1));
+      border: 1px solid rgba(255, 107, 53, .3);
+    }
+
+    .follow-title {
+      margin: 0 0 6px;
+      font-weight: 900;
+      font-size: 18px;
+    }
+
+    .follow-text {
+      margin: 0 0 12px;
+      color: #4d5a65;
+      font-size: 14px;
+    }
+
+    .follow-id {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 18px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px dashed rgba(255, 46, 99, .55);
+      color: #B32347;
+      font-weight: 900;
+      font-size: 15px;
+    }
+
+    .follow-link {
+      display: inline-block;
+      margin-top: 13px;
+      padding: 12px 26px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--hot-2), var(--hot-3));
+      color: #fff;
+      font-weight: 800;
+      font-size: 14px;
+      text-decoration: none;
+      box-shadow: 0 10px 24px rgba(255, 46, 99, .26);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+    .follow-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(255, 46, 99, .32);
+    }
+
+    .brand-bar {
+      position: fixed;
+      left: 50%;
+      bottom: 14px;
+      transform: translateX(-50%);
+      z-index: 30;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      max-width: min(92vw, 560px);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding: 9px 18px;
+      border-radius: 999px;
+      background: rgba(16, 21, 26, .78);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .3px;
+      border: 1px solid rgba(255, 255, 255, .16);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, .3);
+      backdrop-filter: blur(10px);
+    }
+
+    .brand-bar a {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: #FFD93D;
+      text-decoration: none;
+    }
+
+    .brand-bar a:hover {
+      text-decoration: underline;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 28px;
+      z-index: 20;
+      transform: translate(-50%, 140%);
+      background: rgba(24, 30, 36, .95);
+      color: #fff;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-size: 14px;
+      transition: transform .3s cubic-bezier(.2, .8, .2, 1);
+      max-width: min(92vw, 430px);
+      text-align: center;
+    }
+
+    .toast.show {
+      transform: translate(-50%, 0);
+    }
+
+    .card-enter {
+      animation: slideFlip .42s cubic-bezier(.22, .9, .3, 1);
+    }
+
+    @keyframes slideFlip {
+      0% {
+        opacity: 0;
+        transform: perspective(900px) rotateY(38deg) translateX(48px);
+      }
+      100% {
+        opacity: 1;
+        transform: perspective(900px) rotateY(0) translateX(0);
+      }
+    }
+
+    @media (max-width:560px) {
+      .head-row {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .live-score {
+        text-align: left;
+      }
+
+      .question-card {
+        min-height: 545px;
+      }
+
+      .control {
+        margin-top: 20px;
+      }
+
+      .option {
+        padding: 12px;
+        min-height: 54px;
+      }
+
+      .emoji {
+        font-size: 23px;
+      }
+
+      .nav {
+        flex-direction: column-reverse;
+        align-items: stretch;
+      }
+
+      .nav .btn {
+        width: 100%;
+      }
+
+      .hint {
+        order: -1;
+      }
+    }
+
+    @media (min-width:700px) {
+      .cols-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .cols-5 {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+      }
+
+      .cols-6 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg" aria-hidden="true">
+    <div class="flow-a"></div>
+    <div class="flow-b"></div>
+  </div>
+
+  <main class="app">
+    <section id="homeScreen" class="screen active">
+      <div class="glass home">
+        <p class="eyebrow">MOOD CONCENTRATION TEST</p>
+        <h1>🧊 淡人 / 浓人 🔥<br>浓度检测中心</h1>
+        <p class="subtitle">测测你到底是佛系冰山还是情绪核弹。别装，你的口头禅已经把你卖得明明白白。</p>
+        <div class="polar-tags">
+          <span class="tag cold">嗯 / 哦 / 行 / 随便</span>
+          <span class="tag hot">啊啊啊！救命！我超爱！</span>
+        </div>
+        <p class="home-author">🎀 测测就知道 · 原创趣味测试</p>
+        <button id="startBtn" class="btn primary">扒开我的真面目 ▶</button>
+      </div>
+    </section>
+
+    <section id="testScreen" class="screen">
+      <div class="glass test-head">
+        <div class="head-row">
+          <div class="progress-label">第<span id="currentNum">1</span>/24题</div>
+          <div class="live-score">当前浓度：淡 <span id="liveCold">50</span>% / 浓 <span id="liveHot">50</span>%</div>
+        </div>
+        <div class="progress"><div id="progressFill" class="progress-fill"></div></div>
+      </div>
+      <article id="questionCard" class="glass question-card"></article>
+    </section>
+
+    <section id="resultScreen" class="screen">
+      <div class="glass result-card">
+        <p class="eyebrow">DETECTION COMPLETE</p>
+        <h2 class="result-title">报告已生成</h2>
+        <div class="meter" aria-label="淡人和浓人比例条">
+          <div id="coldSide" class="meter-side cold-side">❄️ 淡 <span id="coldPercent">50</span>%</div>
+          <div id="hotSide" class="meter-side hot-side">🔥 浓 <span id="hotPercent">50</span>%</div>
+        </div>
+        <div class="meter-caption">左边是人间冷静区，右边是情绪爆炸区</div>
+        <div class="verdict">
+          <h3 id="resultName" class="verdict-name"></h3>
+          <p id="resultText" class="verdict-text"></p>
+        </div>
+        <div class="follow-card">
+          <p class="follow-title">🎀 测完了，喜欢吗？</p>
+          <p class="follow-text">我是「测测就知道」，更多好玩的测试不定期更新～</p>
+          <span class="follow-id">📕 小红书 @测测就知道</span>
+          <br>
+          <a class="follow-link" href="#" onclick="return false" style="display:none">去小红书关注我 ▶</a>
+        </div>
+        <div class="result-actions">
+          <button id="shareBtn" class="btn small">截图发给朋友猜猜</button>
+          <button id="restartBtn" class="btn ghost small">我不信，重来</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="brand-bar" aria-label="作者信息">
+    🧊 测测就知道 · 仅供娱乐，不构成心理评估 🔥
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script>
+    "use strict";
+
+    /* ------------------ 题目与控件定义 ------------------ */
+    // 每道题独立产出 0-100 的分数，answers[id] 只保存数值。
+    const questions = [
+      {
+        id: "q01", type: "dual", title: "请在下面两个滑块上分别标注：你认为的“真实内心”和“对外表现”。",
+        desc: "一个柄是你的底层设定，另一个柄是你的人前皮肤。",
+        extra: {}
+      },
+      {
+        id: "q02", type: "options", cols: "cols-2", title: "你在餐厅点单，服务员说“这个卖完了”，你会？",
+        options: [
+          { emoji: "😌", label: "“那换一个吧”", score: 0 },
+          { emoji: "🤷", label: "“有什么推荐吗？”", score: 33 },
+          { emoji: "😤", label: "“啊？我专门为这个来的！”", score: 66 },
+          { emoji: "😫", label: "“啊啊啊那我今天什么都不想吃了！”", score: 100 }
+        ]
+      },
+      {
+        id: "q03", type: "dial", title: "你收到一条“在吗？”的消息，你的内心波动强度是？",
+        desc: "拖到底就是血压拉满的程度。"
+      },
+      {
+        id: "q04", type: "tags", title: "请选出所有符合你日常状态的词（选所有像你的）。",
+        desc: "可多选，最终取最浓的那个标签计分。",
+        items: [
+          ["平静", 0], ["随性", 10], ["淡定", 20], ["无所谓", 30], ["偶尔激动", 50],
+          ["爱分享", 60], ["情绪化", 70], ["热情", 80], ["炸裂", 90], ["易燃易爆炸", 100]
+        ]
+      },
+      {
+        id: "q05", type: "sort", title: "请将以下回复按“最像你会说的”到“最不可能说的”排序。",
+        desc: "可以点箭头移动，也可以拖拽气泡。",
+        items: [
+          { label: "嗯好的", score: 0 },
+          { label: "行吧", score: 20 },
+          { label: "哈哈哈哈哈哈笑死我了", score: 70 },
+          { label: "啊啊啊啊真的吗！！！", score: 100 }
+        ]
+      },
+      {
+        id: "q06", type: "options", cols: "cols-5", title: "你发现手机只剩1%电量，你的反应是？",
+        options: [
+          { emoji: "🙂", label: "找充电器", score: 0 },
+          { emoji: "😅", label: "有点慌但还行", score: 25 },
+          { emoji: "😰", label: "开始焦虑", score: 50 },
+          { emoji: "😱", label: "尖叫出声", score: 75 },
+          { emoji: "🤯", label: "原地爆炸，心碎成两半", score: 100 }
+        ]
+      },
+      {
+        id: "q07", type: "toggles", title: "请如实回答以下问题（打开=是）。",
+        items: [
+          { label: "你经常被人说“情绪稳定”", score: 0 },
+          { label: "你会在朋友圈分享情绪", score: 60 },
+          { label: "你曾经在公共场合哭过", score: 100 }
+        ]
+      },
+      {
+        id: "q08", type: "text", title: "请随意输入一句话，让我们感受一下你的情绪浓度。",
+        desc: "输入你想说的任何话，然后点击分析。"
+      },
+      {
+        id: "q09", type: "rangeVote", title: "你更倾向于哪一种旅行方式？",
+        desc: "左端“攻略做满，按计划走”，右端“随性出发，走到哪算哪”。"
+      },
+      {
+        id: "q10", type: "options", cols: "cols-2", title: "你看到一个超级好笑的短视频，你的反应是？",
+        options: [
+          { emoji: "😶", label: "嘴角微微上扬", score: 0 },
+          { emoji: "😂", label: "笑出声但控制住了", score: 30 },
+          { emoji: "🤣", label: "笑到拍桌子", score: 70 },
+          { emoji: "🫠", label: "笑到眼泪直流、无法呼吸", score: 100 }
+        ]
+      },
+      {
+        id: "q11", type: "timeline", title: "你一天中最“浓”（情绪最充沛）的时刻是？"
+      },
+      {
+        id: "q12", type: "spectrum", title: "用一个颜色代表你现在的心理状态，你会选？"
+      },
+      {
+        id: "q13", type: "speed", title: "你和别人聊天时的语速大概是？"
+      },
+      {
+        id: "q14", type: "volume", title: "你在日常社交中的“音量”大概在哪个刻度？"
+      },
+      {
+        id: "q15", type: "options", cols: "cols-2", title: "你的心情最像哪种天气？",
+        options: [
+          { emoji: "☀️", label: "晴天，万里无云", score: 10 },
+          { emoji: "⛅", label: "多云，偶尔放晴", score: 35 },
+          { emoji: "🌧️", label: "小雨，有点emo", score: 65 },
+          { emoji: "⛈️", label: "雷暴，情绪汹涌", score: 100 }
+        ]
+      },
+      {
+        id: "q16", type: "votes", title: "以下场景，请为每个选择你更接近的行为。",
+        scenarios: [
+          ["收到礼物", "“谢谢”", "“啊啊啊我好喜欢！！！”"],
+          ["被夸好看", "“没有啦”", "“我也觉得！！！”"],
+          ["遇到堵车", "“哦”", "“救命啊要迟到了！！！”"],
+          ["看到彩虹", "“嗯好看”", "“天呐太美了快看！！！”"],
+          ["被放鸽子", "“没事”", "“你居然放我鸽子？？？😤”"]
+        ]
+      },
+      {
+        id: "q17", type: "options", cols: "cols-2", title: "如果你的人生是一部电影，你希望它的色调是？",
+        options: [
+          { emoji: "🎞️", label: "黑白文艺片", score: 0 },
+          { emoji: "🎥", label: "日系清新蓝白", score: 30 },
+          { emoji: "🎬", label: "暖色调生活流", score: 65 },
+          { emoji: "🌈", label: "饱和度过载的宝莱坞大片", score: 100 }
+        ]
+      },
+      {
+        id: "q18", type: "options", cols: "cols-6", title: "以下哪句最可能是你的口头禅？",
+        options: [
+          { emoji: "🧊", label: "“嗯”", score: 0 },
+          { emoji: "🙂", label: "“好的”", score: 15 },
+          { emoji: "😐", label: "“行吧”", score: 30 },
+          { emoji: "😂", label: "“哈哈哈”", score: 55 },
+          { emoji: "😱", label: "“救命”", score: 80 },
+          { emoji: "🔥", label: "“啊啊啊啊啊”", score: 100 }
+        ]
+      },
+      {
+        id: "q19", type: "options", cols: "cols-5", title: "用辣度来形容你的性格，你大概是几级？",
+        options: [
+          { emoji: "🌶️", label: "1级", score: 0 },
+          { emoji: "🌶️🌶️", label: "2级", score: 25 },
+          { emoji: "🌶️🌶️🌶️", label: "3级", score: 50 },
+          { emoji: "🌶️🌶️🌶️🌶️", label: "4级", score: 75 },
+          { emoji: "🌶️🌶️🌶️🌶️🌶️", label: "5级", score: 100 }
+        ]
+      },
+      {
+        id: "q20", type: "options", cols: "cols-2", title: "你躺床上准备睡觉，你的脑子里通常在想什么？",
+        options: [
+          { emoji: "😴", label: "什么都没想", score: 0 },
+          { emoji: "📋", label: "复盘今天的工作", score: 25 },
+          { emoji: "✨", label: "幻想美好的未来", score: 60 },
+          { emoji: "🔁", label: "反复播放某句歌词/某段尴尬回忆", score: 100 }
+        ]
+      },
+      {
+        id: "q21", type: "options", cols: "cols-2", title: "你的手机壁纸是哪种风格？",
+        options: [
+          { emoji: "⬜", label: "纯色/极简", score: 0 },
+          { emoji: "🌄", label: "风景自然", score: 30 },
+          { emoji: "🎨", label: "插画/艺术", score: 65 },
+          { emoji: "📸", label: "偶像/自拍/色彩爆炸", score: 100 }
+        ]
+      },
+      {
+        id: "q22", type: "options", cols: "cols-2", title: "你打开月度账单的那一刻，你的反应是？",
+        options: [
+          { emoji: "😌", label: "看了眼，关了", score: 0 },
+          { emoji: "🤔", label: "计算了一下", score: 25 },
+          { emoji: "😱", label: "瞳孔地震", score: 65 },
+          { emoji: "💀", label: "瞳孔地震，并发朋友圈哀嚎", score: 100 }
+        ]
+      },
+      {
+        id: "q23", type: "options", cols: "cols-2", title: "你希望自己的生日怎么过？",
+        options: [
+          { emoji: "🫥", label: "不过，无所谓", score: 0 },
+          { emoji: "🍚", label: "和家人吃顿饭", score: 30 },
+          { emoji: "🎉", label: "和朋友聚会玩一下", score: 65 },
+          { emoji: "🎂", label: "大办特办，提前一个月策划", score: 100 }
+        ]
+      },
+      {
+        id: "q24", type: "finalSlider", title: "最后，抛开所有伪装，你觉得自己真正的位置在哪里？"
+      }
+    ];
+
+    const results = [
+      { max: 20, name: "【冰山淡人·人间佛系】", text: "你就像是这个世界的一杯温水，不冷不热，刚刚好到让人忽略。你的情绪波动堪比心电图上的直线，世界末日来了你估计也就“哦”一声。口头禅：“随便”“都行”“无所谓”。建议继续保持，反正你也不会听建议。" },
+      { max: 50, name: "【选择性浓淡·看人下菜碟】", text: "你在熟人面前是“浓人”，在陌生人面前是“淡人”。在饭桌上抢最后一块肉的是你，在群里默默潜水不说话的也是你。主打一个“看人下菜碟”，精准切换。这种人最可怕，因为没人知道你的真面目。" },
+      { max: 80, name: "【情绪核弹·随时引爆】", text: "你的情绪像坐过山车，前一秒“啊啊啊好开心”，下一秒“人生好没意思”。看个短视频能哭，刷到搞笑帖子能笑到肚子疼。你的朋友已经习惯了你上一秒发疯下一秒装死。建议随身携带情绪稳定剂（比如奶茶）。" },
+      { max: 100, name: "【超浓预警·行走的火山】", text: "你的人生信条是“要么不活，要么活成烟花”。你的情绪浓度高到可以结晶，表达欲强到每天不发10条朋友圈就难受。你哭是真哭，笑是真笑，爱是真爱，恨是真恨。建议去当演员/rapper/任何可以表达的职业，别浪费天赋！🌋" }
+    ];
+
+    const state = {
+      current: 0,
+      answers: {},
+      temporary: {},
+      innerScore: 50,
+      outerScore: 50
+    };
+
+    const el = id => document.getElementById(id);
+    const clampScore = n => Math.max(0, Math.min(100, Math.round(Number(n) || 0)));
+
+    function showScreen(name) {
+      ["homeScreen", "testScreen", "resultScreen"].forEach(id => el(id).classList.remove("active"));
+      el(name).classList.add("active");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function toast(msg) {
+      const t = el("toast");
+      t.textContent = msg;
+      t.classList.add("show");
+      clearTimeout(t._timer);
+      t._timer = setTimeout(() => t.classList.remove("show"), 2600);
+    }
+
+    function updateLive() {
+      const values = Object.values(state.answers).map(Number);
+      const hot = values.length ? Math.round(values.reduce((a, b) => a + b, 0) / values.length) : 50;
+      const cold = 100 - hot;
+      el("liveHot").textContent = String(hot);
+      el("liveCold").textContent = String(cold);
+    }
+
+    function renderQuestion() {
+      const q = questions[state.current];
+      state.temporary = {};
+      const card = el("questionCard");
+      card.classList.remove("card-enter");
+      void card.offsetWidth;
+      card.classList.add("card-enter");
+      card.innerHTML = `
+        <div class="q-index">QUESTION ${String(state.current + 1).padStart(2, "0")}</div>
+        <h2 class="q-title">${q.title}</h2>
+        ${q.desc ? `<p class="q-desc">${q.desc}</p>` : ""}
+        <div class="control" id="controlArea"></div>
+        <div class="nav">
+          <button id="prevBtn" class="btn ghost small">上一题</button>
+          <div class="hint" id="controlHint"></div>
+          <button id="nextBtn" class="btn small">下一题 ▶</button>
+        </div>`;
+      buildControl(q, el("controlArea"));
+      el("currentNum").textContent = String(state.current + 1);
+      el("progressFill").style.width = `${(state.current / 24) * 100}%`;
+      updateLive();
+      updateNav(q);
+      el("prevBtn").onclick = () => gotoQuestion(Math.max(0, state.current - 1));
+      el("nextBtn").onclick = () => nextQuestion();
+    }
+
+    function updateNav(q) {
+      const done = Number.isFinite(Number(state.answers[q.id]));
+      const btn = el("nextBtn");
+      btn.disabled = !done;
+      btn.style.opacity = done ? "1" : ".45";
+      btn.style.cursor = done ? "pointer" : "not-allowed";
+      el("controlHint").textContent = done ? "这题收下了。" :
+        ({ sort: "排好后自动记录第一名的浓度。", votes: "五个场景都得选。", tags: "至少选一个标签。", text: "先输入并分析。", toggles: "不开也算一种回答。", finalSlider: "拖完才算交代。" }[q.type] || "选择或拖动后继续。");
+    }
+
+    function setAnswer(q, value) {
+      state.answers[q.id] = clampScore(value);
+      updateLive();
+      updateNav(q);
+    }
+
+    function nextQuestion() {
+      const q = questions[state.current];
+      if (!Number.isFinite(Number(state.answers[q.id]))) return;
+      if (state.current === 23) return finish();
+      gotoQuestion(state.current + 1);
+    }
+
+    function gotoQuestion(i) {
+      state.current = i;
+      renderQuestion();
+    }
+
+    function buildControl(q, area) {
+      if (q.type === "options") return buildOptions(q, area);
+      if (q.type === "dual") return buildDual(q, area);
+      if (q.type === "dial") return buildDial(q, area);
+      if (q.type === "tags") return buildTags(q, area);
+      if (q.type === "sort") return buildSort(q, area);
+      if (q.type === "toggles") return buildToggles(q, area);
+      if (q.type === "text") return buildText(q, area);
+      if (q.type === "rangeVote") return buildRangeVote(q, area);
+      if (q.type === "timeline") return buildTimeline(q, area);
+      if (q.type === "spectrum") return buildSpectrum(q, area);
+      if (q.type === "speed") return buildSpeed(q, area);
+      if (q.type === "volume") return buildVolume(q, area);
+      if (q.type === "votes") return buildVotes(q, area);
+      if (q.type === "finalSlider") return buildFinal(q, area);
+      setAnswer(q, 50);
+      area.innerHTML = "<p>这道题走丢了，已按中位数处理。</p>";
+    }
+
+    function buildOptions(q, area) {
+      area.innerHTML = `<div class="option-grid ${q.cols || "cols-2"}"></div>`;
+      const box = area.firstElementChild;
+      q.options.forEach((opt, idx) => {
+        const b = document.createElement("button");
+        b.className = "option";
+        b.type = "button";
+        b.innerHTML = `${opt.emoji ? `<span class="emoji">${opt.emoji}</span>` : ""}${opt.label}`;
+        b.onclick = () => {
+          [...box.children].forEach(x => x.classList.remove("selected"));
+          b.classList.add("selected");
+          setAnswer(q, opt.score);
+          setTimeout(nextQuestion, 220);
+        };
+        box.append(b);
+        if (Number(state.answers[q.id]) === opt.score && !Object.values(q.options).some((o, i) => i < idx && o.score === opt.score)) b.classList.add("selected");
+      });
+    }
+
+    function baseSlider({ min = 0, max = 100, value = 50, step = 1, cls = "" } = {}) {
+      const inp = document.createElement("input");
+      inp.type = "range";
+      inp.min = String(min);
+      inp.max = String(max);
+      inp.step = String(step);
+      inp.value = String(value);
+      if (cls) inp.className = cls;
+      return inp;
+    }
+
+    function buildDual(q, area) {
+      const savedInner = Number(state.answers[q.id]);
+      state.temporary.inner = Number.isFinite(savedInner) ? savedInner : 50;
+      state.temporary.outer = Number.isFinite(q.outer) ? q.outer : 50;
+      area.innerHTML = `
+        <div class="slider-block">
+          <div class="slider-tops"><span>❄️ 宇宙级淡</span><span class="value-pill" id="innerPill">50</span><span>宇宙级浓 🔥</span></div>
+          <div class="range-wrap dual-track">
+            <input id="innerRange" type="range" min="0" max="100" value="${state.temporary.inner}" aria-label="真实内心">
+            <input id="outerRange" type="range" min="0" max="100" value="${state.temporary.outer}" aria-label="对外表现">
+          </div>
+          <div class="range-scale"><span>心如止水</span><span>热情喷发</span></div>
+          <div class="dual-labels">
+            <div class="mini-card"><strong>真实内心</strong><br>只拿它计分：<span id="innerVal">50</span></div>
+            <div class="mini-card"><strong>对外表现</strong><br>仅用于内外差对比：<span id="outerVal">50</span></div>
+          </div>
+        </div>`;
+      const ir = el("innerRange"), or = el("outerRange");
+      const sync = () => {
+        state.temporary.inner = clampScore(ir.value);
+        state.temporary.outer = clampScore(or.value);
+        q.outer = state.temporary.outer;
+        el("innerVal").textContent = String(state.temporary.inner);
+        el("outerVal").textContent = String(state.temporary.outer);
+        el("innerPill").textContent = String(state.temporary.inner);
+        setAnswer(q, state.temporary.inner);
+      };
+      ir.oninput = sync; or.oninput = sync;
+      sync();
+    }
+
+    function buildDial(q, area) {
+      const saved = Number(state.answers[q.id]);
+      const val = Number.isFinite(saved) ? Math.round(saved / 10) : 5;
+      area.innerHTML = `
+        <div class="slider-block">
+          <div class="dial"><div class="dial-face"><div class="dial-pointer" id="dialPointer"></div><div class="dial-hub"></div></div></div>
+          <div style="text-align:center"><span class="value-pill" id="dialPill">${val}</span></div>
+          <div class="range-wrap"><input id="dialRange" type="range" min="0" max="10" value="${val}"></div>
+          <div class="range-scale"><span>0 心如止水</span><span>10 掀翻屋顶</span></div>
+        </div>`;
+      const r = el("dialRange");
+      const sync = () => {
+        const v = Number(r.value);
+        el("dialPointer").style.transform = `translateX(-50%) rotate(${v * 18 - 90}deg)`;
+        el("dialPill").textContent = String(v);
+        setAnswer(q, v * 10); // 表盘数值 × 10。
+      };
+      r.oninput = sync; sync();
+    }
+
+    function buildTags(q, area) {
+      area.innerHTML = `<div class="tag-cloud" id="tagCloud"></div>`;
+      const cloud = el("tagCloud");
+      let selected = new Set(Array.isArray(q.selected) ? q.selected : []);
+      const sync = () => {
+        const vals = [...selected].map(i => q.items[i][1]);
+        const score = vals.length ? Math.max(...vals) : NaN;
+        if (vals.length) setAnswer(q, score);
+        else { delete state.answers[q.id]; updateLive(); updateNav(q); }
+      };
+      q.items.forEach(([label, score], idx) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "cloud-tag" + (selected.has(idx) ? " selected" : "");
+        b.textContent = label;
+        b.onclick = () => {
+          selected.has(idx) ? selected.delete(idx) : selected.add(idx);
+          b.classList.toggle("selected", selected.has(idx));
+          q.selected = [...selected];
+          sync();
+        };
+        cloud.append(b);
+      });
+      sync();
+    }
+
+    function buildSort(q, area) {
+      let order = Array.isArray(q.order) && q.order.length === 4 ? [...q.order] : [0, 1, 2, 3];
+      area.innerHTML = `<div class="chat-list" id="chatList"></div>`;
+      const list = el("chatList");
+      function sync() {
+        list.innerHTML = "";
+        order.forEach((itemIndex, pos) => {
+          const row = document.createElement("div");
+          row.className = "chat-item";
+          row.draggable = true;
+          row.dataset.idx = String(itemIndex);
+          row.innerHTML = `
+            <button class="move-btn" data-dir="-1" aria-label="上移">↑</button>
+            <div class="bubble">${pos + 1}. ${q.items[itemIndex].label}</div>
+            <button class="move-btn" data-dir="1" aria-label="下移">↓</button>`;
+          row.querySelectorAll(".move-btn").forEach(btn => {
+            btn.onclick = () => {
+              const dir = Number(btn.dataset.dir), to = pos + dir;
+              if (to < 0 || to >= order.length) return;
+              [order[pos], order[to]] = [order[to], order[pos]];
+              q.order = [...order]; sync();
+            };
+          });
+          row.addEventListener("dragstart", e => { row.classList.add("dragging"); e.dataTransfer.setData("text/plain", String(itemIndex)); });
+          row.addEventListener("dragend", () => row.classList.remove("dragging"));
+          row.addEventListener("dragover", e => e.preventDefault());
+          row.addEventListener("drop", e => {
+            e.preventDefault();
+            const from = order.indexOf(Number(e.dataTransfer.getData("text/plain")));
+            if (from < 0 || from === pos) return;
+            order.splice(pos, 0, order.splice(from, 1)[0]);
+            q.order = [...order]; sync();
+          });
+          list.append(row);
+        });
+        // 排序分值：第一名是什么，本题就是什么。
+        setAnswer(q, q.items[order[0]].score);
+      }
+      sync();
+    }
+
+    function buildToggles(q, area) {
+      area.innerHTML = `<div class="toggle-row" id="toggleRows"></div>`;
+      const box = el("toggleRows");
+      q.checked = Array.isArray(q.checked) ? q.checked : [false, false, false];
+      function sync() {
+        const vals = q.items.filter((_, i) => q.checked[i]).map(x => x.score);
+        // 取所有开启项中的最高分；全关为0。
+        setAnswer(q, vals.length ? Math.max(...vals) : 0);
+      }
+      q.items.forEach((item, i) => {
+        const row = document.createElement("label");
+        row.className = "toggle-card";
+        row.innerHTML = `
+          <span class="switch"><input type="checkbox" ${q.checked[i] ? "checked" : ""}><span class="switch-track"></span></span>
+          <span>${item.label}</span>`;
+        const cb = row.querySelector("input");
+        cb.onchange = () => { q.checked[i] = cb.checked; sync(); };
+        box.append(row);
+      });
+      sync();
+    }
+
+    function buildText(q, area) {
+      area.innerHTML = `
+        <div class="text-analyze">
+          <input id="moodInput" maxlength="80" placeholder="输入你想说的任何话…" value="${q.text || ""}">
+          <button id="analyzeBtn" class="btn small" type="button">分析</button>
+        </div>
+        <div class="analyze-result" id="moodOut">${q.analyzed ? `已分析：当前浓度 ${state.answers[q.id]} 分。` : ""}</div>`;
+      const input = el("moodInput"), out = el("moodOut"), btn = el("analyzeBtn");
+      btn.onclick = () => {
+        const s = (input.value || "").trim().toLowerCase();
+        if (!s) { out.textContent = "先说点什么吧，空白也是一种态度，但机器不收。"; delete state.answers[q.id]; updateLive(); updateNav(q); return; }
+        q.text = input.value; q.analyzed = true;
+        const strongHot = ["啊啊", " aaa ", "救命", "太好", "超爱", "绝了", "疯了", "爆", "炸裂", "哭死"];
+        const mildHot = ["哈哈", "好好看", "太棒了", "喜欢", "开心", "爱了", "冲", "哇"];
+        const lightCold = ["嗯", "哦", "行", "随便", "都行", "还好", "无所谓", "算了"];
+        let score = 50, reason = "没抓到明显情绪词，按中位数处理。";
+        if (strongHot.some(w => s.includes(w))) { score = s.includes("啊啊啊") || s.includes("救命") || s.includes("炸裂") ? 100 : 85; reason = "检测到高浓度表达欲。"; }
+        else if (mildHot.some(w => s.includes(w))) { score = 80; reason = "情绪外放，浓度在线。"; }
+        else if (lightCold.some(w => s.includes(w))) {
+          score = /^(嗯+|哦+|行|随便|都行|还好|无所谓|算了)$/.test(s) ? 0 : (s.includes("无所谓") || s.includes("随便") ? 5 : 20);
+          reason = "字数越少，事儿越少。";
+        }
+        out.textContent = `${reason} 本题：${score} 分。`;
+        setAnswer(q, score);
+      };
+    }
+
+    function buildRangeVote(q, area) {
+      const val = Number.isFinite(Number(state.answers[q.id])) ? Number(state.answers[q.id]) : 50;
+      area.innerHTML = `
+        <div class="slider-block">
+          <div class="slider-tops"><span>❄️ 攻略做满</span><span class="value-pill" id="voteVal">${val}</span><span>随性出发 🔥</span></div>
+          <div class="range-wrap"><input id="voteRange" type="range" min="0" max="100" value="${val}"></div>
+          <div class="range-scale"><span>每一步都要确认</span><span>走到哪算哪</span></div>
+        </div>`;
+      const r = el("voteRange");
+      r.oninput = () => { el("voteVal").textContent = r.value; setAnswer(q, r.value); };
+      setAnswer(q, val);
+    }
+
+    function formatHour(n) {
+      const h = Math.floor(n), m = Math.round((n - h) * 60);
+      return `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
+    }
+
+    function buildTimeline(q, area) {
+      const saved = Number(state.answers[q.id]);
+      const hour = Number.isFinite(saved) ? 6 + saved * 16 / 100 : 14;
+      area.innerHTML = `
+        <div class="slider-block">
+          <div class="slider-tops"><span>🌅 早上6点</span><span class="value-pill" id="timeVal">${formatHour(hour)}</span><span>🌙 晚上10点</span></div>
+          <div class="range-wrap"><input id="timeRange" type="range" min="6" max="22" step="0.25" value="${hour}"></div>
+          <div class="range-scale"><span>早上</span><span>中午</span><span>晚上</span></div>
+        </div>`;
+      const r = el("timeRange");
+      const sync = () => {
+        const h = Number(r.value);
+        el("timeVal").textContent = formatHour(h);
+        // 早上6点=0，晚上10点=100，中间线性映射。
+        setAnswer(q, (h - 6) * 100 / 16);
+      };
+      r.oninput = sync; sync();
+    }
+
+    function buildSpectrum(q, area) {
+      const val = Number.isFinite(Number(state.answers[q.id])) ? Number(state.answers[q.id]) : 50;
+      area.innerHTML = `
+        <div class="slider-block">
+          <div class="slider-tops"><span>灰白低电量</span><span class="value-pill" id="specVal">${val}</span><span>荧光高饱和</span></div>
+          <div class="range-wrap"><input id="specRange" class="spectrum" type="range" min="0" max="100" value="${val}"></div>
+          <div class="range-scale"><span>接近透明</span><span>浓到结晶</span></div>
+        </div>`;
+      const r = el("specRange");
+      r.oninput = () => { el("specVal").textContent = r.value; setAnswer(q, r.value); };
+      setAnswer(q, val);
+    }
+
+    function buildSpeed(q, area) {
+      const val = Number.isFinite(Number(state.answers[q.id])) ? Number(state.answers[q.id]) : 50;
+      area.innerHTML = `
+        <div class="slider-block">
+          <div class="knob-scene"><div class="knob"><div class="needle" id="speedNeedle">🗣️</div></div></div>
+          <div style="text-align:center"><span class="value-pill" id="speedVal">${val}</span></div>
+          <div class="range-wrap"><input id="speedRange" class="thin" type="range" min="0" max="100" value="${val}"></div>
+          <div class="range-scale"><span>🐢 语速慢</span><span>🐇 语速快</span></div>
+        </div>`;
+      const r = el("speedRange");
+      const sync = () => {
+        const v = Number(r.value);
+        el("speedVal").textContent = String(v);
+        el("speedNeedle").style.transform = `rotate(${v * 2.7 - 135}deg)`;
+        setAnswer(q, v);
+      };
+      r.oninput = sync; sync();
+    }
+
+    function buildVolume(q, area) {
+      const val = Number.isFinite(Number(state.answers[q.id])) ? Number(state.answers[q.id]) : 50;
+      area.innerHTML = `
+        <div class="slider-block">
+          <div class="volume-bars" id="volBars"></div>
+          <div style="text-align:center"><span class="value-pill" id="volumeVal">${val}</span></div>
+          <div class="range-wrap"><input id="volumeRange" type="range" min="0" max="100" value="${val}"></div>
+          <div class="range-scale"><span>静音模式</span><span>全场都能听见</span></div>
+        </div>`;
+      const r = el("volumeRange"), bars = el("volBars");
+      for (let i = 0; i < 9; i++) {
+        const b = document.createElement("div");
+        b.className = "vbar"; b.style.animationDelay = `${i * .08}s`; bars.append(b);
+      }
+      const sync = () => {
+        const v = Number(r.value);
+        el("volumeVal").textContent = String(v);
+        [...bars.children].forEach((bar, i) => {
+          const peak = 22 + v * .78;
+          bar.style.height = `${Math.max(8, Math.min(100, peak - Math.abs(4 - i) * (v > 65 ? 3 : 7)))}%`;
+        });
+        setAnswer(q, v); // 音量值直接作为得分。
+      };
+      r.oninput = sync; sync();
+    }
+
+    function buildVotes(q, area) {
+      q.votes = Array.isArray(q.votes) ? q.votes : [null, null, null, null, null];
+      area.innerHTML = `<div class="vote-scenarios" id="voteBox"></div>`;
+      const box = el("voteBox");
+      function sync() {
+        const chosen = q.votes.filter(v => v === "hot").length;
+        // 5个场景各20分，选浓人行为得20分/次。
+        setAnswer(q, chosen * 20);
+      }
+      q.scenarios.forEach((scene, si) => {
+        const row = document.createElement("div");
+        row.className = "vote-row";
+        row.innerHTML = `
+          <div class="vote-title">${si + 1}. ${scene[0]}</div>
+          <div class="vote-btns">
+            <button class="vote-btn" data-kind="cold" type="button">👎 淡人行为<br>${scene[1]}</button>
+            <button class="vote-btn" data-kind="hot" type="button">👍 浓人行为<br>${scene[2]}</button>
+          </div>`;
+        const btns = [...row.querySelectorAll(".vote-btn")];
+        const paint = () => btns.forEach(b => b.classList.toggle(b.dataset.kind === "hot" ? "selected-hot" : "selected-cold", q.votes[si] === b.dataset.kind));
+        btns.forEach(btn => btn.onclick = () => { q.votes[si] = btn.dataset.kind; paint(); sync(); });
+        paint(); box.append(row);
+      });
+      sync();
+    }
+
+    function buildFinal(q, area) {
+      const val = Number.isFinite(Number(state.answers[q.id])) ? Number(state.answers[q.id]) : 50;
+      area.innerHTML = `
+        <div class="slider-block">
+          <div class="slider-tops"><span>❄️ 我是宇宙级淡人</span><span class="value-pill" id="finalVal">${val}</span><span>我是行走的浓人核弹 🔥</span></div>
+          <div class="range-wrap"><input id="finalRange" type="range" min="0" max="100" value="${val}"></div>
+          <div class="range-scale"><span>毫无波澜</span><span>原地喷发</span></div>
+        </div>`;
+      const r = el("finalRange");
+      r.oninput = () => { el("finalVal").textContent = r.value; setAnswer(q, r.value); };
+      setAnswer(q, val);
+    }
+
+    /* ------------------ 淡人/浓人指数计算逻辑 ------------------
+       每道题独立计算得分（0-100）。
+       最终浓人指数 = Math.round(24道题得分总和 / 24)。
+       淡人指数 = 100 - 浓人指数。
+    ---------------------------------------------------------- */
+    function finish() {
+      const scores = questions.map(q => clampScore(state.answers[q.id]));
+      const hotIndex = Math.round(scores.reduce((sum, score) => sum + score, 0) / 24);
+      const coldIndex = 100 - hotIndex;
+      el("hotPercent").textContent = String(hotIndex);
+      el("coldPercent").textContent = String(coldIndex);
+      const verdict = results.find(r => hotIndex <= r.max);
+      el("resultName").textContent = verdict.name;
+      el("resultText").textContent = verdict.text;
+      el("coldSide").style.width = "50%";
+      el("hotSide").style.width = "50%";
+      showScreen("resultScreen");
+      setTimeout(() => {
+        el("coldSide").style.width = `${coldIndex}%`;
+        el("hotSide").style.width = `${hotIndex}%`;
+      }, 120);
+    }
+
+    el("startBtn").onclick = () => {
+      state.current = 0; state.answers = {};
+      questions.forEach(q => { delete q.outer; delete q.order; delete q.selected; delete q.checked; delete q.votes; delete q.text; delete q.analyzed; });
+      showScreen("testScreen"); renderQuestion();
+    };
+    el("restartBtn").onclick = () => el("startBtn").click();
+    el("shareBtn").onclick = () => toast("你朋友可能比你更了解你...");
+    window.addEventListener("keydown", e => {
+      if (!el("testScreen").classList.contains("active")) return;
+      if (e.key === "ArrowLeft") el("prevBtn").click();
+      if (e.key === "ArrowRight" && !el("nextBtn").disabled) el("nextBtn").click();
+    });
+  </script>
+</body>
+
+</html>
