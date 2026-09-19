@@ -1,0 +1,1834 @@
+<!doctype html>
+
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>📖 文学女主测试 · 你是哪种故事的女主角</title>
+  <meta name="description" content="24道题，测测你活在哪本旧小说里：身世钩子、宿命感、美强惨浓度。仅供娱乐。">
+  <style>
+    :root {
+      --cold-1: #2A2E3A;
+      --cold-2: #4A4E5E;
+      --cold-3: #1D2028;
+      --hot-1: #9D6FE0;
+      --hot-2: #7C4DC4;
+      --hot-3: #56339B;
+      --ink: #1E1A26;
+      --card: rgba(250, 247, 255, .94);
+      --shadow: 0 18px 60px rgba(38, 48, 57, .18);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      min-height: 100%;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #100C16;
+      font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    .bg {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .bg::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(240, 240, 240, .95), rgba(168, 181, 192, .88) 42%, rgba(255, 107, 53, .82) 62%, rgba(255, 46, 99, .9));
+      z-index: -1;
+    }
+
+    .flow-a,
+    .flow-b {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .flow-a::after,
+    .flow-b::after {
+      content: "";
+      position: absolute;
+      width: 180%;
+      height: 180%;
+      left: -40%;
+      top: -40%;
+      opacity: .34;
+      filter: blur(36px);
+      animation: drift 17s ease-in-out infinite alternate;
+    }
+
+    .flow-a::after {
+      background:
+        radial-gradient(circle at 25% 25%, #ffffff 0, transparent 32%),
+        radial-gradient(circle at 70% 65%, var(--cold-2) 0, transparent 38%),
+        radial-gradient(circle at 45% 80%, var(--cold-3) 0, transparent 30%);
+    }
+
+    .flow-b::after {
+      background:
+        radial-gradient(circle at 30% 30%, var(--hot-1) 0, transparent 28%),
+        radial-gradient(circle at 68% 55%, var(--hot-2) 0, transparent 35%),
+        radial-gradient(circle at 52% 78%, var(--hot-3) 0, transparent 33%);
+      animation-delay: -7s;
+    }
+
+    @keyframes drift {
+      0% {
+        transform: translate(-4%, -3%) rotate(0deg) scale(1);
+      }
+      50% {
+        transform: translate(4%, 3%) rotate(9deg) scale(1.08);
+      }
+      100% {
+        transform: translate(-2%, 4%) rotate(-8deg) scale(.97);
+      }
+    }
+
+    .app {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: grid;
+      place-items: center;
+      padding: clamp(14px, 3vw, 34px) clamp(14px, 3vw, 34px) 76px;
+    }
+
+    .screen {
+      width: min(920px, 100%);
+      display: none;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    .glass {
+      background: var(--card);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, .42);
+      box-shadow: var(--shadow);
+      border-radius: 26px;
+    }
+
+    .home {
+      padding: clamp(28px, 6vw, 64px);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .home::before,
+    .home::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      border-radius: 50%;
+      filter: blur(46px);
+      opacity: .5;
+    }
+
+    .home::before {
+      width: 260px;
+      height: 260px;
+      background: var(--cold-2);
+      left: -90px;
+      bottom: -110px;
+    }
+
+    .home::after {
+      width: 300px;
+      height: 300px;
+      background: var(--hot-2);
+      right: -100px;
+      top: -120px;
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      letter-spacing: 4px;
+      font-size: 13px;
+      opacity: .62;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(31px, 8vw, 66px);
+      line-height: 1.08;
+      letter-spacing: -1px;
+    }
+
+    .subtitle {
+      max-width: 520px;
+      margin: 16px auto 0;
+      font-size: clamp(15px, 3.4vw, 19px);
+      opacity: .74;
+    }
+
+    .polar-tags {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .tag {
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .tag.cold {
+      background: rgba(168, 181, 192, .24);
+      color: #47222E;
+      border: 1px solid rgba(74, 90, 106, .24);
+    }
+
+    .tag.hot {
+      background: rgba(255, 107, 53, .15);
+      color: #C8334A;
+      border: 1px solid rgba(255, 46, 99, .22);
+    }
+
+    .home-author {
+      margin-top: 18px;
+      font-size: 13px;
+      opacity: .62;
+    }
+
+    .home-author a {
+      color: #C8334A;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .home-author a:hover {
+      text-decoration: underline;
+    }
+
+    .btn {
+      appearance: none;
+      border: 0;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 700;
+      color: white;
+      background: linear-gradient(135deg, var(--hot-2), var(--hot-3));
+      box-shadow: 0 12px 28px rgba(255, 46, 99, .28);
+      transition: transform .18s ease, box-shadow .18s ease, opacity .18s;
+      touch-action: manipulation;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 32px rgba(255, 46, 99, .32);
+    }
+
+    .btn:active {
+      transform: translateY(1px) scale(.99);
+    }
+
+    .btn.primary {
+      min-width: min(320px, 100%);
+      padding: 17px 30px;
+      border-radius: 999px;
+      font-size: 17px;
+      margin-top: 30px;
+    }
+
+    .btn.small {
+      padding: 11px 20px;
+      border-radius: 999px;
+      font-size: 14px;
+    }
+
+    .btn.ghost {
+      color: #41505E;
+      background: rgba(240, 240, 240, .72);
+      box-shadow: none;
+      border: 1px solid rgba(74, 90, 106, .16);
+    }
+
+    .test-head {
+      padding: 16px 18px 14px;
+      margin-bottom: 14px;
+    }
+
+    .head-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .progress-label {
+      font-weight: 800;
+      font-size: 15px;
+      white-space: nowrap;
+    }
+
+    .live-score {
+      font-size: 12px;
+      opacity: .68;
+      text-align: right;
+    }
+
+    .progress {
+      height: 13px;
+      margin-top: 12px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(74, 90, 106, .14);
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--cold-2), var(--hot-1), var(--hot-2), var(--hot-3));
+      transition: width .45s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .question-card {
+      padding: clamp(22px, 4.5vw, 40px);
+      min-height: 480px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .q-index {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      opacity: .48;
+      margin-bottom: 8px;
+    }
+
+    .q-title {
+      margin: 0;
+      font-size: clamp(21px, 5vw, 31px);
+      line-height: 1.25;
+    }
+
+    .q-desc {
+      margin: 10px 0 0;
+      color: #5A6874;
+      font-size: 14px;
+    }
+
+    .control {
+      margin-top: 26px;
+      flex: 1;
+    }
+
+    .option-grid {
+      display: grid;
+      gap: 11px;
+    }
+
+    .cols-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .cols-4,
+    .cols-5,
+    .cols-6 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .option {
+      border: 1px solid rgba(74, 90, 106, .14);
+      background: rgba(255, 255, 255, .76);
+      border-radius: 17px;
+      padding: 15px;
+      min-height: 62px;
+      cursor: pointer;
+      font-family: inherit;
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.35;
+      text-align: left;
+      transition: transform .16s, border-color .16s, background .16s, box-shadow .16s;
+      touch-action: manipulation;
+    }
+
+    .option:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px rgba(38, 48, 57, .09);
+      border-color: rgba(255, 107, 53, .44);
+    }
+
+    .option.selected {
+      border-color: var(--hot-2);
+      background: linear-gradient(135deg, rgba(228, 87, 107, .22), rgba(200, 51, 74,.18));
+      box-shadow: 0 0 0 2px rgba(255, 107, 53, .18) inset;
+    }
+
+    .emoji {
+      display: block;
+      font-size: 27px;
+      margin-bottom: 6px;
+    }
+
+    .slider-block {
+      padding: 18px 4px 8px;
+    }
+
+    .slider-tops {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 800;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .range-wrap {
+      position: relative;
+      padding-bottom: 8px;
+    }
+
+    input[type=range] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 34px;
+      margin: 0;
+      background: transparent;
+      outline: none;
+    }
+
+    input[type=range]::-webkit-slider-runnable-track {
+      height: 14px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--cold-2), var(--cold-1), var(--hot-1), var(--hot-2), var(--hot-3));
+      box-shadow: inset 0 1px 5px rgba(0, 0, 0, .12);
+    }
+
+    input[type=range]::-moz-range-track {
+      height: 14px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--cold-2), var(--cold-1), var(--hot-1), var(--hot-2), var(--hot-3));
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 30px;
+      height: 30px;
+      margin-top: -8px;
+      border: 4px solid #fff;
+      border-radius: 50%;
+      background: var(--ink);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, .22);
+      cursor: grab;
+    }
+
+    input[type=range]::-moz-range-thumb {
+      width: 24px;
+      height: 24px;
+      border: 4px solid #fff;
+      border-radius: 50%;
+      background: var(--ink);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, .22);
+      cursor: grab;
+    }
+
+    input[type=range].thin::-webkit-slider-runnable-track {
+      background: rgba(74, 90, 106, .18);
+    }
+
+    input[type=range].thin::-moz-range-track {
+      background: rgba(74, 90, 106, .18);
+    }
+
+    input[type=range].spectrum::-webkit-slider-runnable-track {
+      height: 26px;
+      background: linear-gradient(90deg, #e8eaf0, #b8b2d8, #d4b96a, #9d6fe0, #56339b);
+    }
+
+    input[type=range].spectrum::-moz-range-track {
+      height: 26px;
+      background: linear-gradient(90deg, #e8eaf0, #b8b2d8, #d4b96a, #9d6fe0, #56339b);
+    }
+
+    .range-scale {
+      display: flex;
+      justify-content: space-between;
+      color: #67757f;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .dual-track {
+      position: relative;
+      height: 54px;
+    }
+
+    .dual-track input {
+      position: absolute;
+      left: 0;
+      top: 0;
+      pointer-events: none;
+    }
+
+    .dual-track input::-webkit-slider-thumb {
+      pointer-events: auto;
+    }
+
+    .dual-track input::-moz-range-thumb {
+      pointer-events: auto;
+    }
+
+    .dual-labels {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .mini-card {
+      padding: 10px;
+      border-radius: 13px;
+      background: rgba(255, 255, 255, .68);
+      border: 1px solid rgba(74, 90, 106, .12);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .dial {
+      display: grid;
+      place-items: center;
+      margin-bottom: 8px;
+    }
+
+    .dial-face {
+      width: min(310px, 84vw);
+      aspect-ratio: 2 / 1.18;
+      position: relative;
+      border-radius: 160px 160px 12px 12px / 150px 150px 12px 12px;
+      background: conic-gradient(from 270deg, var(--cold-2) 0deg, var(--cold-1) 55deg, var(--hot-1) 105deg, var(--hot-2) 145deg, var(--hot-3) 180deg, transparent 180deg);
+      clip-path: polygon(0 100%, 0 48%, 8% 22%, 22% 7%, 43% 0, 63% 3%, 81% 14%, 94% 32%, 100% 55%, 100% 100%);
+      overflow: hidden;
+    }
+
+    .dial-pointer {
+      position: absolute;
+      left: 50%;
+      bottom: 8px;
+      width: 5px;
+      height: calc(100% - 28px);
+      background: #222b33;
+      border-radius: 4px;
+      transform-origin: 50% calc(100% - 8px);
+      transform: translateX(-50%) rotate(-90deg);
+      transition: transform .12s ease-out;
+    }
+
+    .dial-hub {
+      position: absolute;
+      left: 50%;
+      bottom: -4px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #fff;
+      border: 4px solid #222b33;
+      transform: translateX(-50%);
+    }
+
+    .value-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 92px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(38, 48, 57, .9);
+      color: #fff;
+      font-weight: 800;
+    }
+
+    .knob-scene {
+      display: grid;
+      place-items: center;
+      margin-bottom: 12px;
+    }
+
+    .knob {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: conic-gradient(from 225deg, var(--cold-2), var(--cold-1), var(--hot-1), var(--hot-2), var(--hot-3) 270deg, #dfe5e8 270deg);
+      position: relative;
+      box-shadow: inset 0 0 0 8px rgba(255, 255, 255, .75), 0 12px 28px rgba(0, 0, 0, .12);
+    }
+
+    .needle {
+      position: absolute;
+      inset: 22px;
+      border-radius: 50%;
+      background: #fff;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      font-size: 20px;
+    }
+
+    .needle::before {
+      content: "";
+      position: absolute;
+      top: 7px;
+      width: 5px;
+      height: 32px;
+      background: var(--hot-3);
+      border-radius: 4px;
+    }
+
+    .volume-bars {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 6px;
+      height: 125px;
+      margin-bottom: 8px;
+    }
+
+    .vbar {
+      width: 13px;
+      height: 18%;
+      border-radius: 8px;
+      background: linear-gradient(180deg, var(--hot-3), var(--hot-2), var(--hot-1));
+      transition: height .18s cubic-bezier(.3, 1.4, .5, 1);
+      animation: pulse 1.6s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      50% {
+        filter: brightness(1.22);
+      }
+    }
+
+    .chat-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .chat-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, .82);
+      border: 1px solid rgba(74, 90, 106, .12);
+      border-radius: 16px;
+      padding: 10px 12px;
+    }
+
+    .chat-item.dragging {
+      opacity: .4;
+    }
+
+    .bubble {
+      flex: 1;
+      background: linear-gradient(135deg, #eef3f6, #fff);
+      padding: 11px 13px;
+      border-radius: 16px;
+      border: 1px solid rgba(74, 90, 106, .1);
+      font-size: 14px;
+      cursor: grab;
+      user-select: none;
+    }
+
+    .move-btn {
+      border: 0;
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      cursor: pointer;
+      background: #e8edf0;
+      font-size: 14px;
+      touch-action: manipulation;
+    }
+
+    .toggle-row {
+      display: grid;
+      gap: 10px;
+    }
+
+    .toggle-card {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 14px;
+      background: rgba(255, 255, 255, .78);
+      border: 1px solid rgba(74, 90, 106, .12);
+      border-radius: 16px;
+    }
+
+    .switch {
+      position: relative;
+      width: 56px;
+      height: 31px;
+      flex: 0 0 auto;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      cursor: pointer;
+      position: absolute;
+      z-index: 2;
+    }
+
+    .switch-track {
+      position: absolute;
+      inset: 0;
+      border-radius: 999px;
+      background: #ccd5da;
+      transition: background .2s;
+    }
+
+    .switch-track::after {
+      content: "";
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      width: 23px;
+      height: 23px;
+      background: #fff;
+      border-radius: 50%;
+      box-shadow: 0 2px 7px rgba(0, 0, 0, .18);
+      transition: transform .2s;
+    }
+
+    .switch input:checked+.switch-track {
+      background: linear-gradient(135deg, var(--hot-2), var(--hot-3));
+    }
+
+    .switch input:checked+.switch-track::after {
+      transform: translateX(25px);
+    }
+
+    .text-analyze {
+      display: flex;
+      gap: 9px;
+      align-items: stretch;
+    }
+
+    .text-analyze input {
+      flex: 1;
+      min-width: 0;
+      border: 2px solid rgba(74, 90, 106, .16);
+      border-radius: 14px;
+      padding: 13px;
+      font-family: inherit;
+      font-size: 15px;
+      background: rgba(255, 255, 255, .86);
+    }
+
+    .analyze-result {
+      min-height: 24px;
+      margin-top: 12px;
+      color: #59656f;
+      font-size: 14px;
+    }
+
+    .vote-scenarios {
+      display: grid;
+      gap: 10px;
+    }
+
+    .vote-row {
+      padding: 11px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, .74);
+      border: 1px solid rgba(74, 90, 106, .11);
+    }
+
+    .vote-title {
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .vote-btns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+    }
+
+    .vote-btn {
+      padding: 9px 7px;
+      min-height: 48px;
+      border-radius: 12px;
+      border: 1px solid rgba(74, 90, 106, .13);
+      cursor: pointer;
+      background: rgba(248, 250, 251, .9);
+      font-size: 12px;
+      font-family: inherit;
+      line-height: 1.2;
+    }
+
+    .vote-btn.selected-cold {
+      background: rgba(168, 181, 192, .3);
+      border-color: var(--cold-3);
+      font-weight: 800;
+    }
+
+    .vote-btn.selected-hot {
+      background: rgba(255, 107, 53, .18);
+      border-color: var(--hot-3);
+      font-weight: 800;
+    }
+
+    .tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cloud-tag {
+      border: 1px solid rgba(74, 90, 106, .16);
+      background: rgba(255, 255, 255, .78);
+      border-radius: 999px;
+      padding: 9px 16px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--ink);
+    }
+
+    .cloud-tag:nth-child(odd) {
+      transform: rotate(-1deg);
+    }
+
+    .cloud-tag:nth-child(even) {
+      transform: rotate(1deg);
+    }
+
+    .cloud-tag.selected {
+      background: linear-gradient(135deg, rgba(228, 87, 107, .28), rgba(142, 14, 51, .26));
+      border-color: var(--hot-2);
+      font-weight: 800;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .hint {
+      font-size: 12px;
+      color: #71808a;
+      flex: 1;
+      text-align: center;
+    }
+
+    .result-card {
+      padding: clamp(24px, 5vw, 48px);
+      text-align: center;
+    }
+
+    .result-title {
+      font-size: clamp(26px, 7vw, 49px);
+      margin: 0;
+    }
+
+    .meter {
+      height: clamp(74px, 15vw, 104px);
+      display: flex;
+      border-radius: 24px;
+      overflow: hidden;
+      margin: 28px 0 12px;
+      box-shadow: 0 18px 45px rgba(38, 48, 57, .18);
+      border: 4px solid white;
+    }
+
+    .meter-side {
+      flex: 1;
+      display: grid;
+      place-items: center;
+      color: white;
+      font-weight: 900;
+      font-size: clamp(18px, 4.6vw, 30px);
+      text-shadow: 0 2px 10px rgba(0, 0, 0, .22);
+      min-width: 0;
+    }
+
+    .meter-side.cold-side {
+      background: linear-gradient(135deg, #6d8092, var(--cold-3));
+      width: 50%;
+      transition: width 1s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .meter-side.hot-side {
+      background: linear-gradient(135deg, var(--hot-1), var(--hot-2), var(--hot-3));
+      width: 50%;
+      transition: width 1s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .meter-caption {
+      font-weight: 800;
+      opacity: .66;
+      font-size: 14px;
+    }
+
+    .verdict {
+      margin-top: 26px;
+      text-align: left;
+      background: rgba(255, 255, 255, .68);
+      border-radius: 20px;
+      padding: 20px;
+      border: 1px solid rgba(255, 255, 255, .6);
+    }
+
+    .verdict-name {
+      margin: 0;
+      font-size: clamp(21px, 5vw, 29px);
+    }
+
+    .verdict-text {
+      margin: 10px 0 0;
+      color: #4d5a65;
+      font-size: 15px;
+    }
+
+    .result-actions {
+      display: grid;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .follow-card {
+      margin-top: 22px;
+      padding: 20px 18px;
+      border-radius: 20px;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(255, 217, 61, .2), rgba(255, 107, 53, .14), rgba(255, 46, 99, .1));
+      border: 1px solid rgba(255, 107, 53, .3);
+    }
+
+    .follow-title {
+      margin: 0 0 6px;
+      font-weight: 900;
+      font-size: 18px;
+    }
+
+    .follow-text {
+      margin: 0 0 12px;
+      color: #4d5a65;
+      font-size: 14px;
+    }
+
+    .follow-id {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 18px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px dashed rgba(255, 46, 99, .55);
+      color: #C8334A;
+      font-weight: 900;
+      font-size: 15px;
+    }
+
+    .follow-link {
+      display: inline-block;
+      margin-top: 13px;
+      padding: 12px 26px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--hot-2), var(--hot-3));
+      color: #fff;
+      font-weight: 800;
+      font-size: 14px;
+      text-decoration: none;
+      box-shadow: 0 10px 24px rgba(255, 46, 99, .26);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+    .follow-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(255, 46, 99, .32);
+    }
+
+    .brand-bar {
+      position: fixed;
+      left: 50%;
+      bottom: 14px;
+      transform: translateX(-50%);
+      z-index: 30;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      max-width: min(92vw, 560px);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding: 9px 18px;
+      border-radius: 999px;
+      background: rgba(16, 21, 26, .78);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .3px;
+      border: 1px solid rgba(255, 255, 255, .16);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, .3);
+      backdrop-filter: blur(10px);
+    }
+
+    .brand-bar a {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: #FFD93D;
+      text-decoration: none;
+    }
+
+    .brand-bar a:hover {
+      text-decoration: underline;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 28px;
+      z-index: 20;
+      transform: translate(-50%, 140%);
+      background: rgba(24, 30, 36, .95);
+      color: #fff;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-size: 14px;
+      transition: transform .3s cubic-bezier(.2, .8, .2, 1);
+      max-width: min(92vw, 430px);
+      text-align: center;
+    }
+
+    .toast.show {
+      transform: translate(-50%, 0);
+    }
+
+    .card-enter {
+      animation: slideFlip .42s cubic-bezier(.22, .9, .3, 1);
+    }
+
+    @keyframes slideFlip {
+      0% {
+        opacity: 0;
+        transform: perspective(900px) rotateY(38deg) translateX(48px);
+      }
+      100% {
+        opacity: 1;
+        transform: perspective(900px) rotateY(0) translateX(0);
+      }
+    }
+
+    @media (max-width:560px) {
+      .head-row {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .live-score {
+        text-align: left;
+      }
+
+      .question-card {
+        min-height: 545px;
+      }
+
+      .control {
+        margin-top: 20px;
+      }
+
+      .option {
+        padding: 12px;
+        min-height: 54px;
+      }
+
+      .emoji {
+        font-size: 23px;
+      }
+
+      .nav {
+        flex-direction: column-reverse;
+        align-items: stretch;
+      }
+
+      .nav .btn {
+        width: 100%;
+      }
+
+      .hint {
+        order: -1;
+      }
+    }
+
+    @media (min-width:700px) {
+      .cols-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .cols-5 {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+      }
+
+      .cols-6 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg" aria-hidden="true">
+    <div class="flow-a"></div>
+    <div class="flow-b"></div>
+  </div>
+
+  <main class="app">
+    <section id="homeScreen" class="screen active">
+      <div class="glass home">
+        <p class="eyebrow">HEROINE PLOT DETECTOR</p>
+        <h1>📖 文学女主<br>检测中心</h1>
+        <p class="subtitle">测测你的人生剧本更接近哪本旧小说：身世钩子、宿命感、美强惨浓度。别怕，结果仅供娱乐，不构成心理评估。</p>
+        <div class="polar-tags">
+          <span class="tag cold">普通女孩 / 日常流</span>
+          <span class="tag hot">身世成谜 / 宿命拉满</span>
+        </div>
+        <p class="home-author">📖 测测就知道 · 原创趣味测试</p>
+        <button id="startBtn" class="btn primary">开始测定 ▶</button>
+      </div>
+    </section>
+
+    <section id="testScreen" class="screen">
+      <div class="glass test-head">
+        <div class="head-row">
+          <div class="progress-label">第<span id="currentNum">1</span>/24题</div>
+          <div class="live-score">当前状态：日常 <span id="liveCold">50</span>% / 宿命 <span id="liveHot">50</span>%</div>
+        </div>
+        <div class="progress"><div id="progressFill" class="progress-fill"></div></div>
+      </div>
+      <article id="questionCard" class="glass question-card"></article>
+    </section>
+
+    <section id="resultScreen" class="screen">
+      <div class="glass result-card">
+        <p class="eyebrow">VERDICT READY</p>
+        <h2 class="result-title">判定书已生成</h2>
+        <div class="meter" aria-label="日常流和宿命流比例条">
+          <div id="coldSide" class="meter-side cold-side">🌙 日常 <span id="coldPercent">50</span>%</div>
+          <div id="hotSide" class="meter-side hot-side">📖 宿命 <span id="hotPercent">50</span>%</div>
+        </div>
+        <div class="meter-caption">左边是现实生活区，右边是旧小说剧情区</div>
+        <div class="verdict">
+          <h3 id="resultName" class="verdict-name"></h3>
+          <p id="resultText" class="verdict-text"></p>
+        </div>
+        <div class="follow-card">
+          <p class="follow-title">🎀 测完了，喜欢吗？</p>
+          <p class="follow-text">我是「测测就知道」，更多好玩的测试不定期更新～</p>
+          <span class="follow-id">📕 小红书 @测测就知道</span>
+          <br>
+          <a class="follow-link" href="#" onclick="return false" style="display:none">去小红书关注我 ▶</a>
+        </div>
+        <div class="result-actions">
+          <button id="shareBtn" class="btn small">截图发给朋友猜猜</button>
+          <button id="restartBtn" class="btn ghost small">我不信，重来</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="brand-bar" aria-label="作者信息">
+    🩶 测测就知道 · 仅供娱乐，不构成心理评估 📖
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script>
+    "use strict";
+
+    /* ------------------ 题目与控件定义 ------------------ */
+    // 每道题独立产出 0-100 的分数，answers[id] 只保存数值。
+    const questions = [
+      {
+        id: "q01", type: "dual", title: "请在下面两个滑块上分别标注：你的「真实剧情浓度」和「人前表现」。",
+        desc: "一个柄是你心里的剧本，另一个柄是你给别人看的版本。",
+        extra: {}
+      },
+      {
+        id: "q02", type: "options", cols: "cols-2", title: "走在路上突然下雨，你会？",
+        options: [
+          { emoji: "☔", label: "打车，赶紧回家", score: 0 },
+          { emoji: "🌧️", label: "有点烦，买把伞", score: 25 },
+          { emoji: "🌙", label: "慢慢走，觉得有点氛围感", score: 55 },
+          { emoji: "📖", label: "站一会儿，感觉自己像电影女主", score: 100 }
+        ]
+      },
+      {
+        id: "q03", type: "dial", title: "深夜睡不着时给自己加戏的程度是？",
+        desc: "拖到最高就是已经演到第三幕的程度。"
+      },
+      {
+        id: "q04", type: "tags", title: "选出所有符合你的词（越多宿命感越重）。",
+        desc: "可多选，取宿命感最重的那个标签计分。",
+        items: [
+          ["爱睡懒觉", 0], ["偶尔发呆", 10], ["爱听老歌", 25], ["写日记", 40], ["喜欢下雨天", 55],
+          ["相信直觉", 70], ["觉得一切有安排", 85], ["走哪都像有伏笔", 100]
+        ]
+      },
+      {
+        id: "q05", type: "sort", title: "请将以下回复按「最像你会发」到「最不可能发」排序。",
+        desc: "第一名就是你真实的样子，自己保重。",
+        items: [
+          { label: "在吃什么呢", score: 0 },
+          { label: "今天好累啊", score: 25 },
+          { label: "有点emo", score: 50 },
+          { label: "晚风好温柔", score: 75 },
+          { label: "如果一切是安排好的就好了", score: 100 }
+        ]
+      },
+      {
+        id: "q06", type: "options", cols: "cols-5", title: "回头翻旧照片，你的内心活动是？",
+        options: [
+          { emoji: "😌", label: "拍得还行，划走", score: 0 },
+          { emoji: "🙂", label: "想起来当时的事，笑一下", score: 25 },
+          { emoji: "😐", label: "有点感慨，时间过得真快", score: 50 },
+          { emoji: "😫", label: "反复看，整理成时间线", score: 75 },
+          { emoji: "📖", label: "觉得自己的人生像一本长篇小说", score: 100 }
+        ]
+      },
+      {
+        id: "q07", type: "toggles", title: "以下行为，你做过几样？（打开＝做过）",
+        items: [
+          { label: "给月亮拍过照", score: 100 },
+          { label: "在日记里给某人写过未寄出的信", score: 60 },
+          { label: "觉得某个瞬间以前梦到过", score: 30 }
+        ]
+      },
+      {
+        id: "q08", type: "text", title: "输入一句你深夜最想写下来的话，看看你的文学女主浓度。",
+        desc: "输入你最自然的说法，然后点击分析。"
+      },
+      {
+        id: "q09", type: "rangeVote", title: "你更接受哪种人生设定？",
+        desc: "左端「平凡安稳，没有大起大落」，右端「身世成谜，剧情不断」。"
+      },
+      {
+        id: "q10", type: "options", cols: "cols-2", title: "朋友说「你想太多了」，你的反应是？",
+        options: [
+          { emoji: "😌", label: "好像也是，睡一觉就好", score: 0 },
+          { emoji: "🤔", label: "嘴上承认，心里还在想", score: 30 },
+          { emoji: "🌙", label: "「我没有」（我真的有）", score: 70 },
+          { emoji: "📖", label: "「你不懂」，然后更用力地想", score: 100 }
+        ]
+      },
+      {
+        id: "q11", type: "timeline", title: "你一天中「内心戏」最丰富的高峰时段是？"
+      },
+      {
+        id: "q12", type: "spectrum", title: "用一个颜色代表你现在的人生阶段，你会选？"
+      },
+      {
+        id: "q13", type: "speed", title: "一段回忆翻篇的速度是？"
+      },
+      {
+        id: "q14", type: "volume", title: "你把心事写在脸上的程度是？"
+      },
+      {
+        id: "q15", type: "options", cols: "cols-2", title: "你最近一周的内心天气是？",
+        options: [
+          { emoji: "☀️", label: "大晴天，没什么事", score: 0 },
+          { emoji: "🌤️", label: "多云，偶尔飘过一两朵", score: 35 },
+          { emoji: "🌧️", label: "小雨，有点心事", score: 65 },
+          { emoji: "🌊", label: "雷雨，剧情拉满", score: 100 }
+        ]
+      },
+      {
+        id: "q16", type: "votes", title: "以下场景，请为每个场景选你更接近的行为。",
+        scenarios: [
+          ["电梯里遇到前任", "点头问好", "转身看楼层数字，心跳如鼓"],
+          ["朋友讲无聊八卦", "听着，不接话", "觉得这背后一定另有隐情"],
+          ["深夜刷到前任动态", "划走", "截图存档，配文「安好，勿念」（没发）"],
+          ["下雨天没带伞", "等雨停", "走进雨里，觉得老天爷都懂你"],
+          ["整理旧物", "能扔就扔", "每张票根都收着，都是剧情"]
+        ]
+      },
+      {
+        id: "q17", type: "options", cols: "cols-2", title: "如果给你的故事选一个载体，它是？",
+        options: [
+          { emoji: "📱", label: "朋友圈三天可见", score: 0 },
+          { emoji: "📔", label: "记了两页的日记本", score: 30 },
+          { emoji: "✉️", label: "写满没寄出的信", score: 65 },
+          { emoji: "📖", label: "一部长篇连载，还没有结局", score: 100 }
+        ]
+      },
+      {
+        id: "q18", type: "options", cols: "cols-6", title: "你最常说的是哪句？",
+        options: [
+          { emoji: "🙂", label: "没事", score: 0 },
+          { emoji: "😌", label: "都行", score: 15 },
+          { emoji: "😐", label: "哦", score: 30 },
+          { emoji: "😳", label: "随便", score: 55 },
+          { emoji: "🔥", label: "算了", score: 80 },
+          { emoji: "📖", label: "命运", score: 100 }
+        ]
+      },
+      {
+        id: "q19", type: "options", cols: "cols-5", title: "用「故事浓度」形容你现在的状态：",
+        options: [
+          { emoji: "🧍", label: "纯日常，没有剧情", score: 0 },
+          { emoji: "🤏", label: "偶尔有点小情绪", score: 25 },
+          { emoji: "🙇", label: "有故事，但不说", score: 50 },
+          { emoji: "🏋️", label: "心事重到能拧出水", score: 75 },
+          { emoji: "📖", label: "本人就是一部连载", score: 100 }
+        ]
+      },
+      {
+        id: "q20", type: "options", cols: "cols-2", title: "深夜睡不着的时候，你脑子里通常是？",
+        options: [
+          { emoji: "😴", label: "今天干了啥，明天吃啥", score: 0 },
+          { emoji: "📝", label: "盘一下最近的事，然后睡着", score: 25 },
+          { emoji: "🌙", label: "回放某个让你心动的瞬间", score: 60 },
+          { emoji: "🌀", label: "开始脑补一段宿命般的相遇", score: 100 }
+        ]
+      },
+      {
+        id: "q21", type: "options", cols: "cols-2", title: "对「命中注定」这四个字，你的态度是？",
+        options: [
+          { emoji: "🧊", label: "不存在，都是巧合", score: 0 },
+          { emoji: "🌤️", label: "偶尔信一点点", score: 30 },
+          { emoji: "🌙", label: "相信，但不说", score: 65 },
+          { emoji: "📖", label: "深信不疑，并等待印证", score: 100 }
+        ]
+      },
+      {
+        id: "q22", type: "options", cols: "cols-2", title: "朋友说你的生活「太戏剧化了」，你会？",
+        options: [
+          { emoji: "😌", label: "有吗，我觉得挺平的", score: 0 },
+          { emoji: "🤔", label: "确实有点，哈哈", score: 25 },
+          { emoji: "😟", label: "「我只是感受比较多」", score: 65 },
+          { emoji: "🧯", label: "「你不懂我的剧情」", score: 100 }
+        ]
+      },
+      {
+        id: "q23", type: "options", cols: "cols-2", title: "有人当众让你下不来台，你会？",
+        options: [
+          { emoji: "🫥", label: "没听懂，真的", score: 0 },
+          { emoji: "🍰", label: "笑一下就过去了", score: 30 },
+          { emoji: "💅", label: "表面淡定，内心写了一整章控诉", score: 65 },
+          { emoji: "📋", label: "眼眶一红，全场安静三秒", score: 100 }
+        ]
+      },
+      {
+        id: "q24", type: "finalSlider", title: "最后一个：撕开日常，你的人生剧本浓度到底有多高？"
+      }
+    ];
+
+    const results = [
+      { max: 20, name: "【都市日常流·现实派女主】", text: "你的人生剧本几乎没有旧小说浓度：没有身世之谜，没有宿命恩怨，最大剧情是外卖迟到和地铁错过。这不是普通，这是很多人求不来的安稳。把日子过好，就是最好的故事。仅供娱乐，请勿对号入座。" },
+      { max: 50, name: "【青春疼痛·轻度女主】", text: "你有偶尔的心事和晚风：日记写过两页，暗恋过一个人，在深夜发过仅自己可见的动态。剧情不虐，但有淡淡的文学滤镜。偶尔文艺一把没关系，第二天照常早起吃饭。" },
+      { max: 80, name: "【古早花园·中度女主】", text: "你的宿命感浓度不低：在意旧事、给回忆加滤镜、相信冥冥之中的安排。你的人生自带背景音乐，走在路上总觉得有什么要发生。提醒：剧情可以有，主角先吃饭。" },
+      { max: 100, name: "【美强惨·重度女主】", text: "确诊：你的人生就是一本旧小说。身世钩子、宿命对决、雨夜独白一样不少，走在路上都觉得风里有伏笔。你把心事写成了连载，把眼泪酿成了章节。记住：故事是你写的，笔也在你手里。仅供娱乐，请勿对号入座。" }
+    ];
+
+    const state = {
+      current: 0,
+      answers: {},
+      temporary: {},
+      innerScore: 50,
+      outerScore: 50
+    };
+
+    const el = id => document.getElementById(id);
+    const clampScore = n => Math.max(0, Math.min(100, Math.round(Number(n) || 0)));
+
+    function showScreen(name) {
+      ["homeScreen", "testScreen", "resultScreen"].forEach(id => el(id).classList.remove("active"));
+      el(name).classList.add("active");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function toast(msg) {
+      const t = el("toast");
+      t.textContent = msg;
+      t.classList.add("show");
+      clearTimeout(t._timer);
+      t._timer = setTimeout(() => t.classList.remove("show"), 2600);
+    }
+
+    function updateLive() {
+      const values = Object.values(state.answers).map(Number);
+      const hot = values.length ? Math.round(values.reduce((a, b) => a + b, 0) / values.length) : 50;
+      const cold = 100 - hot;
+      el("liveHot").textContent = String(hot);
+      el("liveCold").textContent = String(cold);
+    }
+
+    function renderQuestion() {
+      const q = questions[state.current];
+      state.temporary = {};
+      const card = el("questionCard");
+      card.classList.remove("card-enter");
+      void card.offsetWidth;
+      card.classList.add("card-enter");
+      card.innerHTML = `
+        <div class="q-index">QUESTION ${String(state.current + 1).padStart(2, "0")}</div>
+        <h2 class="q-title">${q.title}</h2>
+        ${q.desc ? `<p class="q-desc">${q.desc}</p>` : ""}
+        <div class="control" id="controlArea"></div>
+        <div class="nav">
+          <button id="prevBtn" class="btn ghost small">上一题</button>
+          <div class="hint" id="controlHint"></div>
+          <button id="nextBtn" class="btn small">下一题 ▶</button>
+        </div>`;
+      buildControl(q, el("controlArea"));
+      el("currentNum").textContent = String(state.current + 1);
+      el("progressFill").style.width = `${(state.current / 24) * 100}%`;
+      updateLive();
+      updateNav(q);
+      el("prevBtn").onclick = () => gotoQuestion(Math.max(0, state.current - 1));
+      el("nextBtn").onclick = () => nextQuestion();
+    }
+
+    function updateNav(q) {
+      const done = Number.isFinite(Number(state.answers[q.id]));
+      const btn = el("nextBtn");
+      btn.disabled = !done;
+      btn.style.opacity = done ? "1" : ".45";
+      btn.style.cursor = done ? "pointer" : "not-allowed";
+      el("controlHint").textContent = done ? "这题收下了。" :
+        ({ sort: "排好后自动记录第一名的浓度。", votes: "五个场景都得选。", tags: "至少选一个标签。", text: "先输入并分析。", toggles: "不开也算一种回答。", finalSlider: "拖完才算交代。" }[q.type] || "选择或拖动后继续。");
+    }
+
+    function setAnswer(q, value) {
+      state.answers[q.id] = clampScore(value);
+      updateLive();
+      updateNav(q);
+    }
+
+    function nextQuestion() {
+      const q = questions[state.current];
+      if (!Number.isFinite(Number(state.answers[q.id]))) return;
+      if (state.current === 23) return finish();
+      gotoQuestion(state.current + 1);
+    }
+
+    function gotoQuestion(i) {
+      state.current = i;
+      renderQuestion();
+    }
+
+    function buildControl(q, area) {
+      if (q.type === "options") return buildOptions(q, area);
+      if (q.type === "dual") return buildDual(q, area);
+      if (q.type === "dial") return buildDial(q, area);
+      if (q.type === "tags") return buildTags(q, area);
+      if (q.type === "sort") return buildSort(q, area);
+      if (q.type === "toggles") return buildToggles(q, area);
+      if (q.type === "text") return buildText(q, area);
+      if (q.type === "rangeVote") return buildRangeVote(q, area);
+      if (q.type === "timeline") return buildTimeline(q, area);
+      if (q.type === "spectrum") return buildSpectrum(q, area);
+      if (q.type === "speed") return buildSpeed(q, area);
+      if (q.type === "volume") return buildVolume(q, area);
+      if (q.type === "votes") return buildVotes(q, area);
+      if (q.type === "finalSlider") return buildFinal(q, area);
+      setAnswer(q, 50);
+      area.innerHTML = "<p>这道题走丢了，已按中位数处理。</p>";
+    }
+
+    function buildOptions(q, area) {
+      area.innerHTML = `<div class="option-grid ${q.cols || "cols-2"}"></div>`;
+      const box = area.firstElementChild;
+      q.options.forEach((opt, idx) => {
+        const b = document.createElement("button");
+        b.className = "option";
+        b.type = "button";
+        b.innerHTML = `${opt.emoji ? `<span class="emoji">${opt.emoji}</span>` : ""}${opt.label}`;
+        b.onclick = () => {
+          [...box.children].forEach(x => x.classList.remove("selected"));
+          b.classList.add("selected");
+          setAnswer(q, opt.score);
+          setTimeout(nextQuestion, 220);
+        };
+        box.append(b);
+        if (Number(state.answers[q.id]) === opt.score && !Object.values(q.options).some((o, i) => i < idx && o.score === opt.score)) b.classList.add("selected");
+      });
+    }
+
+    function baseSlider({ min = 0, max = 100, value = 50, step = 1, cls = "" } = {}) {
+      const inp = document.createElement("input");
+      inp.type = "range";
+      inp.min = String(min);
+      inp.max = String(max);
+      inp.step = String(step);
+      inp.value = String(value);
+      if (cls) inp.className = cls;
+      return inp;
+    }
+
+    function buildDual(q, area) {
+      const savedInner = Number(state.answers[q.id]);
+      state.temporary.inner = Number.isFinite(savedInner) ? savedInner : 50;
+      state.temporary.outer = Number.isFinite(q.outer) ? q.outer : 50;
+      area.innerHTML = `
+        <div class="slider-block">
+          <div class="slider-tops"><span>🌙 平凡安稳</span><span class="value-pill" id="innerPill">50</span><span>身世成谜 📖</span></div>
+          <div class="range-wrap dual-track">
+            <input id="innerRange" type="range" min="0" max="100" value="${state.temporary.inner}" aria-label="真实内心">
+            <input id="outerRange" type="range" min="0" max="100" value="${state.temporary.outer}" aria-label="对外表现">
+          </div>
+          <div class="range-scale"><span>剧情平淡</span><span>反转不断</span></div>
+          <div class="dual-labels">
+            <div class="mini-card"><strong>真实内心</strong><br>只拿它计分：<span id="innerVal">50</span></div>
+            <div class="mini-card"><strong>人前人设</strong><br>仅用于人前人后差对比：<span id="outerVal">50</span></div>
+          </div>
+        </div>`;
+      const ir = el("innerRange"), or = el("outerRange");
+      const sync = () => {
+        state.temporary.inner = clampScore(ir.value);
+        state.temporary.outer = clampScore(or.value);
+        q.outer = state.temporary.outer;
+        el("innerVal").textContent = String(state.temporary.inner);
+        el("outerVal").textContent = String(state.temporary.outer);
+        el("innerPill").textContent = String(state.temporary.inner);
+        setAnswer(q, state.temporary.inner);
+      };
+      ir.oninput = sync; or.oninput = sync;
+      sync();
+    }
+
+    function buildDial(q, area) {
+      const saved = Number(state.answers[q.id]);
+      const val = Number.isFinite(saved) ? Math.round(saved / 10) : 5;
+      area.innerHTML = `
+        <div class="slider-block">
+          <div class="dial"><div class="dial-face"><div class="dial-pointer" id="dialPointer"></div><div class="dial-hub"></div></div></div>
+          <div style="text-align:center"><span class="value-pill" id="dialPill">${val}</span></div>
+          <div class="range-wrap"><input id="dialRange" type="range" min="0" max="10" value="${val}"></div>
+          <div class="range-scale"><span>0 查无此人</span><span>10 全城旧闻</span></div>
+        </div>`;
+      const r = el("dialRange");
+      const sync = () => {
+        const v = Number(r.value);
+        el("dialPointer").style.transform = `translateX(-50%) rotate(${v * 18 - 90}deg)`;
+        el("dialPill").textContent = String(v);
+        setAnswer(q, v * 10); // 表盘数值 × 10。
+      };
+      r.oninput = sync; sync();
+    }
+
+    function buildTags(q, area) {
+      area.innerHTML = `<div class="tag-cloud" id="tagCloud"></div>`;
+      const cloud = el("tagCloud");
+      let selected = new Set(Array.isArray(q.selected) ? q.selected : []);
+      const sync = () => {
+        const vals = [...selected].map(i => q.items[i][1]);
+        const score = vals.length ? Math.max(...vals) : NaN;
+        if (vals.length) setAnswer(q, score);
+        else { delete state.answers[q.id]; updateLive(); updateNav(q); }
+      };
+      q.items.forEach(([label, score], idx) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "cloud-tag" + (selected.has(idx) ? " selected" : "");
+        b.textContent = label;
+        b.onclick = () => {
+          selected.has(idx) ? selected.delete(idx) : selected.add(idx);
+          b.classList.toggle("selected", selected.has(idx));
+          q.selected = [...selected];
+          sync();
+        };
+        cloud.append(b);
+      });
+      sync();
+    }
+
+    function buildSort(q, area) {
+      let order = Array.isArray(q.order) && q.order.length === 4 ? [...q.order] : [0, 1, 2, 3];
+      area.innerHTML = `<div class="chat-list" id="chatList"></div>`;
+      const list = el("chatList");
+      function sync() {
+        list.innerHTML = "";
+        order.forEach((itemIndex, pos) => {
+          const row = document.createElement("div");
+          row.className = "chat-item";
+          row.draggable = true;
+          row.dataset.idx = String(itemIndex);
+          row.innerHTML = `
+            <button class="move-btn" data-dir="-1" aria-label="上移">↑</button>
+            <div class="bubble">${pos + 1}. ${q.items[itemIndex].label}</div>
+            <button class="move-btn" data-dir="1" aria-label="下移">↓</button>`;
+          row.querySelectorAll(".move-btn").forEach(btn => {
+            btn.onclick = () => {
+              const dir = Number(btn.dataset.dir), to = pos + dir;
+              if (to < 0 || to >= order.length) return;
+              [order[pos], order[to]] = [order[to], order[pos]];
+              q.order = [...order]; sync();
+            };
+          });
+          row.addEventListener("dragstart", e => { row.classList.add("dragging"); e.dataTransfer.setData("text/plain", String(itemIndex)); });
+          row.addEventListener("dragend", () => row.classList.remove("dragging"));
+          row.addEventListener("dragover", e => e.preventDefault());
+          row.addEventListener("drop", e => {
+            e.preventDefault();
+            const from = order.indexOf(Number(e.dataTransfer.getData("text/plain")));
+            if (from < 0 || from === pos) return;
+            order.splice(pos, 0, order.splice(from, 1)[0]);
+            q.order = [...order]; sync();
+          });
+          list.append(row);
+        });
+        // 排序分值：第一名是什么，本题就是什么。
+        setAnswer(q, q.items[order[0]].score);
+      }
+      sync();
+    }
+
+    function buildToggles(q, area) {
+      area.innerHTML = `<div class="toggle-row" id="toggleRows"></div>`;
+      const box = el("toggleRows");
+      q.checked = Array.isArray(q.checked) ? q.checked : [false, false, false];
+      function sync() {
+        const vals = q.items.filter((_, i) => q.checked[i]).map(x => x.score);
+        // 取所有开启项中的最高分；全关为0。
+        setAnswer(q, vals.length ? Math.max(...vals) : 0);
+      }
+      q.items.forEach((item, i) => {
+        const row = document.createElement("label");
+        row.className = "toggle-card";
+        row.innerHTML = `
+          <span class="switch"><input type="checkbox" ${q.checked[i] ? "checked" : ""}><span class="switch-track"></span></span>
+          <span>${item.label}</span>`;
+        const cb = row.querySelector("input");
+        cb.onchange = () => { q.checked[i] = cb.checked; sync(); };
+        box.append(row);
+      });
+      sync();
+    }
+
+    function buildText(q, area) {
+      area.innerHTML = `
+        <div class="text-analyze">
+          <input id="moodInput" maxlength="80" placeholder="输入你想说的任何话…" value="${q.text || ""}">
+          <button id="analyzeBtn" class="btn small" type="button">分析</button>
+        </div>
+        <div class="analyze-result" id="moodOut">${q.analyzed ? `已分析：当前浓度 ${state.answers[q.id]} 分。` : ""}</div>`;
+      const input = el("moodInput"), out = el("moodOut"), btn = el("analyzeBtn");
+      btn.onclick = () => {
+        const s = (input.value || "").trim().toLowerCase();
+        if (!s) { out.textContent = "先说点什么吧，空白也是一种态度，但机器不收。"; delete state.answers[q.id]; updateLive(); updateNav(q); return; }
+        q.text = input.value; q.analyzed = true;
+        const strongHot = ["身世", "宿命", "眼泪", "月光", "雨夜", "古堡", "庄园", "誓约", "宿敌", "诀别", "命运"];
+        const mildHot = ["晚风", "日记", "暗涌", "心事", "独白", "窗", "梦"];
+        const lightCold = ["忙", "没事", "随便", "可以", "哦", "嗯", "加油"];
+        let score = 50, reason = "没抓到明显剧情词，按中位数处理。";
+        if (strongHot.some(w => s.includes(w))) { score = s.includes("命运") ? 100 : 85; reason = "检测到高浓度宿命感。"; }
+        else if (mildHot.some(w => s.includes(w))) { score = 80; reason = "文艺浓度在线，故事感上头。"; }
+        else if (lightCold.some(w => s.includes(w))) {
+          score = /^(嗯+|哦+|行|随便|都行|还好|无所谓|算了)$/.test(s) ? 0 : (s.includes("无所谓") || s.includes("随便") ? 5 : 20);
+          reason = "越冷淡越省事。";
+        }
+        out.textContent = `${reason} 本题：${score} 分。`;
+        setAnswer(q, score);
+      };
+    }
+
+    function buildRangeVote(q, area) {
+      const val = Number.isFinite(Number(state.answers[q.id])) ? Number(state.answers[q.id]) : 50;
+      area.innerHTML = `
+        <div class="slider-block">
+          <div class="slider-tops"><span>🌙 家境普通</span><span class="value-pill" id="voteVal">${val}</span><span>豪门遗珠 📖</span></div>
+          <div class="range-wrap"><input id="voteRange" type="range" min="0" max="100" value="${val}"></div>
+          <div class="range-scale"><span>设定普通</span><span>伏笔满身</span></div>
+        </div>`;
+      const r = el("voteRange");
+      r.oninput = () => { el("voteVal").textContent = r.value; setAnswer(q, r.value); };
+      setAnswer(q, val);
+    }
+
+    function formatHour(n) {
+      const h = Math.floor(n), m = Math.round((n - h) * 60);
+      return `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
+    }
+
+    function buildTimeline(q, area) {
+      const saved = Number(state.answers[q.id]);
+      const hour = Number.isFinite(saved) ? 6 + saved * 16 / 100 : 14;
+      area.innerHTML = `
+        <div class="slider-block">
+          <div class="slider-tops"><span>🌅 清晨6点</span><span class="value-pill" id="timeVal">${formatHour(hour)}</span><span>🌙 晚上10点</span></div>
+          <div class="range-wrap"><input id="timeRange" type="range" min="6" max="22" step="0.25" value="${hour}"></div>
+          <div class="range-scale"><span>早上</span><span>中午</span><span>晚上</span></div>
+        </div>`;
+      const r = el("timeRange");
+      const sync = () => {
+        const h = Number(r.value);
+        el("timeVal").textContent = formatHour(h);
+        // 早上6点=0，晚上10点=100，中间线性映射。
+        setAnswer(q, (h - 6) * 100 / 16);
+      };
+      r.oninput = sync; sync();
+    }
+
+    function buildSpectrum(q, area) {
+      const val = Number.isFinite(Number(state.answers[q.id])) ? Number(state.answers[q.id]) : 50;
+      area.innerHTML = `
+        <div class="slider-block">
+          <div class="slider-tops"><span>现代都市</span><span class="value-pill" id="specVal">${val}</span><span>古早花园</span></div>
+          <div class="range-wrap"><input id="specRange" class="spectrum" type="range" min="0" max="100" value="${val}"></div>
+          <div class="range-scale"><span>现代设定</span><span>旧小说设定</span></div>
+        </div>`;
+      const r = el("specRange");
+      r.oninput = () => { el("specVal").textContent = r.value; setAnswer(q, r.value); };
+      setAnswer(q, val);
+    }
+
+    function buildSpeed(q, area) {
+      const val = Number.isFinite(Number(state.answers[q.id])) ? Number(state.answers[q.id]) : 50;
+      area.innerHTML = `
+        <div class="slider-block">
+          <div class="knob-scene"><div class="knob"><div class="needle" id="speedNeedle">🗣️</div></div></div>
+          <div style="text-align:center"><span class="value-pill" id="speedVal">${val}</span></div>
+          <div class="range-wrap"><input id="speedRange" class="thin" type="range" min="0" max="100" value="${val}"></div>
+          <div class="range-scale"><span>市井烟火</span><span>庄园残月</span></div>
+        </div>`;
+      const r = el("speedRange");
+      const sync = () => {
+        const v = Number(r.value);
+        el("speedVal").textContent = String(v);
+        el("speedNeedle").style.transform = `rotate(${v * 2.7 - 135}deg)`;
+        setAnswer(q, v);
+      };
+      r.oninput = sync; sync();
+    }
+
+    function buildVolume(q, area) {
+      const val = Number.isFinite(Number(state.answers[q.id])) ? Number(state.answers[q.id]) : 50;
+      area.innerHTML = `
+        <div class="slider-block">
+          <div class="volume-bars" id="volBars"></div>
+          <div style="text-align:center"><span class="value-pill" id="volumeVal">${val}</span></div>
+          <div class="range-wrap"><input id="volumeRange" type="range" min="0" max="100" value="${val}"></div>
+          <div class="range-scale"><span>无人知晓</span><span>全城皆知</span></div>
+        </div>`;
+      const r = el("volumeRange"), bars = el("volBars");
+      for (let i = 0; i < 9; i++) {
+        const b = document.createElement("div");
+        b.className = "vbar"; b.style.animationDelay = `${i * .08}s`; bars.append(b);
+      }
+      const sync = () => {
+        const v = Number(r.value);
+        el("volumeVal").textContent = String(v);
+        [...bars.children].forEach((bar, i) => {
+          const peak = 22 + v * .78;
+          bar.style.height = `${Math.max(8, Math.min(100, peak - Math.abs(4 - i) * (v > 65 ? 3 : 7)))}%`;
+        });
+        setAnswer(q, v); // 音量值直接作为得分。
+      };
+      r.oninput = sync; sync();
+    }
+
+    function buildVotes(q, area) {
+      q.votes = Array.isArray(q.votes) ? q.votes : [null, null, null, null, null];
+      area.innerHTML = `<div class="vote-scenarios" id="voteBox"></div>`;
+      const box = el("voteBox");
+      function sync() {
+        const chosen = q.votes.filter(v => v === "hot").length;
+        // 5个场景各20分，选宿命行为得20分/次。
+        setAnswer(q, chosen * 20);
+      }
+      q.scenarios.forEach((scene, si) => {
+        const row = document.createElement("div");
+        row.className = "vote-row";
+        row.innerHTML = `
+          <div class="vote-title">${si + 1}. ${scene[0]}</div>
+          <div class="vote-btns">
+            <button class="vote-btn" data-kind="cold" type="button">🌙 日常行为<br>${scene[1]}</button>
+            <button class="vote-btn" data-kind="hot" type="button">📖 宿命行为<br>${scene[2]}</button>
+          </div>`;
+        const btns = [...row.querySelectorAll(".vote-btn")];
+        const paint = () => btns.forEach(b => b.classList.toggle(b.dataset.kind === "hot" ? "selected-hot" : "selected-cold", q.votes[si] === b.dataset.kind));
+        btns.forEach(btn => btn.onclick = () => { q.votes[si] = btn.dataset.kind; paint(); sync(); });
+        paint(); box.append(row);
+      });
+      sync();
+    }
+
+    function buildFinal(q, area) {
+      const val = Number.isFinite(Number(state.answers[q.id])) ? Number(state.answers[q.id]) : 50;
+      area.innerHTML = `
+        <div class="slider-block">
+          <div class="slider-tops"><span>🌙 我是日常流</span><span class="value-pill" id="finalVal">${val}</span><span>我是宿命流 📖</span></div>
+          <div class="range-wrap"><input id="finalRange" type="range" min="0" max="100" value="${val}"></div>
+          <div class="range-scale"><span>剧情随缘</span><span>宿命拉满</span></div>
+        </div>`;
+      const r = el("finalRange");
+      r.oninput = () => { el("finalVal").textContent = r.value; setAnswer(q, r.value); };
+      setAnswer(q, val);
+    }
+
+    /* ------------------ 宿命浓度计算逻辑 ------------------
+       每道题独立计算得分（0-100）。
+       最终宿命指数 = Math.round(24道题得分总和 / 24)。
+       日常指数 = 100 - 宿命指数。
+    ---------------------------------------------------------- */
+    function finish() {
+      const scores = questions.map(q => clampScore(state.answers[q.id]));
+      const hotIndex = Math.round(scores.reduce((sum, score) => sum + score, 0) / 24);
+      const coldIndex = 100 - hotIndex;
+      el("hotPercent").textContent = String(hotIndex);
+      el("coldPercent").textContent = String(coldIndex);
+      const verdict = results.find(r => hotIndex <= r.max);
+      el("resultName").textContent = verdict.name;
+      el("resultText").textContent = verdict.text;
+      el("coldSide").style.width = "50%";
+      el("hotSide").style.width = "50%";
+      showScreen("resultScreen");
+      setTimeout(() => {
+        el("coldSide").style.width = `${coldIndex}%`;
+        el("hotSide").style.width = `${hotIndex}%`;
+      }, 120);
+    }
+
+    el("startBtn").onclick = () => {
+      state.current = 0; state.answers = {};
+      questions.forEach(q => { delete q.outer; delete q.order; delete q.selected; delete q.checked; delete q.votes; delete q.text; delete q.analyzed; });
+      showScreen("testScreen"); renderQuestion();
+    };
+    el("restartBtn").onclick = () => el("startBtn").click();
+    el("shareBtn").onclick = () => toast("截图给朋友，看TA觉得你是哪种女主...");
+    window.addEventListener("keydown", e => {
+      if (!el("testScreen").classList.contains("active")) return;
+      if (e.key === "ArrowLeft") el("prevBtn").click();
+      if (e.key === "ArrowRight" && !el("nextBtn").disabled) el("nextBtn").click();
+    });
+  </script>
+</body>
+
+</html>
