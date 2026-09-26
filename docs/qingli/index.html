@@ -1,0 +1,1835 @@
+<!doctype html>
+
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>💘 恋爱黏度对照版 · 你的恋爱浓度有多高</title>
+  <meta name="description" content="24道题，测测你的恋爱黏人浓度：秒回欲、贴贴欲、同步欲。和对象一人测一遍，对照看默契。仅供娱乐。">
+  <style>
+    :root {
+      --cold-1: #2C3A44;
+      --cold-2: #46605C;
+      --cold-3: #1F2D2A;
+      --hot-1: #E8638C;
+      --hot-2: #D43D6F;
+      --hot-3: #8E1642;
+      --ink: #201A14;
+      --card: rgba(250, 248, 244, .94);
+      --shadow: 0 18px 60px rgba(38, 48, 57, .18);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      min-height: 100%;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #120D0A;
+      font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    .bg {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .bg::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(240, 240, 240, .95), rgba(168, 181, 192, .88) 42%, rgba(255, 107, 53, .82) 62%, rgba(255, 46, 99, .9));
+      z-index: -1;
+    }
+
+    .flow-a,
+    .flow-b {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .flow-a::after,
+    .flow-b::after {
+      content: "";
+      position: absolute;
+      width: 180%;
+      height: 180%;
+      left: -40%;
+      top: -40%;
+      opacity: .34;
+      filter: blur(36px);
+      animation: drift 17s ease-in-out infinite alternate;
+    }
+
+    .flow-a::after {
+      background:
+        radial-gradient(circle at 25% 25%, #ffffff 0, transparent 32%),
+        radial-gradient(circle at 70% 65%, var(--cold-2) 0, transparent 38%),
+        radial-gradient(circle at 45% 80%, var(--cold-3) 0, transparent 30%);
+    }
+
+    .flow-b::after {
+      background:
+        radial-gradient(circle at 30% 30%, var(--hot-1) 0, transparent 28%),
+        radial-gradient(circle at 68% 55%, var(--hot-2) 0, transparent 35%),
+        radial-gradient(circle at 52% 78%, var(--hot-3) 0, transparent 33%);
+      animation-delay: -7s;
+    }
+
+    @keyframes drift {
+      0% {
+        transform: translate(-4%, -3%) rotate(0deg) scale(1);
+      }
+      50% {
+        transform: translate(4%, 3%) rotate(9deg) scale(1.08);
+      }
+      100% {
+        transform: translate(-2%, 4%) rotate(-8deg) scale(.97);
+      }
+    }
+
+    .app {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: grid;
+      place-items: center;
+      padding: clamp(14px, 3vw, 34px) clamp(14px, 3vw, 34px) 76px;
+    }
+
+    .screen {
+      width: min(920px, 100%);
+      display: none;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    .glass {
+      background: var(--card);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, .42);
+      box-shadow: var(--shadow);
+      border-radius: 26px;
+    }
+
+    .home {
+      padding: clamp(28px, 6vw, 64px);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .home::before,
+    .home::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      border-radius: 50%;
+      filter: blur(46px);
+      opacity: .5;
+    }
+
+    .home::before {
+      width: 260px;
+      height: 260px;
+      background: var(--cold-2);
+      left: -90px;
+      bottom: -110px;
+    }
+
+    .home::after {
+      width: 300px;
+      height: 300px;
+      background: var(--hot-2);
+      right: -100px;
+      top: -120px;
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      letter-spacing: 4px;
+      font-size: 13px;
+      opacity: .62;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(31px, 8vw, 66px);
+      line-height: 1.08;
+      letter-spacing: -1px;
+    }
+
+    .subtitle {
+      max-width: 520px;
+      margin: 16px auto 0;
+      font-size: clamp(15px, 3.4vw, 19px);
+      opacity: .74;
+    }
+
+    .polar-tags {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .tag {
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .tag.cold {
+      background: rgba(168, 181, 192, .24);
+      color: #47222E;
+      border: 1px solid rgba(74, 90, 106, .24);
+    }
+
+    .tag.hot {
+      background: rgba(255, 107, 53, .15);
+      color: #C8334A;
+      border: 1px solid rgba(255, 46, 99, .22);
+    }
+
+    .home-author {
+      margin-top: 18px;
+      font-size: 13px;
+      opacity: .62;
+    }
+
+    .home-author a {
+      color: #C8334A;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .home-author a:hover {
+      text-decoration: underline;
+    }
+
+    .btn {
+      appearance: none;
+      border: 0;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 700;
+      color: white;
+      background: linear-gradient(135deg, var(--hot-2), var(--hot-3));
+      box-shadow: 0 12px 28px rgba(255, 46, 99, .28);
+      transition: transform .18s ease, box-shadow .18s ease, opacity .18s;
+      touch-action: manipulation;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 32px rgba(255, 46, 99, .32);
+    }
+
+    .btn:active {
+      transform: translateY(1px) scale(.99);
+    }
+
+    .btn.primary {
+      min-width: min(320px, 100%);
+      padding: 17px 30px;
+      border-radius: 999px;
+      font-size: 17px;
+      margin-top: 30px;
+    }
+
+    .btn.small {
+      padding: 11px 20px;
+      border-radius: 999px;
+      font-size: 14px;
+    }
+
+    .btn.ghost {
+      color: #41505E;
+      background: rgba(240, 240, 240, .72);
+      box-shadow: none;
+      border: 1px solid rgba(74, 90, 106, .16);
+    }
+
+    .test-head {
+      padding: 16px 18px 14px;
+      margin-bottom: 14px;
+    }
+
+    .head-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .progress-label {
+      font-weight: 800;
+      font-size: 15px;
+      white-space: nowrap;
+    }
+
+    .live-score {
+      font-size: 12px;
+      opacity: .68;
+      text-align: right;
+    }
+
+    .progress {
+      height: 13px;
+      margin-top: 12px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(74, 90, 106, .14);
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--cold-2), var(--hot-1), var(--hot-2), var(--hot-3));
+      transition: width .45s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .question-card {
+      padding: clamp(22px, 4.5vw, 40px);
+      min-height: 480px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .q-index {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      opacity: .48;
+      margin-bottom: 8px;
+    }
+
+    .q-title {
+      margin: 0;
+      font-size: clamp(21px, 5vw, 31px);
+      line-height: 1.25;
+    }
+
+    .q-desc {
+      margin: 10px 0 0;
+      color: #5A6874;
+      font-size: 14px;
+    }
+
+    .control {
+      margin-top: 26px;
+      flex: 1;
+    }
+
+    .option-grid {
+      display: grid;
+      gap: 11px;
+    }
+
+    .cols-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .cols-4,
+    .cols-5,
+    .cols-6 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .option {
+      border: 1px solid rgba(74, 90, 106, .14);
+      background: rgba(255, 255, 255, .76);
+      border-radius: 17px;
+      padding: 15px;
+      min-height: 62px;
+      cursor: pointer;
+      font-family: inherit;
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.35;
+      text-align: left;
+      transition: transform .16s, border-color .16s, background .16s, box-shadow .16s;
+      touch-action: manipulation;
+    }
+
+    .option:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px rgba(38, 48, 57, .09);
+      border-color: rgba(255, 107, 53, .44);
+    }
+
+    .option.selected {
+      border-color: var(--hot-2);
+      background: linear-gradient(135deg, rgba(228, 87, 107, .22), rgba(200, 51, 74,.18));
+      box-shadow: 0 0 0 2px rgba(255, 107, 53, .18) inset;
+    }
+
+    .emoji {
+      display: block;
+      font-size: 27px;
+      margin-bottom: 6px;
+    }
+
+    .slider-block {
+      padding: 18px 4px 8px;
+    }
+
+    .slider-tops {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 800;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .range-wrap {
+      position: relative;
+      padding-bottom: 8px;
+    }
+
+    input[type=range] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 34px;
+      margin: 0;
+      background: transparent;
+      outline: none;
+    }
+
+    input[type=range]::-webkit-slider-runnable-track {
+      height: 14px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--cold-2), var(--cold-1), var(--hot-1), var(--hot-2), var(--hot-3));
+      box-shadow: inset 0 1px 5px rgba(0, 0, 0, .12);
+    }
+
+    input[type=range]::-moz-range-track {
+      height: 14px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--cold-2), var(--cold-1), var(--hot-1), var(--hot-2), var(--hot-3));
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 30px;
+      height: 30px;
+      margin-top: -8px;
+      border: 4px solid #fff;
+      border-radius: 50%;
+      background: var(--ink);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, .22);
+      cursor: grab;
+    }
+
+    input[type=range]::-moz-range-thumb {
+      width: 24px;
+      height: 24px;
+      border: 4px solid #fff;
+      border-radius: 50%;
+      background: var(--ink);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, .22);
+      cursor: grab;
+    }
+
+    input[type=range].thin::-webkit-slider-runnable-track {
+      background: rgba(74, 90, 106, .18);
+    }
+
+    input[type=range].thin::-moz-range-track {
+      background: rgba(74, 90, 106, .18);
+    }
+
+    input[type=range].spectrum::-webkit-slider-runnable-track {
+      height: 26px;
+      background: linear-gradient(90deg, #eef4f6, #cfe4ec, #a8cfe0, #f09cb4, #e8638c);
+    }
+
+    input[type=range].spectrum::-moz-range-track {
+      height: 26px;
+      background: linear-gradient(90deg, #eef4f6, #cfe4ec, #a8cfe0, #f09cb4, #e8638c);
+    }
+
+    .range-scale {
+      display: flex;
+      justify-content: space-between;
+      color: #67757f;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .dual-track {
+      position: relative;
+      height: 54px;
+    }
+
+    .dual-track input {
+      position: absolute;
+      left: 0;
+      top: 0;
+      pointer-events: none;
+    }
+
+    .dual-track input::-webkit-slider-thumb {
+      pointer-events: auto;
+    }
+
+    .dual-track input::-moz-range-thumb {
+      pointer-events: auto;
+    }
+
+    .dual-labels {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .mini-card {
+      padding: 10px;
+      border-radius: 13px;
+      background: rgba(255, 255, 255, .68);
+      border: 1px solid rgba(74, 90, 106, .12);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .dial {
+      display: grid;
+      place-items: center;
+      margin-bottom: 8px;
+    }
+
+    .dial-face {
+      width: min(310px, 84vw);
+      aspect-ratio: 2 / 1.18;
+      position: relative;
+      border-radius: 160px 160px 12px 12px / 150px 150px 12px 12px;
+      background: conic-gradient(from 270deg, var(--cold-2) 0deg, var(--cold-1) 55deg, var(--hot-1) 105deg, var(--hot-2) 145deg, var(--hot-3) 180deg, transparent 180deg);
+      clip-path: polygon(0 100%, 0 48%, 8% 22%, 22% 7%, 43% 0, 63% 3%, 81% 14%, 94% 32%, 100% 55%, 100% 100%);
+      overflow: hidden;
+    }
+
+    .dial-pointer {
+      position: absolute;
+      left: 50%;
+      bottom: 8px;
+      width: 5px;
+      height: calc(100% - 28px);
+      background: #222b33;
+      border-radius: 4px;
+      transform-origin: 50% calc(100% - 8px);
+      transform: translateX(-50%) rotate(-90deg);
+      transition: transform .12s ease-out;
+    }
+
+    .dial-hub {
+      position: absolute;
+      left: 50%;
+      bottom: -4px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #fff;
+      border: 4px solid #222b33;
+      transform: translateX(-50%);
+    }
+
+    .value-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 92px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(38, 48, 57, .9);
+      color: #fff;
+      font-weight: 800;
+    }
+
+    .knob-scene {
+      display: grid;
+      place-items: center;
+      margin-bottom: 12px;
+    }
+
+    .knob {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: conic-gradient(from 225deg, var(--cold-2), var(--cold-1), var(--hot-1), var(--hot-2), var(--hot-3) 270deg, #dfe5e8 270deg);
+      position: relative;
+      box-shadow: inset 0 0 0 8px rgba(255, 255, 255, .75), 0 12px 28px rgba(0, 0, 0, .12);
+    }
+
+    .needle {
+      position: absolute;
+      inset: 22px;
+      border-radius: 50%;
+      background: #fff;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      font-size: 20px;
+    }
+
+    .needle::before {
+      content: "";
+      position: absolute;
+      top: 7px;
+      width: 5px;
+      height: 32px;
+      background: var(--hot-3);
+      border-radius: 4px;
+    }
+
+    .volume-bars {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 6px;
+      height: 125px;
+      margin-bottom: 8px;
+    }
+
+    .vbar {
+      width: 13px;
+      height: 18%;
+      border-radius: 8px;
+      background: linear-gradient(180deg, var(--hot-3), var(--hot-2), var(--hot-1));
+      transition: height .18s cubic-bezier(.3, 1.4, .5, 1);
+      animation: pulse 1.6s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      50% {
+        filter: brightness(1.22);
+      }
+    }
+
+    .chat-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .chat-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, .82);
+      border: 1px solid rgba(74, 90, 106, .12);
+      border-radius: 16px;
+      padding: 10px 12px;
+    }
+
+    .chat-item.dragging {
+      opacity: .4;
+    }
+
+    .bubble {
+      flex: 1;
+      background: linear-gradient(135deg, #eef3f6, #fff);
+      padding: 11px 13px;
+      border-radius: 16px;
+      border: 1px solid rgba(74, 90, 106, .1);
+      font-size: 14px;
+      cursor: grab;
+      user-select: none;
+    }
+
+    .move-btn {
+      border: 0;
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      cursor: pointer;
+      background: #e8edf0;
+      font-size: 14px;
+      touch-action: manipulation;
+    }
+
+    .toggle-row {
+      display: grid;
+      gap: 10px;
+    }
+
+    .toggle-card {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 14px;
+      background: rgba(255, 255, 255, .78);
+      border: 1px solid rgba(74, 90, 106, .12);
+      border-radius: 16px;
+    }
+
+    .switch {
+      position: relative;
+      width: 56px;
+      height: 31px;
+      flex: 0 0 auto;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      cursor: pointer;
+      position: absolute;
+      z-index: 2;
+    }
+
+    .switch-track {
+      position: absolute;
+      inset: 0;
+      border-radius: 999px;
+      background: #ccd5da;
+      transition: background .2s;
+    }
+
+    .switch-track::after {
+      content: "";
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      width: 23px;
+      height: 23px;
+      background: #fff;
+      border-radius: 50%;
+      box-shadow: 0 2px 7px rgba(0, 0, 0, .18);
+      transition: transform .2s;
+    }
+
+    .switch input:checked+.switch-track {
+      background: linear-gradient(135deg, var(--hot-2), var(--hot-3));
+    }
+
+    .switch input:checked+.switch-track::after {
+      transform: translateX(25px);
+    }
+
+    .text-analyze {
+      display: flex;
+      gap: 9px;
+      align-items: stretch;
+    }
+
+    .text-analyze input {
+      flex: 1;
+      min-width: 0;
+      border: 2px solid rgba(74, 90, 106, .16);
+      border-radius: 14px;
+      padding: 13px;
+      font-family: inherit;
+      font-size: 15px;
+      background: rgba(255, 255, 255, .86);
+    }
+
+    .analyze-result {
+      min-height: 24px;
+      margin-top: 12px;
+      color: #59656f;
+      font-size: 14px;
+    }
+
+    .vote-scenarios {
+      display: grid;
+      gap: 10px;
+    }
+
+    .vote-row {
+      padding: 11px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, .74);
+      border: 1px solid rgba(74, 90, 106, .11);
+    }
+
+    .vote-title {
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .vote-btns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+    }
+
+    .vote-btn {
+      padding: 9px 7px;
+      min-height: 48px;
+      border-radius: 12px;
+      border: 1px solid rgba(74, 90, 106, .13);
+      cursor: pointer;
+      background: rgba(248, 250, 251, .9);
+      font-size: 12px;
+      font-family: inherit;
+      line-height: 1.2;
+    }
+
+    .vote-btn.selected-cold {
+      background: rgba(168, 181, 192, .3);
+      border-color: var(--cold-3);
+      font-weight: 800;
+    }
+
+    .vote-btn.selected-hot {
+      background: rgba(255, 107, 53, .18);
+      border-color: var(--hot-3);
+      font-weight: 800;
+    }
+
+    .tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cloud-tag {
+      border: 1px solid rgba(74, 90, 106, .16);
+      background: rgba(255, 255, 255, .78);
+      border-radius: 999px;
+      padding: 9px 16px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--ink);
+    }
+
+    .cloud-tag:nth-child(odd) {
+      transform: rotate(-1deg);
+    }
+
+    .cloud-tag:nth-child(even) {
+      transform: rotate(1deg);
+    }
+
+    .cloud-tag.selected {
+      background: linear-gradient(135deg, rgba(228, 87, 107, .28), rgba(142, 14, 51, .26));
+      border-color: var(--hot-2);
+      font-weight: 800;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .hint {
+      font-size: 12px;
+      color: #71808a;
+      flex: 1;
+      text-align: center;
+    }
+
+    .result-card {
+      padding: clamp(24px, 5vw, 48px);
+      text-align: center;
+    }
+
+    .result-title {
+      font-size: clamp(26px, 7vw, 49px);
+      margin: 0;
+    }
+
+    .meter {
+      height: clamp(74px, 15vw, 104px);
+      display: flex;
+      border-radius: 24px;
+      overflow: hidden;
+      margin: 28px 0 12px;
+      box-shadow: 0 18px 45px rgba(38, 48, 57, .18);
+      border: 4px solid white;
+    }
+
+    .meter-side {
+      flex: 1;
+      display: grid;
+      place-items: center;
+      color: white;
+      font-weight: 900;
+      font-size: clamp(18px, 4.6vw, 30px);
+      text-shadow: 0 2px 10px rgba(0, 0, 0, .22);
+      min-width: 0;
+    }
+
+    .meter-side.cold-side {
+      background: linear-gradient(135deg, #6d8092, var(--cold-3));
+      width: 50%;
+      transition: width 1s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .meter-side.hot-side {
+      background: linear-gradient(135deg, var(--hot-1), var(--hot-2), var(--hot-3));
+      width: 50%;
+      transition: width 1s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .meter-caption {
+      font-weight: 800;
+      opacity: .66;
+      font-size: 14px;
+    }
+
+    .verdict {
+      margin-top: 26px;
+      text-align: left;
+      background: rgba(255, 255, 255, .68);
+      border-radius: 20px;
+      padding: 20px;
+      border: 1px solid rgba(255, 255, 255, .6);
+    }
+
+    .verdict-name {
+      margin: 0;
+      font-size: clamp(21px, 5vw, 29px);
+    }
+
+    .verdict-text {
+      margin: 10px 0 0;
+      color: #4d5a65;
+      font-size: 15px;
+    }
+
+    .result-actions {
+      display: grid;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .follow-card {
+      margin-top: 22px;
+      padding: 20px 18px;
+      border-radius: 20px;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(255, 217, 61, .2), rgba(255, 107, 53, .14), rgba(255, 46, 99, .1));
+      border: 1px solid rgba(255, 107, 53, .3);
+    }
+
+    .follow-title {
+      margin: 0 0 6px;
+      font-weight: 900;
+      font-size: 18px;
+    }
+
+    .follow-text {
+      margin: 0 0 12px;
+      color: #4d5a65;
+      font-size: 14px;
+    }
+
+    .follow-id {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 18px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px dashed rgba(255, 46, 99, .55);
+      color: #C8334A;
+      font-weight: 900;
+      font-size: 15px;
+    }
+
+    .follow-link {
+      display: inline-block;
+      margin-top: 13px;
+      padding: 12px 26px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--hot-2), var(--hot-3));
+      color: #fff;
+      font-weight: 800;
+      font-size: 14px;
+      text-decoration: none;
+      box-shadow: 0 10px 24px rgba(255, 46, 99, .26);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+    .follow-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(255, 46, 99, .32);
+    }
+
+    .brand-bar {
+      position: fixed;
+      left: 50%;
+      bottom: 14px;
+      transform: translateX(-50%);
+      z-index: 30;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      max-width: min(92vw, 560px);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding: 9px 18px;
+      border-radius: 999px;
+      background: rgba(16, 21, 26, .78);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .3px;
+      border: 1px solid rgba(255, 255, 255, .16);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, .3);
+      backdrop-filter: blur(10px);
+    }
+
+    .brand-bar a {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: #FFD93D;
+      text-decoration: none;
+    }
+
+    .brand-bar a:hover {
+      text-decoration: underline;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 28px;
+      z-index: 20;
+      transform: translate(-50%, 140%);
+      background: rgba(24, 30, 36, .95);
+      color: #fff;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-size: 14px;
+      transition: transform .3s cubic-bezier(.2, .8, .2, 1);
+      max-width: min(92vw, 430px);
+      text-align: center;
+    }
+
+    .toast.show {
+      transform: translate(-50%, 0);
+    }
+
+    .card-enter {
+      animation: slideFlip .42s cubic-bezier(.22, .9, .3, 1);
+    }
+
+    @keyframes slideFlip {
+      0% {
+        opacity: 0;
+        transform: perspective(900px) rotateY(38deg) translateX(48px);
+      }
+      100% {
+        opacity: 1;
+        transform: perspective(900px) rotateY(0) translateX(0);
+      }
+    }
+
+    @media (max-width:560px) {
+      .head-row {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .live-score {
+        text-align: left;
+      }
+
+      .question-card {
+        min-height: 545px;
+      }
+
+      .control {
+        margin-top: 20px;
+      }
+
+      .option {
+        padding: 12px;
+        min-height: 54px;
+      }
+
+      .emoji {
+        font-size: 23px;
+      }
+
+      .nav {
+        flex-direction: column-reverse;
+        align-items: stretch;
+      }
+
+      .nav .btn {
+        width: 100%;
+      }
+
+      .hint {
+        order: -1;
+      }
+    }
+
+    @media (min-width:700px) {
+      .cols-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .cols-5 {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+      }
+
+      .cols-6 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg" aria-hidden="true">
+    <div class="flow-a"></div>
+    <div class="flow-b"></div>
+  </div>
+
+  <main class="app">
+    <section id="homeScreen" class="screen active">
+      <div class="glass home">
+        <p class="eyebrow">COUPLE SYNC TEST</p>
+        <h1>💘 恋爱黏度<br>对照中心</h1>
+        <p class="subtitle">测测你的恋爱黏人浓度：秒回欲、贴贴欲、同步欲。和对象一人测一遍，对照结果看默契。结果仅供娱乐，不构成心理评估。</p>
+        <div class="polar-tags">
+          <span class="tag cold">独立独行 / 谁都不黏</span>
+          <span class="tag hot">表面淡定 / 黏人本命</span>
+        </div>
+        <p class="home-author">💘 测测就知道 · 原创趣味测试</p>
+        <button id="startBtn" class="btn primary">开始测定 ▶</button>
+      </div>
+    </section>
+
+    <section id="testScreen" class="screen">
+      <div class="glass test-head">
+        <div class="head-row">
+          <div class="progress-label">第<span id="currentNum">1</span>/24题</div>
+          <div class="live-score">当前状态：独立 <span id="liveCold">50</span>% / 黏人 <span id="liveHot">50</span>%</div>
+        </div>
+        <div class="progress"><div id="progressFill" class="progress-fill"></div></div>
+      </div>
+      <article id="questionCard" class="glass question-card"></article>
+    </section>
+
+    <section id="resultScreen" class="screen">
+      <div class="glass result-card">
+        <p class="eyebrow">VERDICT READY</p>
+        <h2 class="result-title">判定书已生成</h2>
+        <div class="meter" aria-label="独立和黏人比例条">
+          <div id="coldSide" class="meter-side cold-side">🧊 独立 <span id="coldPercent">50</span>%</div>
+          <div id="hotSide" class="meter-side hot-side">💘 黏人 <span id="hotPercent">50</span>%</div>
+        </div>
+        <div class="meter-caption">拉对象也测一遍：都高＝灵魂同频 · 一高一低＝互补成瘾 · 都低＝塑料室友实锤</div>
+        <div class="verdict">
+          <h3 id="resultName" class="verdict-name"></h3>
+          <p id="resultText" class="verdict-text"></p>
+        </div>
+        <div class="follow-card">
+          <p class="follow-title">🎀 测完了，喜欢吗？</p>
+          <p class="follow-text">我是「测测就知道」，更多好玩的测试不定期更新～</p>
+          <span class="follow-id">📕 小红书 @测测就知道</span>
+          <br>
+          <a class="follow-link" href="#" onclick="return false" style="display:none">去小红书关注我 ▶</a>
+        </div>
+        <div class="result-actions">
+          <button id="shareBtn" class="btn small">截图发给朋友猜猜</button>
+          <button id="restartBtn" class="btn ghost small">我不信，重来</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="brand-bar" aria-label="作者信息">
+    💘 测测就知道 · 仅供娱乐，不构成心理评估 💘
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script>
+    "use strict";
+
+    /* ------------------ 题目与控件定义 ------------------ */
+    // 每道题独立产出 0-100 的分数，answers[id] 只保存数值。
+    const questions = [
+      {
+        id: "q01", type: "dual", title: "请在下面两个滑块上分别标注：你的「真实恋爱黏度」和「表面独立度」。",
+        desc: "一个柄是恋爱里的你，另一个柄是你给外人看的样子。",
+        extra: {}
+      },
+      {
+        id: "q02", type: "options", cols: "cols-2", title: "对象消息发出去半天没回，你会？",
+        options: [
+          { emoji: "😌", label: "各忙各的，正常", score: 0 },
+          { emoji: "🤔", label: "可能在忙？再等等", score: 25 },
+          { emoji: "👀", label: "对话框点开了好几遍", score: 55 },
+          { emoji: "📞", label: "连环追问+脑补小剧场", score: 100 }
+        ]
+      },
+      {
+        id: "q03", type: "dial", title: "一句话被对象用「哦」回复，你心里咯噔的程度是？",
+        desc: "拖到最高就是当晚睡不着逐帧复盘的程度。"
+      },
+      {
+        id: "q04", type: "tags", title: "选出所有符合你恋爱状态的词（越多越黏）。",
+        desc: "可多选，取最黏的那个标签计分。",
+        items: [
+          ["冷静派", 0], ["偶尔想 TA", 10], ["分享欲爆棚", 25], ["秒回专业户", 40], ["睡前必说晚安", 55],
+          ["走哪都汇报", 70], ["一天不见就慌", 85], ["「在干嘛」是口头禅", 100]
+        ]
+      },
+      {
+        id: "q05", type: "sort", title: "请将以下消息按「最像你会发」到「最不可能发」排序。",
+        desc: "第一名就是你真实的样子，自己品。",
+        items: [
+          { label: "直接说事，说完就忙", score: 0 },
+          { label: "想到什么发什么", score: 25 },
+          { label: "日常流水账三连发", score: 50 },
+          { label: "打完又撤回重写", score: 75 },
+          { label: "最后什么也没发", score: 100 }
+        ]
+      },
+      {
+        id: "q06", type: "options", cols: "cols-5", title: "对象突然说「我想你了」，你的反应是？",
+        options: [
+          { emoji: "😌", label: "「哦？巧了」淡定型", score: 0 },
+          { emoji: "😏", label: "嘴稳心甜，缓三秒回", score: 25 },
+          { emoji: "😊", label: "当场笑出声", score: 50 },
+          { emoji: "💓", label: "心跳漏一拍", score: 75 },
+          { emoji: "💘", label: "已经开始订票了", score: 100 }
+        ]
+      },
+      {
+        id: "q07", type: "toggles", title: "以下恋爱行为，你做过几样？（打开＝做过）",
+        items: [
+          { label: "把聊天记录翻到几个月前回味", score: 100 },
+          { label: "对方随口提的东西默默记小本本", score: 60 },
+          { label: "TA 的朋友圈每条必点赞", score: 30 }
+        ]
+      },
+      {
+        id: "q08", type: "text", title: "输入一句你最想对对象说的话，测测黏度浓度。",
+        desc: "输入你最自然的说法，然后点击分析。"
+      },
+      {
+        id: "q09", type: "rangeVote", title: "对象临时爽约，你更倾向哪种处理方式？",
+        desc: "左端「没事，改天呗」，右端「嘴上没事，心里记小本本」。"
+      },
+      {
+        id: "q10", type: "options", cols: "cols-2", title: "对象发了条动态却没回你消息，你会？",
+        options: [
+          { emoji: "😎", label: "正常，先忙自己的", score: 0 },
+          { emoji: "🤔", label: "有点在意，忍住不问", score: 30 },
+          { emoji: "🙂", label: "阴阳一句「玩得开心」", score: 70 },
+          { emoji: "🔥", label: "直接质问：消息都不回？", score: 100 }
+        ]
+      },
+      {
+        id: "q11", type: "timeline", title: "你一天中「最想 TA」的高峰时段是？"
+      },
+      {
+        id: "q12", type: "spectrum", title: "用一个颜色形容恋爱中的你，你会选？"
+      },
+      {
+        id: "q13", type: "speed", title: "和对象吵完架，你的「和好速度」是？"
+      },
+      {
+        id: "q14", type: "volume", title: "你的黏人程度会被朋友察觉的程度是？"
+      },
+      {
+        id: "q15", type: "options", cols: "cols-2", title: "对象说「你需要多点自己的空间」，你的第一反应是？",
+        options: [
+          { emoji: "👌", label: "好巧，我也这么想", score: 0 },
+          { emoji: "🤔", label: "可以，但你是认真的吗", score: 30 },
+          { emoji: "😰", label: "心里咯噔：要凉？", score: 65 },
+          { emoji: "💥", label: "空间？我现在就要贴贴", score: 100 }
+        ]
+      },
+      {
+        id: "q16", type: "votes", title: "以下场景，请为每个场景选你更接近的反应。",
+        scenarios: [
+          ["对象已读不回", "该干嘛干嘛", "一分钟刷八遍手机"],
+          ["约会对象迟到半小时", "正好刷会手机", "进门先记一笔小账"],
+          ["对象夸了别人一句", "眼光不错呗", "「那你找 TA 去啊」"],
+          ["纪念日 TA 忘了", "过不过都行", "已经脑补完分手演说"],
+          ["对象回「随便」", "那就随便", "把「随便」研究出四种语气"]
+        ]
+      },
+      {
+        id: "q17", type: "options", cols: "cols-2", title: "如果把恋爱依赖装成一个系统，它是？",
+        options: [
+          { emoji: "🚿", label: "独立供电：自带满格电", score: 0 },
+          { emoji: "🪩", label: "偶尔充个电就好", score: 30 },
+          { emoji: "🔌", label: "充电线常年连着", score: 65 },
+          { emoji: "💱", label: "共用一块电池", score: 100 }
+        ]
+      },
+      {
+        id: "q18", type: "options", cols: "cols-6", title: "你最常对对象说的是哪句？",
+        options: [
+          { emoji: "😶", label: "哦", score: 0 },
+          { emoji: "👍", label: "都行", score: 15 },
+          { emoji: "😂", label: "哈哈哈哈", score: 30 },
+          { emoji: "💕", label: "想你", score: 55 },
+          { emoji: "💞", label: "贴贴", score: 80 },
+          { emoji: "🥺", label: "陪陪我", score: 100 }
+        ]
+      },
+      {
+        id: "q19", type: "options", cols: "cols-5", title: "用「电量」形容你在恋爱里的状态：",
+        options: [
+          { emoji: "🔋", label: "满格独立", score: 0 },
+          { emoji: "🤏", label: "省电模式", score: 25 },
+          { emoji: "🫪", label: "电量发黄", score: 50 },
+          { emoji: "🦄", label: "甜甜发烫", score: 75 },
+          { emoji: "💞", label: "彻夜待机", score: 100 }
+        ]
+      },
+      {
+        id: "q20", type: "options", cols: "cols-2", title: "对象说「周末我们出去玩吧」，你脑子里先是？",
+        options: [
+          { emoji: "🗺", label: "去哪都行，别太累", score: 0 },
+          { emoji: "😌", label: "提前查好攻略", score: 30 },
+          { emoji: "📸", label: "已经在想穿什么拍照", score: 65 },
+          { emoji: "💓", label: "两天一夜贴贴行程已排满", score: 100 }
+        ]
+      },
+      {
+        id: "q21", type: "options", cols: "cols-2", title: "对象手机弹了条消息，屏幕亮了一下，你会？",
+        options: [
+          { emoji: "🙈", label: "看都没看，继续各玩各的", score: 0 },
+          { emoji: "👀", label: "瞟一眼是谁，不多想", score: 30 },
+          { emoji: "🧐", label: "看清名字还要过一遍脑子", score: 65 },
+          { emoji: "🔍", label: "嘴上不问，心里已存档", score: 100 }
+        ]
+      },
+      {
+        id: "q22", type: "options", cols: "cols-2", title: "对象忙了一周终于回消息了，你会？",
+        options: [
+          { emoji: "👌", label: "「哦，忙完了？」淡定承接", score: 0 },
+          { emoji: "😌", label: "正常聊，不提这一周", score: 25 },
+          { emoji: "😢", label: "委屈三秒再假装没事", score: 60 },
+          { emoji: "💘", label: "语音连环轰炸：可想死我了", score: 100 }
+        ]
+      },
+      {
+        id: "q23", type: "options", cols: "cols-2", title: "对象随口说「你最近好像胖了」，你会？",
+        options: [
+          { emoji: "😎", label: "「那是你不会欣赏」", score: 0 },
+          { emoji: "😅", label: "嘴上笑嘻嘻，晚上跑步去", score: 30 },
+          { emoji: "🥺", label: "「胖了也要负责」贴上来", score: 65 },
+          { emoji: "💢", label: "当场记仇并翻旧账", score: 100 }
+        ]
+      },
+      {
+        id: "q24", type: "finalSlider", title: "最后一个：撕开表面，你的恋爱黏度到底有多少？"
+      }
+    ];
+
+
+    const results = [
+      { max: 20, name: "【独立本独·恋爱绝缘体】", text: "你的黏度低到让对象怀疑人生：消息半天不回不是不爱，是真在忙自己的。恋爱对你来说是锦上添花，不是氧气。注意：偶尔也主动说句想你，对方的体验感会直接拉满。" },
+      { max: 50, name: "【轻度黏人·正常范围】", text: "会想 TA，但忍得住；会看手机，但不催。你有健康的依恋代谢：该贴贴贴贴，该独立独立。这个浓度，舒适区顶配，是大部分人心里的理想型。" },
+      { max: 80, name: "【中度黏人·同步依赖】", text: "你已经开始按「我们」计划日程、分享欲爆棚、TA 一句「哦」你能解读出八百种语气了。表面云淡风轻，内心已经把下次约会安排到下个月。建议：把「TA 是不是烦我了」翻译成「TA 真的在忙」，先放过自己一半。" },
+      { max: 100, name: "【重度黏人·连体婴本婴】", text: "确诊：TA 的头像就是你一天打开次数最多的界面，你同时担任秒回选手、分享狂魔和贴贴永动机。你擅长把一句「在忙」脑补出一部分手大戏，又把一句「想你」开心到原地转圈。黏人不是错，是你爱得太满——只是记得留一点电量给自己。仅供娱乐，请勿对号入座。" }
+    ];
+
+    const state = {
+      current: 0,
+      answers: {},
+      temporary: {},
+      innerScore: 50,
+      outerScore: 50
+    };
+
+    const el = id => document.getElementById(id);
+    const clampScore = n => Math.max(0, Math.min(100, Math.round(Number(n) || 0)));
+
+    function showScreen(name) {
+      ["homeScreen", "testScreen", "resultScreen"].forEach(id => el(id).classList.remove("active"));
+      el(name).classList.add("active");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function toast(msg) {
+      const t = el("toast");
+      t.textContent = msg;
+      t.classList.add("show");
+      clearTimeout(t._timer);
+      t._timer = setTimeout(() => t.classList.remove("show"), 2600);
+    }
+
+    function updateLive() {
+      const values = Object.values(state.answers).map(Number);
+      const hot = values.length ? Math.round(values.reduce((a, b) => a + b, 0) / values.length) : 50;
+      const cold = 100 - hot;
+      el("liveHot").textContent = String(hot);
+      el("liveCold").textContent = String(cold);
+    }
+
+    function renderQuestion() {
+      const q = questions[state.current];
+      state.temporary = {};
+      const card = el("questionCard");
+      card.classList.remove("card-enter");
+      void card.offsetWidth;
+      card.classList.add("card-enter");
+      card.innerHTML = `
+        <div class="q-index">QUESTION ${String(state.current + 1).padStart(2, "0")}</div>
+        <h2 class="q-title">${q.title}</h2>
+        ${q.desc ? `<p class="q-desc">${q.desc}</p>` : ""}
+        <div class="control" id="controlArea"></div>
+        <div class="nav">
+          <button id="prevBtn" class="btn ghost small">上一题</button>
+          <div class="hint" id="controlHint"></div>
+          <button id="nextBtn" class="btn small">下一题 ▶</button>
+        </div>`;
+      buildControl(q, el("controlArea"));
+      el("currentNum").textContent = String(state.current + 1);
+      el("progressFill").style.width = `${(state.current / 24) * 100}%`;
+      updateLive();
+      updateNav(q);
+      el("prevBtn").onclick = () => gotoQuestion(Math.max(0, state.current - 1));
+      el("nextBtn").onclick = () => nextQuestion();
+    }
+
+    function updateNav(q) {
+      const done = Number.isFinite(Number(state.answers[q.id]));
+      const btn = el("nextBtn");
+      btn.disabled = !done;
+      btn.style.opacity = done ? "1" : ".45";
+      btn.style.cursor = done ? "pointer" : "not-allowed";
+      el("controlHint").textContent = done ? "这题收下了。" :
+        ({ sort: "排好后自动记录第一名的浓度。", votes: "五个场景都得选。", tags: "至少选一个标签。", text: "先输入并分析。", toggles: "不开也算一种回答。", finalSlider: "拖完才算交代。" }[q.type] || "选择或拖动后继续。");
+    }
+
+    function setAnswer(q, value) {
+      state.answers[q.id] = clampScore(value);
+      updateLive();
+      updateNav(q);
+    }
+
+    function nextQuestion() {
+      const q = questions[state.current];
+      if (!Number.isFinite(Number(state.answers[q.id]))) return;
+      if (state.current === 23) return finish();
+      gotoQuestion(state.current + 1);
+    }
+
+    function gotoQuestion(i) {
+      state.current = i;
+      renderQuestion();
+    }
+
+    function buildControl(q, area) {
+      if (q.type === "options") return buildOptions(q, area);
+      if (q.type === "dual") return buildDual(q, area);
+      if (q.type === "dial") return buildDial(q, area);
+      if (q.type === "tags") return buildTags(q, area);
+      if (q.type === "sort") return buildSort(q, area);
+      if (q.type === "toggles") return buildToggles(q, area);
+      if (q.type === "text") return buildText(q, area);
+      if (q.type === "rangeVote") return buildRangeVote(q, area);
+      if (q.type === "timeline") return buildTimeline(q, area);
+      if (q.type === "spectrum") return buildSpectrum(q, area);
+      if (q.type === "speed") return buildSpeed(q, area);
+      if (q.type === "volume") return buildVolume(q, area);
+      if (q.type === "votes") return buildVotes(q, area);
+      if (q.type === "finalSlider") return buildFinal(q, area);
+      setAnswer(q, 50);
+      area.innerHTML = "<p>这道题走丢了，已按中位数处理。</p>";
+    }
+
+    function buildOptions(q, area) {
+      area.innerHTML = `<div class="option-grid ${q.cols || "cols-2"}"></div>`;
+      const box = area.firstElementChild;
+      q.options.forEach((opt, idx) => {
+        const b = document.createElement("button");
+        b.className = "option";
+        b.type = "button";
+        b.innerHTML = `${opt.emoji ? `<span class="emoji">${opt.emoji}</span>` : ""}${opt.label}`;
+        b.onclick = () => {
+          [...box.children].forEach(x => x.classList.remove("selected"));
+          b.classList.add("selected");
+          setAnswer(q, opt.score);
+          setTimeout(nextQuestion, 220);
+        };
+        box.append(b);
+        if (Number(state.answers[q.id]) === opt.score && !Object.values(q.options).some((o, i) => i < idx && o.score === opt.score)) b.classList.add("selected");
+      });
+    }
+
+    function baseSlider({ min = 0, max = 100, value = 50, step = 1, cls = "" } = {}) {
+      const inp = document.createElement("input");
+      inp.type = "range";
+      inp.min = String(min);
+      inp.max = String(max);
+      inp.step = String(step);
+      inp.value = String(value);
+      if (cls) inp.className = cls;
+      return inp;
+    }
+
+    function buildDual(q, area) {
+      const savedInner = Number(state.answers[q.id]);
+      state.temporary.inner = Number.isFinite(savedInner) ? savedInner : 50;
+      state.temporary.outer = Number.isFinite(q.outer) ? q.outer : 50;
+      area.innerHTML = `
+        <div class="slider-block">
+          <div class="slider-tops"><span>🧊 独立清醒</span><span class="value-pill" id="innerPill">50</span><span>黏人上头 💘</span></div>
+          <div class="range-wrap dual-track">
+            <input id="innerRange" type="range" min="0" max="100" value="${state.temporary.inner}" aria-label="真实内心">
+            <input id="outerRange" type="range" min="0" max="100" value="${state.temporary.outer}" aria-label="对外表现">
+          </div>
+          <div class="range-scale"><span>各玩各的</span><span>必须同步</span></div>
+          <div class="dual-labels">
+            <div class="mini-card"><strong>真实内心</strong><br>只拿它计分：<span id="innerVal">50</span></div>
+            <div class="mini-card"><strong>对外形象</strong><br>仅用于内外差对比：<span id="outerVal">50</span></div>
+          </div>
+        </div>`;
+      const ir = el("innerRange"), or = el("outerRange");
+      const sync = () => {
+        state.temporary.inner = clampScore(ir.value);
+        state.temporary.outer = clampScore(or.value);
+        q.outer = state.temporary.outer;
+        el("innerVal").textContent = String(state.temporary.inner);
+        el("outerVal").textContent = String(state.temporary.outer);
+        el("innerPill").textContent = String(state.temporary.inner);
+        setAnswer(q, state.temporary.inner);
+      };
+      ir.oninput = sync; or.oninput = sync;
+      sync();
+    }
+
+    function buildDial(q, area) {
+      const saved = Number(state.answers[q.id]);
+      const val = Number.isFinite(saved) ? Math.round(saved / 10) : 5;
+      area.innerHTML = `
+        <div class="slider-block">
+          <div class="dial"><div class="dial-face"><div class="dial-pointer" id="dialPointer"></div><div class="dial-hub"></div></div></div>
+          <div style="text-align:center"><span class="value-pill" id="dialPill">${val}</span></div>
+          <div class="range-wrap"><input id="dialRange" type="range" min="0" max="10" value="${val}"></div>
+          <div class="range-scale"><span>0 各过各的</span><span>10 连体婴剧本</span></div>
+        </div>`;
+      const r = el("dialRange");
+      const sync = () => {
+        const v = Number(r.value);
+        el("dialPointer").style.transform = `translateX(-50%) rotate(${v * 18 - 90}deg)`;
+        el("dialPill").textContent = String(v);
+        setAnswer(q, v * 10); // 表盘数值 × 10。
+      };
+      r.oninput = sync; sync();
+    }
+
+    function buildTags(q, area) {
+      area.innerHTML = `<div class="tag-cloud" id="tagCloud"></div>`;
+      const cloud = el("tagCloud");
+      let selected = new Set(Array.isArray(q.selected) ? q.selected : []);
+      const sync = () => {
+        const vals = [...selected].map(i => q.items[i][1]);
+        const score = vals.length ? Math.max(...vals) : NaN;
+        if (vals.length) setAnswer(q, score);
+        else { delete state.answers[q.id]; updateLive(); updateNav(q); }
+      };
+      q.items.forEach(([label, score], idx) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "cloud-tag" + (selected.has(idx) ? " selected" : "");
+        b.textContent = label;
+        b.onclick = () => {
+          selected.has(idx) ? selected.delete(idx) : selected.add(idx);
+          b.classList.toggle("selected", selected.has(idx));
+          q.selected = [...selected];
+          sync();
+        };
+        cloud.append(b);
+      });
+      sync();
+    }
+
+    function buildSort(q, area) {
+      let order = Array.isArray(q.order) && q.order.length === 4 ? [...q.order] : [0, 1, 2, 3];
+      area.innerHTML = `<div class="chat-list" id="chatList"></div>`;
+      const list = el("chatList");
+      function sync() {
+        list.innerHTML = "";
+        order.forEach((itemIndex, pos) => {
+          const row = document.createElement("div");
+          row.className = "chat-item";
+          row.draggable = true;
+          row.dataset.idx = String(itemIndex);
+          row.innerHTML = `
+            <button class="move-btn" data-dir="-1" aria-label="上移">↑</button>
+            <div class="bubble">${pos + 1}. ${q.items[itemIndex].label}</div>
+            <button class="move-btn" data-dir="1" aria-label="下移">↓</button>`;
+          row.querySelectorAll(".move-btn").forEach(btn => {
+            btn.onclick = () => {
+              const dir = Number(btn.dataset.dir), to = pos + dir;
+              if (to < 0 || to >= order.length) return;
+              [order[pos], order[to]] = [order[to], order[pos]];
+              q.order = [...order]; sync();
+            };
+          });
+          row.addEventListener("dragstart", e => { row.classList.add("dragging"); e.dataTransfer.setData("text/plain", String(itemIndex)); });
+          row.addEventListener("dragend", () => row.classList.remove("dragging"));
+          row.addEventListener("dragover", e => e.preventDefault());
+          row.addEventListener("drop", e => {
+            e.preventDefault();
+            const from = order.indexOf(Number(e.dataTransfer.getData("text/plain")));
+            if (from < 0 || from === pos) return;
+            order.splice(pos, 0, order.splice(from, 1)[0]);
+            q.order = [...order]; sync();
+          });
+          list.append(row);
+        });
+        // 排序分值：第一名是什么，本题就是什么。
+        setAnswer(q, q.items[order[0]].score);
+      }
+      sync();
+    }
+
+    function buildToggles(q, area) {
+      area.innerHTML = `<div class="toggle-row" id="toggleRows"></div>`;
+      const box = el("toggleRows");
+      q.checked = Array.isArray(q.checked) ? q.checked : [false, false, false];
+      function sync() {
+        const vals = q.items.filter((_, i) => q.checked[i]).map(x => x.score);
+        // 取所有开启项中的最高分；全关为0。
+        setAnswer(q, vals.length ? Math.max(...vals) : 0);
+      }
+      q.items.forEach((item, i) => {
+        const row = document.createElement("label");
+        row.className = "toggle-card";
+        row.innerHTML = `
+          <span class="switch"><input type="checkbox" ${q.checked[i] ? "checked" : ""}><span class="switch-track"></span></span>
+          <span>${item.label}</span>`;
+        const cb = row.querySelector("input");
+        cb.onchange = () => { q.checked[i] = cb.checked; sync(); };
+        box.append(row);
+      });
+      sync();
+    }
+
+    function buildText(q, area) {
+      area.innerHTML = `
+        <div class="text-analyze">
+          <input id="moodInput" maxlength="80" placeholder="输入你想说的任何话…" value="${q.text || ""}">
+          <button id="analyzeBtn" class="btn small" type="button">分析</button>
+        </div>
+        <div class="analyze-result" id="moodOut">${q.analyzed ? `已分析：当前浓度 ${state.answers[q.id]} 分。` : ""}</div>`;
+      const input = el("moodInput"), out = el("moodOut"), btn = el("analyzeBtn");
+      btn.onclick = () => {
+        const s = (input.value || "").trim().toLowerCase();
+        if (!s) { out.textContent = "先说点什么吧，空白也是一种态度，但机器不收。"; delete state.answers[q.id]; updateLive(); updateNav(q); return; }
+        q.text = input.value; q.analyzed = true;
+        const strongHot = ["黏人", "贴贴", "亲亲", "抱抱", "也想你", "想你", "陪陪我", "秒回", "背背", "举高高"];
+        const mildHot = ["心动", "喜欢", "上头", "在意", "小鹿", "脸红", "偷看", "在意他", "在意她"];
+        const lightCold = ["忙", "没事", "随便", "可以", "哦", "嗯", "加油"];
+        let score = 50, reason = "没抓到明显黏人词，按中位数处理。";
+        if (strongHot.some(w => s.includes(w))) { score = s.includes("贴贴") || s.includes("黏人") ? 100 : 85; reason = "检测到高浓度黏人指数。"; }
+        else if (mildHot.some(w => s.includes(w))) { score = 80; reason = "心动信号在线，浓度上头。"; }
+        else if (lightCold.some(w => s.includes(w))) {
+          score = /^(嗯+|哦+|行|随便|都行|还好|无所谓|算了)$/.test(s) ? 0 : (s.includes("无所谓") || s.includes("随便") ? 5 : 20);
+          reason = "越冷淡越省事。";
+        }
+        out.textContent = `${reason} 本题：${score} 分。`;
+        setAnswer(q, score);
+      };
+    }
+
+    function buildRangeVote(q, area) {
+      const val = Number.isFinite(Number(state.answers[q.id])) ? Number(state.answers[q.id]) : 50;
+      area.innerHTML = `
+        <div class="slider-block">
+          <div class="slider-tops"><span>🧊 大方承认</span><span class="value-pill" id="voteVal">${val}</span><span>偷偷上头 💘</span></div>
+          <div class="range-wrap"><input id="voteRange" type="range" min="0" max="100" value="${val}"></div>
+          <div class="range-scale"><span>毫无波澜</span><span>疯狂脑补</span></div>
+        </div>`;
+      const r = el("voteRange");
+      r.oninput = () => { el("voteVal").textContent = r.value; setAnswer(q, r.value); };
+      setAnswer(q, val);
+    }
+
+    function formatHour(n) {
+      const h = Math.floor(n), m = Math.round((n - h) * 60);
+      return `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
+    }
+
+    function buildTimeline(q, area) {
+      const saved = Number(state.answers[q.id]);
+      const hour = Number.isFinite(saved) ? 6 + saved * 16 / 100 : 14;
+      area.innerHTML = `
+        <div class="slider-block">
+          <div class="slider-tops"><span>🌅 清晨6点</span><span class="value-pill" id="timeVal">${formatHour(hour)}</span><span>🌙 晚上10点</span></div>
+          <div class="range-wrap"><input id="timeRange" type="range" min="6" max="22" step="0.25" value="${hour}"></div>
+          <div class="range-scale"><span>早上</span><span>中午</span><span>晚上</span></div>
+        </div>`;
+      const r = el("timeRange");
+      const sync = () => {
+        const h = Number(r.value);
+        el("timeVal").textContent = formatHour(h);
+        // 早上6点=0，晚上10点=100，中间线性映射。
+        setAnswer(q, (h - 6) * 100 / 16);
+      };
+      r.oninput = sync; sync();
+    }
+
+    function buildSpectrum(q, area) {
+      const val = Number.isFinite(Number(state.answers[q.id])) ? Number(state.answers[q.id]) : 50;
+      area.innerHTML = `
+        <div class="slider-block">
+          <div class="slider-tops"><span>独立蓝</span><span class="value-pill" id="specVal">${val}</span><span>心动粉</span></div>
+          <div class="range-wrap"><input id="specRange" class="spectrum" type="range" min="0" max="100" value="${val}"></div>
+          <div class="range-scale"><span>心如止水</span><span>一点就上头</span></div>
+        </div>`;
+      const r = el("specRange");
+      r.oninput = () => { el("specVal").textContent = r.value; setAnswer(q, r.value); };
+      setAnswer(q, val);
+    }
+
+    function buildSpeed(q, area) {
+      const val = Number.isFinite(Number(state.answers[q.id])) ? Number(state.answers[q.id]) : 50;
+      area.innerHTML = `
+        <div class="slider-block">
+          <div class="knob-scene"><div class="knob"><div class="needle" id="speedNeedle">🗣️</div></div></div>
+          <div style="text-align:center"><span class="value-pill" id="speedVal">${val}</span></div>
+          <div class="range-wrap"><input id="speedRange" class="thin" type="range" min="0" max="100" value="${val}"></div>
+          <div class="range-scale"><span>🧊 不当回事</span><span>💘 反复品味</span></div>
+        </div>`;
+      const r = el("speedRange");
+      const sync = () => {
+        const v = Number(r.value);
+        el("speedVal").textContent = String(v);
+        el("speedNeedle").style.transform = `rotate(${v * 2.7 - 135}deg)`;
+        setAnswer(q, v);
+      };
+      r.oninput = sync; sync();
+    }
+
+    function buildVolume(q, area) {
+      const val = Number.isFinite(Number(state.answers[q.id])) ? Number(state.answers[q.id]) : 50;
+      area.innerHTML = `
+        <div class="slider-block">
+          <div class="volume-bars" id="volBars"></div>
+          <div style="text-align:center"><span class="value-pill" id="volumeVal">${val}</span></div>
+          <div class="range-wrap"><input id="volumeRange" type="range" min="0" max="100" value="${val}"></div>
+          <div class="range-scale"><span>谁也拿捏不了</span><span>一个眼神就融化</span></div>
+        </div>`;
+      const r = el("volumeRange"), bars = el("volBars");
+      for (let i = 0; i < 9; i++) {
+        const b = document.createElement("div");
+        b.className = "vbar"; b.style.animationDelay = `${i * .08}s`; bars.append(b);
+      }
+      const sync = () => {
+        const v = Number(r.value);
+        el("volumeVal").textContent = String(v);
+        [...bars.children].forEach((bar, i) => {
+          const peak = 22 + v * .78;
+          bar.style.height = `${Math.max(8, Math.min(100, peak - Math.abs(4 - i) * (v > 65 ? 3 : 7)))}%`;
+        });
+        setAnswer(q, v); // 音量值直接作为得分。
+      };
+      r.oninput = sync; sync();
+    }
+
+    function buildVotes(q, area) {
+      q.votes = Array.isArray(q.votes) ? q.votes : [null, null, null, null, null];
+      area.innerHTML = `<div class="vote-scenarios" id="voteBox"></div>`;
+      const box = el("voteBox");
+      function sync() {
+        const chosen = q.votes.filter(v => v === "hot").length;
+        // 5个场景各20分，选黏人行为得20分/次。
+        setAnswer(q, chosen * 20);
+      }
+      q.scenarios.forEach((scene, si) => {
+        const row = document.createElement("div");
+        row.className = "vote-row";
+        row.innerHTML = `
+          <div class="vote-title">${si + 1}. ${scene[0]}</div>
+          <div class="vote-btns">
+            <button class="vote-btn" data-kind="cold" type="button">🧊 独立行为<br>${scene[1]}</button>
+            <button class="vote-btn" data-kind="hot" type="button">💘 黏人行为<br>${scene[2]}</button>
+          </div>`;
+        const btns = [...row.querySelectorAll(".vote-btn")];
+        const paint = () => btns.forEach(b => b.classList.toggle(b.dataset.kind === "hot" ? "selected-hot" : "selected-cold", q.votes[si] === b.dataset.kind));
+        btns.forEach(btn => btn.onclick = () => { q.votes[si] = btn.dataset.kind; paint(); sync(); });
+        paint(); box.append(row);
+      });
+      sync();
+    }
+
+    function buildFinal(q, area) {
+      const val = Number.isFinite(Number(state.answers[q.id])) ? Number(state.answers[q.id]) : 50;
+      area.innerHTML = `
+        <div class="slider-block">
+          <div class="slider-tops"><span>🧊 我独立本独</span><span class="value-pill" id="finalVal">${val}</span><span>我黏人本黏 💘</span></div>
+          <div class="range-wrap"><input id="finalRange" type="range" min="0" max="100" value="${val}"></div>
+          <div class="range-scale"><span>当下翻篇</span><span>无限回味</span></div>
+        </div>`;
+      const r = el("finalRange");
+      r.oninput = () => { el("finalVal").textContent = r.value; setAnswer(q, r.value); };
+      setAnswer(q, val);
+    }
+
+    /* ------------------ 恋爱黏度计算逻辑 ------------------
+       每道题独立计算得分（0-100）。
+       最终黏度指数 = Math.round(24道题得分总和 / 24)。
+       独立指数 = 100 - 黏度指数。
+    ---------------------------------------------------------- */
+    function finish() {
+      const scores = questions.map(q => clampScore(state.answers[q.id]));
+      const hotIndex = Math.round(scores.reduce((sum, score) => sum + score, 0) / 24);
+      const coldIndex = 100 - hotIndex;
+      el("hotPercent").textContent = String(hotIndex);
+      el("coldPercent").textContent = String(coldIndex);
+      const verdict = results.find(r => hotIndex <= r.max);
+      el("resultName").textContent = verdict.name;
+      el("resultText").textContent = verdict.text;
+      el("coldSide").style.width = "50%";
+      el("hotSide").style.width = "50%";
+      showScreen("resultScreen");
+      setTimeout(() => {
+        el("coldSide").style.width = `${coldIndex}%`;
+        el("hotSide").style.width = `${hotIndex}%`;
+      }, 120);
+    }
+
+    el("startBtn").onclick = () => {
+      state.current = 0; state.answers = {};
+      questions.forEach(q => { delete q.outer; delete q.order; delete q.selected; delete q.checked; delete q.votes; delete q.text; delete q.analyzed; });
+      showScreen("testScreen"); renderQuestion();
+    };
+    el("restartBtn").onclick = () => el("startBtn").click();
+    el("shareBtn").onclick = () => toast("截图给对象，看你们是不是灵魂同频...");
+    window.addEventListener("keydown", e => {
+      if (!el("testScreen").classList.contains("active")) return;
+      if (e.key === "ArrowLeft") el("prevBtn").click();
+      if (e.key === "ArrowRight" && !el("nextBtn").disabled) el("nextBtn").click();
+    });
+  </script>
+</body>
+
+</html>
