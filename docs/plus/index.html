@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>心理测试合集 · 完整版｜测测就知道</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(160deg, #f7d9ec 0%, #e3c8f5 38%, #c9b8f7 70%, #a78bda 100%);
+    color: #3d2c50;
+    padding: 28px 16px 60px;
+  }
+  .wrap { max-width: 560px; margin: 0 auto; }
+  .brand { text-align:center; color:#7a5aa6; font-weight:700; letter-spacing:4px; font-size:14px; margin-top:12px; }
+  h1 {
+    text-align:center; font-size: clamp(34px, 9vw, 52px); font-weight:900; margin: 14px 0 8px;
+    background: linear-gradient(90deg, #5b2ea6, #9333ea, #db2777);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .sub { text-align:center; color:#5f4880; font-size:15px; margin-bottom: 26px; }
+  .card {
+    background: rgba(255,255,255,.55);
+    border: 1px solid rgba(255,255,255,.8);
+    border-radius: 24px;
+    padding: 26px 22px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 18px 45px rgba(80, 40, 140, .18);
+  }
+  .gate label { display:block; font-weight:800; margin-bottom:10px; font-size:16px; }
+  .gate input {
+    width:100%; padding:14px 16px; font-size:17px; border-radius:14px;
+    border:2px solid rgba(122,90,166,.35); background: rgba(255,255,255,.9); outline:none;
+    letter-spacing: 1px;
+  }
+  .gate input:focus { border-color:#9333ea; }
+  .gate button {
+    width:100%; margin-top:14px; padding:14px; font-size:17px; font-weight:900; color:#fff;
+    border:none; border-radius:14px; cursor:pointer;
+    background: linear-gradient(90deg, #9333ea, #db2777);
+    box-shadow: 0 10px 24px rgba(219,39,119,.3);
+  }
+  .gate .hint { margin-top:12px; font-size:13px; color:#6b558c; text-align:center; }
+  .gate .err { margin-top:10px; font-size:14px; color:#c2185b; text-align:center; min-height:20px; font-weight:700;}
+  .perks { display:grid; gap:10px; margin: 20px 0 4px; }
+  .perk { display:flex; gap:10px; align-items:flex-start; font-size:15px; font-weight:700; color:#4a3566; }
+  .perk .ck { color:#fff; background:#34c759; border-radius:50%; width:22px; height:22px; flex:0 0 22px; display:grid; place-items:center; font-size:13px; margin-top:1px;}
+  .grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .test {
+    display:block; text-decoration:none; color:#3d2c50;
+    background: rgba(255,255,255,.6); border:1px solid rgba(255,255,255,.85);
+    border-radius:18px; padding:16px 14px;
+    box-shadow: 0 8px 22px rgba(80,40,140,.12);
+  }
+  .test:active { transform: scale(.98); }
+  .test .emo { font-size:26px; }
+  .test .nm { font-weight:900; font-size:16.5px; margin:6px 0 3px; }
+  .test .ds { font-size:12.5px; color:#6b558c; line-height:1.45; }
+  .test .full { display:inline-block; margin-top:8px; font-size:11px; font-weight:800; color:#fff; background:linear-gradient(90deg,#9333ea,#db2777); padding:2.5px 9px; border-radius:999px; }
+  .topbar { display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; }
+  .topbar .ok { font-weight:800; color:#4a3566; font-size:14.5px; }
+  .topbar button { border:none; background:rgba(255,255,255,.6); color:#7a5aa6; font-weight:700; border-radius:999px; padding:6px 14px; cursor:pointer; font-size:13px;}
+  .disclaimer { margin-top:26px; text-align:center; font-size:12px; color:#7a639e; line-height:1.7; }
+  .hidden { display:none !important; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">测 测 就 知 道</div>
+  <h1>心理测试合集</h1>
+  <p class="sub">全套详细解读 · 一个链接全搞定</p>
+
+  <!-- 授权码门 -->
+  <div id="gateView" class="card gate">
+    <label for="codeInput">输入授权码，解锁完整版合集</label>
+    <input id="codeInput" type="text" placeholder="请输入授权码" autocomplete="off" autocapitalize="none">
+    <div class="err" id="errText"></div>
+    <button id="unlockBtn">解 锁 进 入</button>
+    <p class="hint">授权码在购买后私信「测测就知道」领取；输对一次，本设备免重复输入。</p>
+    <div class="perks">
+      <div class="perk"><span class="ck">✓</span>全套人气心理测试，持续更新进合集</div>
+      <div class="perk"><span class="ck">✓</span>每个测试完整详细解读 + 专属标签</div>
+      <div class="perk"><span class="ck">✓</span>每测还有一份隐藏款结果彩蛋</div>
+    </div>
+  </div>
+
+  <!-- 合集主页 -->
+  <div id="listView" class="hidden">
+    <div class="topbar">
+      <span class="ok">✨ 完整版合集 · 已解锁</span>
+      <button id="lockBtn">锁定</button>
+    </div>
+    <div class="grid" id="testGrid"></div>
+  </div>
+
+  <p class="disclaimer">本合集全部测试仅供娱乐，结果为趣味解读，不构成心理诊断或建议。<br>© 测测就知道</p>
+</div>
+
+<script>
+  var CODE = "cece599";
+  var KEY = "cece_plus_code";
+  var TESTS = [
+    ["bingjiao", "🩸", "病娇指数", "你的占有欲到底有多强"],
+    ["fengpi", "😈", "疯批指数", "你上头起来有多吓人"],
+    ["sajiao", "🥺", "撒娇指数", "你身上藏着多少甜妹力"],
+    ["zhanyou", "🔒", "占有欲指数", "你心里的领地有多大"],
+    ["yinshi", "🌧️", "阴湿指数", "你骨子里的阴湿浓度有多高"],
+    ["yinshi2", "💧", "阴湿浓度 2.0", "你的水位到底有多深"],
+    ["xinruan", "💗", "心软指数", "你是不是一哄就好"],
+    ["danren", "🧊", "淡人 / 浓人浓度", "你是淡人还是浓人"],
+    ["liannao", "🫠", "恋爱脑浓度", "你上头到什么程度"],
+    ["lovebrain", "💘", "恋爱脑指数", "你有多上头"],
+    ["neihao", "🌑", "内耗指数", "你的脑子到底有多能自耗"],
+    ["nvzhu", "📖", "文学女主测试", "你是哪种故事的女主角"],
+    ["qingli", "🍯", "恋爱黏度", "你的恋爱浓度有多高"],
+    ["zuiying", "🫥", "嘴硬指数", "你嘴上到底有多没事"]
+  ];
+  var gateView = document.getElementById("gateView");
+  var listView = document.getElementById("listView");
+  var grid = document.getElementById("testGrid");
+  TESTS.forEach(function(t) {
+    var a = document.createElement("a");
+    a.className = "test";
+    a.href = "./" + t[0] + "/";
+    a.innerHTML = '<div class="emo">' + t[1] + '</div><div class="nm">' + t[2] +
+      '</div><div class="ds">' + t[3] + '</div><span class="full">完整版</span>';
+    grid.appendChild(a);
+  });
+  function showList() {
+    gateView.classList.add("hidden");
+    listView.classList.remove("hidden");
+  }
+  function showGate() {
+    listView.classList.add("hidden");
+    gateView.classList.remove("hidden");
+  }
+  if ((localStorage.getItem(KEY) || "") === CODE) showList();
+  function tryUnlock() {
+    var v = (document.getElementById("codeInput").value || "").trim().toLowerCase();
+    if (v === CODE) {
+      localStorage.setItem(KEY, CODE);
+      document.getElementById("errText").textContent = "";
+      showList();
+    } else {
+      document.getElementById("errText").textContent = "授权码不对哦，检查一下再试～";
+    }
+  }
+  document.getElementById("unlockBtn").onclick = tryUnlock;
+  document.getElementById("codeInput").addEventListener("keydown", function(e) {
+    if (e.key === "Enter") tryUnlock();
+  });
+  document.getElementById("lockBtn").onclick = function() {
+    localStorage.removeItem(KEY);
+    showGate();
+  };
+</script>
+</body>
+</html>
