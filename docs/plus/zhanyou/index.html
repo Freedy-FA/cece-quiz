@@ -6,18 +6,18 @@
   <script>if((localStorage.getItem("cece_plus_code")||"")!=="cece599"){location.replace("../");}</script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>完整版 · 🧊 淡人 / 浓人 🔥 浓度检测中心</title>
-  <meta name="description" content="24道题，测测你到底是佛系冰山还是情绪核弹。">
+  <title>完整版 · 🔒 占有欲指数 · 你心里的领地有多大</title>
+  <meta name="description" content="24道题，测测你恋爱里的圈地强度：暗流布控、人形雷达和领地版图。仅供娱乐。">
   <style>
     :root {
-      --cold-1: #F0F0F0;
-      --cold-2: #A8B5C0;
-      --cold-3: #4A5A6A;
-      --hot-1: #FFD93D;
-      --hot-2: #FF6B35;
-      --hot-3: #FF2E63;
-      --ink: #263039;
-      --card: rgba(255, 255, 255, .92);
+      --cold-1: #26302A;
+      --cold-2: #5B7A62;
+      --cold-3: #1B2923;
+      --hot-1: #C05B6B;
+      --hot-2: #A03448;
+      --hot-3: #6E1F33;
+      --ink: #201A1A;
+      --card: rgba(250, 244, 245, .94);
       --shadow: 0 18px 60px rgba(38, 48, 57, .18);
     }
 
@@ -33,7 +33,7 @@
     body {
       margin: 0;
       color: var(--ink);
-      background: #10151a;
+      background: #100D0C;
       font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
       line-height: 1.5;
       overflow-x: hidden;
@@ -121,7 +121,7 @@
     .glass {
       background: var(--card);
       backdrop-filter: blur(18px);
-      border: 1px solid rgba(255, 255, 255, .58);
+      border: 1px solid rgba(255, 255, 255, .42);
       box-shadow: var(--shadow);
       border-radius: 26px;
     }
@@ -197,13 +197,13 @@
 
     .tag.cold {
       background: rgba(168, 181, 192, .24);
-      color: #37485A;
+      color: #47222E;
       border: 1px solid rgba(74, 90, 106, .24);
     }
 
     .tag.hot {
       background: rgba(255, 107, 53, .15);
-      color: #B32347;
+      color: #C8334A;
       border: 1px solid rgba(255, 46, 99, .22);
     }
 
@@ -214,7 +214,7 @@
     }
 
     .home-author a {
-      color: #B32347;
+      color: #C8334A;
       font-weight: 800;
       text-decoration: none;
     }
@@ -377,7 +377,7 @@
 
     .option.selected {
       border-color: var(--hot-2);
-      background: linear-gradient(135deg, rgba(255, 217, 61, .2), rgba(255, 107, 53,.18));
+      background: linear-gradient(135deg, rgba(228, 87, 107, .22), rgba(200, 51, 74,.18));
       box-shadow: 0 0 0 2px rgba(255, 107, 53, .18) inset;
     }
 
@@ -460,12 +460,12 @@
 
     input[type=range].spectrum::-webkit-slider-runnable-track {
       height: 26px;
-      background: linear-gradient(90deg, #eceff1, #b9c6cf, #ffe066, #ff8c42, #ff2e63);
+      background: linear-gradient(90deg, #f2f5ee, #dfe8d8, #b9d3a8, #d995a0, #a03448);
     }
 
     input[type=range].spectrum::-moz-range-track {
       height: 26px;
-      background: linear-gradient(90deg, #eceff1, #b9c6cf, #ffe066, #ff8c42, #ff2e63);
+      background: linear-gradient(90deg, #f2f5ee, #dfe8d8, #b9d3a8, #d995a0, #a03448);
     }
 
     .range-scale {
@@ -827,7 +827,7 @@
     }
 
     .cloud-tag.selected {
-      background: linear-gradient(135deg, rgba(255, 217, 61, .3), rgba(255, 46, 99, .22));
+      background: linear-gradient(135deg, rgba(228, 87, 107, .28), rgba(142, 14, 51, .26));
       border-color: var(--hot-2);
       font-weight: 800;
     }
@@ -951,7 +951,7 @@
       border-radius: 999px;
       background: #fff;
       border: 1px dashed rgba(255, 46, 99, .55);
-      color: #B32347;
+      color: #C8334A;
       font-weight: 900;
       font-size: 15px;
     }
@@ -1114,15 +1114,15 @@
   <main class="app">
     <section id="homeScreen" class="screen active">
       <div class="glass home">
-        <p class="eyebrow">MOOD CONCENTRATION TEST</p>
-        <h1>🧊 淡人 / 浓人 🔥<br>浓度检测中心</h1>
-        <p class="subtitle">测测你到底是佛系冰山还是情绪核弹。别装，你的口头禅已经把你卖得明明白白。</p>
+        <p class="eyebrow">TERRITORY RADAR</p>
+        <h1>🔒 占有欲指数<br>检测中心</h1>
+        <p class="subtitle">测测你恋爱里的圈地强度：暗流布控、人形雷达、领地版图。别怕，结果仅供娱乐，不构成心理评估。</p>
         <div class="polar-tags">
-          <span class="tag cold">嗯 / 哦 / 行 / 随便</span>
-          <span class="tag hot">啊啊啊！救命！我超爱！</span>
+          <span class="tag cold">给足空间 / 各自精彩</span>
+          <span class="tag hot">表面随便 / 心里布控</span>
         </div>
-        <p class="home-author">🎀 测测就知道 · 原创趣味测试</p>
-        <button id="startBtn" class="btn primary">扒开我的真面目 ▶</button>
+        <p class="home-author">🔒 测测就知道 · 原创趣味测试</p>
+        <button id="startBtn" class="btn primary">开始测定 ▶</button>
       </div>
     </section>
 
@@ -1130,7 +1130,7 @@
       <div class="glass test-head">
         <div class="head-row">
           <div class="progress-label">第<span id="currentNum">1</span>/24题</div>
-          <div class="live-score">当前浓度：淡 <span id="liveCold">50</span>% / 浓 <span id="liveHot">50</span>%</div>
+          <div class="live-score">当前状态：留白 <span id="liveCold">50</span>% / 占有欲 <span id="liveHot">50</span>%</div>
         </div>
         <div class="progress"><div id="progressFill" class="progress-fill"></div></div>
       </div>
@@ -1139,13 +1139,13 @@
 
     <section id="resultScreen" class="screen">
       <div class="glass result-card">
-        <p class="eyebrow">DETECTION COMPLETE</p>
-        <h2 class="result-title">报告已生成</h2>
-        <div class="meter" aria-label="淡人和浓人比例条">
-          <div id="coldSide" class="meter-side cold-side">❄️ 淡 <span id="coldPercent">50</span>%</div>
-          <div id="hotSide" class="meter-side hot-side">🔥 浓 <span id="hotPercent">50</span>%</div>
+        <p class="eyebrow">VERDICT READY</p>
+        <h2 class="result-title">判定书已生成</h2>
+        <div class="meter" aria-label="留白和占有欲比例条">
+          <div id="coldSide" class="meter-side cold-side">🍀 留白 <span id="coldPercent">50</span>%</div>
+          <div id="hotSide" class="meter-side hot-side">🔒 占有欲 <span id="hotPercent">50</span>%</div>
         </div>
-        <div class="meter-caption">左边是人间冷静区，右边是情绪爆炸区</div>
+        <div class="meter-caption">左边是留白区，右边是圈地区</div>
         <div class="verdict">
           <h3 id="resultName" class="verdict-name"></h3>
           <p id="resultText" class="verdict-text"></p>
@@ -1154,8 +1154,8 @@
           <h3 class="verdict-name">🎁 隐藏款结果</h3>
           <p class="verdict-text" id="plusHiddenLock">这是完整版才有的彩蛋人格，点下面按钮揭晓。</p>
           <div id="plusHiddenBody" style="display:none">
-            <h4 style="margin:12px 0 6px;font-size:19px">薛定谔的核反应堆</h4>
-            <p class="verdict-text">🏷️ 专属标签：静默即引爆｜恭喜触发隐藏款：你平时淡得像一杯白开水，所有人都以为你没脾气、没执念、什么都行，结果心里早就建好了一座核电站。真被戳中那一个点，你会瞬间从嗯哦行切换成连环输出三小时，细节、年份、原话全记得清清楚楚，把在场所有人震到安静如鸡。你不是淡也不是浓，你是把一整年的浓都攒成了一次性大招。建议提前给亲近的人打个预防针：我不常爆，但爆一次管够。</p>
+            <h4 style="margin:12px 0 6px;font-size:19px">人形卫星本星</h4>
+            <p class="verdict-text">🏷️ 专属标签：卫星级守护者｜隐藏款揭晓：你根本不是在谈恋爱，你是发射了一颗人形卫星，二十四小时绕着对方轨道运行。对方几点出门、和谁拼桌、给谁点了赞，你的数据库比对方本人还完整；信号中断三分钟，你已经启动应急预案准备地面搜寻。你爱得如此全方位，连云层都挡不住你的注视。这份守护欲拿去做安保绝对是行业标杆。小声提醒，卫星也需要充电和休眠，偶尔切到省电模式看看自己的风景吧，不然电量耗光，轨道里只剩你一个人转圈就太孤单了。</p>
           </div>
           <button class="btn small" style="margin-top:12px" onclick="document.getElementById('plusHiddenBody').style.display='block';document.getElementById('plusHiddenLock').style.display='none';this.style.display='none'">揭晓隐藏款 ✨</button>
         </div>
@@ -1175,7 +1175,7 @@
   </main>
 
   <div class="brand-bar" aria-label="作者信息">
-    🧊 测测就知道 · 仅供娱乐，不构成心理评估 🔥
+    🔒 测测就知道 · 仅供娱乐，不构成心理评估 🗺️
   </div>
 
   <div id="toast" class="toast"></div>
@@ -1187,183 +1187,183 @@
     // 每道题独立产出 0-100 的分数，answers[id] 只保存数值。
     const questions = [
       {
-        id: "q01", type: "dual", title: "请在下面两个滑块上分别标注：你认为的“真实内心”和“对外表现”。",
-        desc: "一个柄是你的底层设定，另一个柄是你的人前皮肤。",
-        extra: {}
+        id: "q01", type: "dual", title: "请在下面两个滑块上分别标注：你的「真实占有欲」和「表面大方度」。",
+        desc: "一个柄是心里实际的圈地面积，另一个柄是你表现出来给人看的样子。"
       },
       {
-        id: "q02", type: "options", cols: "cols-2", title: "你在餐厅点单，服务员说“这个卖完了”，你会？",
+        id: "q02", type: "options", cols: "cols-2", title: "对象说今晚和朋友聚餐，你心里第一反应是？",
         options: [
-          { emoji: "😌", label: "“那换一个吧”", score: 0 },
-          { emoji: "🤷", label: "“有什么推荐吗？”", score: 33 },
-          { emoji: "😤", label: "“啊？我专门为这个来的！”", score: 66 },
-          { emoji: "😫", label: "“啊啊啊那我今天什么都不想吃了！”", score: 100 }
+          { emoji: "😄", label: "玩得开心，拍照分享我看看", score: 0 },
+          { emoji: "🙂", label: "「行呀」，心里顺手记一笔", score: 25 },
+          { emoji: "😮‍💨", label: "笑着答应，转头翻都是谁", score: 55 },
+          { emoji: "🔒", label: "「都有谁呀」，问完才安心", score: 100 }
         ]
       },
       {
-        id: "q03", type: "dial", title: "你收到一条“在吗？”的消息，你的内心波动强度是？",
-        desc: "拖到底就是血压拉满的程度。"
+        id: "q03", type: "dial", title: "对象夸了别人一句「真好看」，你心里的警戒线拉到多高？",
+        desc: "拖到最高就是表面「是挺好看的」，回家路上一直绕不过来。"
       },
       {
-        id: "q04", type: "tags", title: "请选出所有符合你日常状态的词（选所有像你的）。",
-        desc: "可多选，最终取最浓的那个标签计分。",
+        id: "q04", type: "tags", title: "选出所有符合你恋爱习惯的词（越多圈得越紧）。",
+        desc: "可多选，取圈地最强的那个标签计分。",
         items: [
-          ["平静", 0], ["随性", 10], ["淡定", 20], ["无所谓", 30], ["偶尔激动", 50],
-          ["爱分享", 60], ["情绪化", 70], ["热情", 80], ["炸裂", 90], ["易燃易爆炸", 100]
+          ["想去哪去哪", 0], ["偶尔问一句", 10], ["晚回消息会多想", 25], ["想知道全部行程", 40],
+          ["合照必须发", 55], ["「在呢」要秒回", 70], ["通讯录要过目", 85], ["人是我的别乱跑", 100]
         ]
       },
       {
-        id: "q05", type: "sort", title: "请将以下回复按“最像你会说的”到“最不可能说的”排序。",
-        desc: "可以点箭头移动，也可以拖拽气泡。",
+        id: "q05", type: "sort", title: "请将以下回复按「最像你会发」到「最不可能发」排序。",
+        desc: "第一名就是你真实的圈地强度，自己保重。",
         items: [
-          { label: "嗯好的", score: 0 },
-          { label: "行吧", score: 20 },
-          { label: "哈哈哈哈哈哈笑死我了", score: 70 },
-          { label: "啊啊啊啊真的吗！！！", score: 100 }
+          { label: "玩得开心呀", score: 0 },
+          { label: "几点回来？", score: 25 },
+          { label: "跟谁一起去呀", score: 50 },
+          { label: "少喝点，早点回", score: 75 },
+          { label: "要不我陪你去吧（领地扩张）", score: 100 }
         ]
       },
       {
-        id: "q06", type: "options", cols: "cols-5", title: "你发现手机只剩1%电量，你的反应是？",
+        id: "q06", type: "options", cols: "cols-5", title: "对象三小时没回消息，你的雷达功率是？",
         options: [
-          { emoji: "🙂", label: "找充电器", score: 0 },
-          { emoji: "😅", label: "有点慌但还行", score: 25 },
-          { emoji: "😰", label: "开始焦虑", score: 50 },
-          { emoji: "😱", label: "尖叫出声", score: 75 },
-          { emoji: "🤯", label: "原地爆炸，心碎成两半", score: 100 }
+          { emoji: "😌", label: "在忙吧，各忙各的", score: 0 },
+          { emoji: "🙂", label: "有点在意，忍住不问", score: 25 },
+          { emoji: "😐", label: "发第二条「在忙吗」", score: 50 },
+          { emoji: "😫", label: "点开TA的动态找线索", score: 75 },
+          { emoji: "🔒", label: "电话已拨出：你到底在哪", score: 100 }
         ]
       },
       {
-        id: "q07", type: "toggles", title: "请如实回答以下问题（打开=是）。",
+        id: "q07", type: "toggles", title: "以下行为，你做过几样？（打开＝做过）",
         items: [
-          { label: "你经常被人说“情绪稳定”", score: 0 },
-          { label: "你会在朋友圈分享情绪", score: 60 },
-          { label: "你曾经在公共场合哭过", score: 100 }
+          { label: "把TA的共同好友都点进去看一圈", score: 100 },
+          { label: "「TA人挺好的」其实已经记小本上了", score: 60 },
+          { label: "真的给过对方独立空间", score: 30 }
         ]
       },
       {
-        id: "q08", type: "text", title: "请随意输入一句话，让我们感受一下你的情绪浓度。",
-        desc: "输入你想说的任何话，然后点击分析。"
+        id: "q08", type: "text", title: "输入一句你现在最想问又没问出口的话，测测圈地强度。",
+        desc: "输入你最自然的说法，然后点击分析。"
       },
       {
-        id: "q09", type: "rangeVote", title: "你更倾向于哪一种旅行方式？",
-        desc: "左端“攻略做满，按计划走”，右端“随性出发，走到哪算哪”。"
+        id: "q09", type: "rangeVote", title: "对象要一场「一个人的周末」，你更倾向哪种处理方式？",
+        desc: "左端「大方放行各自精彩」，右端「人在我视线里才是安全范围」。"
       },
       {
-        id: "q10", type: "options", cols: "cols-2", title: "你看到一个超级好笑的短视频，你的反应是？",
+        id: "q10", type: "options", cols: "cols-2", title: "合照里对象旁边站了个不认识的异性，你会？",
         options: [
-          { emoji: "😶", label: "嘴角微微上扬", score: 0 },
-          { emoji: "😂", label: "笑出声但控制住了", score: 30 },
-          { emoji: "🤣", label: "笑到拍桌子", score: 70 },
-          { emoji: "🫠", label: "笑到眼泪直流、无法呼吸", score: 100 }
+          { emoji: "😶", label: "不认识就不认识，没注意", score: 0 },
+          { emoji: "😅", label: "随口问一句「这是谁呀」", score: 30 },
+          { emoji: "🤨", label: "夸完合照，顺手放大看了三遍", score: 70 },
+          { emoji: "🔒", label: "「下次合照站我旁边」，当场宣布领地", score: 100 }
         ]
       },
       {
-        id: "q11", type: "timeline", title: "你一天中最“浓”（情绪最充沛）的时刻是？"
+        id: "q11", type: "timeline", title: "你一天中「想确认TA在干嘛」的高峰时段是？"
       },
       {
-        id: "q12", type: "spectrum", title: "用一个颜色代表你现在的心理状态，你会选？"
+        id: "q12", type: "spectrum", title: "用一个颜色形容你恋爱里的警戒色？"
       },
       {
-        id: "q13", type: "speed", title: "你和别人聊天时的语速大概是？"
+        id: "q13", type: "speed", title: "对象夸了别人之后，你的「恢复速度」是？"
       },
       {
-        id: "q14", type: "volume", title: "你在日常社交中的“音量”大概在哪个刻度？"
+        id: "q14", type: "volume", title: "你吃醋的时候，表面上能被看出来多少？"
       },
       {
-        id: "q15", type: "options", cols: "cols-2", title: "你的心情最像哪种天气？",
+        id: "q15", type: "options", cols: "cols-2", title: "你最近一周的「圈地强度」是？",
         options: [
-          { emoji: "☀️", label: "晴天，万里无云", score: 10 },
-          { emoji: "⛅", label: "多云，偶尔放晴", score: 35 },
-          { emoji: "🌧️", label: "小雨，有点emo", score: 65 },
-          { emoji: "⛈️", label: "雷暴，情绪汹涌", score: 100 }
+          { emoji: "🍀", label: "敞养：想去哪去哪", score: 0 },
+          { emoji: "🌤️", label: "偶尔回访：问问在干嘛", score: 35 },
+          { emoji: "🌧️", label: "布控：行程基本同步", score: 65 },
+          { emoji: "🔒", label: "圈死：去哪都得报备", score: 100 }
         ]
       },
       {
-        id: "q16", type: "votes", title: "以下场景，请为每个选择你更接近的行为。",
+        id: "q16", type: "votes", title: "以下场景，请为每个场景选你更接近的行为。",
         scenarios: [
-          ["收到礼物", "“谢谢”", "“啊啊啊我好喜欢！！！”"],
-          ["被夸好看", "“没有啦”", "“我也觉得！！！”"],
-          ["遇到堵车", "“哦”", "“救命啊要迟到了！！！”"],
-          ["看到彩虹", "“嗯好看”", "“天呐太美了快看！！！”"],
-          ["被放鸽子", "“没事”", "“你居然放我鸽子？？？😤”"]
+          ["对象和异性同事拼桌吃饭", "「挺好的，吃饱呀」", "「TA多大？男的女的？」"],
+          ["对象说要跟朋友通宵打游戏", "「注意休息」", "「开语音，我要听着你玩」"],
+          ["对象的旧照片里出现前任", "划过去，没感觉", "「这张为什么还留着？」"],
+          ["对象说想独自旅行几天", "「路上注意安全」", "「我买了同航班」"],
+          ["对象没接电话", "在忙吧，等回", "再打，打到接为止"]
         ]
       },
       {
-        id: "q17", type: "options", cols: "cols-2", title: "如果你的人生是一部电影，你希望它的色调是？",
+        id: "q17", type: "options", cols: "cols-2", title: "如果给你的恋爱装一个「领地围栏」，它是？",
         options: [
-          { emoji: "🎞️", label: "黑白文艺片", score: 0 },
-          { emoji: "🎥", label: "日系清新蓝白", score: 30 },
-          { emoji: "🎬", label: "暖色调生活流", score: 65 },
-          { emoji: "🌈", label: "饱和度过载的宝莱坞大片", score: 100 }
+          { emoji: "🍀", label: "开放式：没有围栏，全靠自觉", score: 0 },
+          { emoji: "🚪", label: "门禁式：进出说一声就行", score: 30 },
+          { emoji: "🏰", label: "围墙式：外面的事我要知情", score: 65 },
+          { emoji: "🔒", label: "保险箱式：人和心都在视线里", score: 100 }
         ]
       },
       {
-        id: "q18", type: "options", cols: "cols-6", title: "以下哪句最可能是你的口头禅？",
+        id: "q18", type: "options", cols: "cols-6", title: "你最常对对象说的是哪句？",
         options: [
-          { emoji: "🧊", label: "“嗯”", score: 0 },
-          { emoji: "🙂", label: "“好的”", score: 15 },
-          { emoji: "😐", label: "“行吧”", score: 30 },
-          { emoji: "😂", label: "“哈哈哈”", score: 55 },
-          { emoji: "😱", label: "“救命”", score: 80 },
-          { emoji: "🔥", label: "“啊啊啊啊啊”", score: 100 }
+          { emoji: "😀", label: "去吧去吧！", score: 0 },
+          { emoji: "🙂", label: "都行", score: 15 },
+          { emoji: "😐", label: "哦", score: 30 },
+          { emoji: "😌", label: "几点回？", score: 55 },
+          { emoji: "🔥", label: "带我一个", score: 80 },
+          { emoji: "🔒", label: "不许去（圈地封顶）", score: 100 }
         ]
       },
       {
-        id: "q19", type: "options", cols: "cols-5", title: "用辣度来形容你的性格，你大概是几级？",
+        id: "q19", type: "options", cols: "cols-5", title: "用「领地面积」形容你现在的恋爱状态：",
         options: [
-          { emoji: "🌶️", label: "1级", score: 0 },
-          { emoji: "🌶️🌶️", label: "2级", score: 25 },
-          { emoji: "🌶️🌶️🌶️", label: "3级", score: 50 },
-          { emoji: "🌶️🌶️🌶️🌶️", label: "4级", score: 75 },
-          { emoji: "🌶️🌶️🌶️🌶️🌶️", label: "5级", score: 100 }
+          { emoji: "🗺️", label: "无主之地", score: 0 },
+          { emoji: "🏕️", label: "一小块自留地", score: 25 },
+          { emoji: "🏡", label: "带院子的家", score: 50 },
+          { emoji: "🏙️", label: "半座城都拉了线", score: 75 },
+          { emoji: "🔒", label: "全域布控", score: 100 }
         ]
       },
       {
-        id: "q20", type: "options", cols: "cols-2", title: "你躺床上准备睡觉，你的脑子里通常在想什么？",
+        id: "q20", type: "options", cols: "cols-2", title: "深夜睡不着的时候，你脑子里通常是？",
         options: [
-          { emoji: "😴", label: "什么都没想", score: 0 },
-          { emoji: "📋", label: "复盘今天的工作", score: 25 },
-          { emoji: "✨", label: "幻想美好的未来", score: 60 },
-          { emoji: "🔁", label: "反复播放某句歌词/某段尴尬回忆", score: 100 }
+          { emoji: "😴", label: "今天干了啥，明天吃啥", score: 0 },
+          { emoji: "📝", label: "盘一下明天的事，然后睡着", score: 25 },
+          { emoji: "🌙", label: "回放今天TA提过的那个名字", score: 60 },
+          { emoji: "🌀", label: "自动推演TA和那个人的关系网", score: 100 }
         ]
       },
       {
-        id: "q21", type: "options", cols: "cols-2", title: "你的手机壁纸是哪种风格？",
+        id: "q21", type: "options", cols: "cols-2", title: "对象提过一嘴的「关系很好的异性朋友」，现在是？",
         options: [
-          { emoji: "⬜", label: "纯色/极简", score: 0 },
-          { emoji: "🌄", label: "风景自然", score: 30 },
-          { emoji: "🎨", label: "插画/艺术", score: 65 },
-          { emoji: "📸", label: "偶像/自拍/色彩爆炸", score: 100 }
+          { emoji: "🗂️", label: "谁？没印象了", score: 0 },
+          { emoji: "🌄", label: "知道有这么个人", score: 30 },
+          { emoji: "🗃️", label: "记得长相和上次见面的时间", score: 65 },
+          { emoji: "📸", label: "TA的动态我也有账号关注着", score: 100 }
         ]
       },
       {
-        id: "q22", type: "options", cols: "cols-2", title: "你打开月度账单的那一刻，你的反应是？",
+        id: "q22", type: "options", cols: "cols-2", title: "对象说「你管得有点多」，你的反应是？",
         options: [
-          { emoji: "😌", label: "看了眼，关了", score: 0 },
-          { emoji: "🤔", label: "计算了一下", score: 25 },
-          { emoji: "😱", label: "瞳孔地震", score: 65 },
-          { emoji: "💀", label: "瞳孔地震，并发朋友圈哀嚎", score: 100 }
+          { emoji: "😌", label: "好像也是，收一收", score: 0 },
+          { emoji: "🤔", label: "嘴上答应，明天照问", score: 25 },
+          { emoji: "😟", label: "「我哪有管」（雷达继续转）", score: 65 },
+          { emoji: "🧶", label: "「管你还是不爱你了」", score: 100 }
         ]
       },
       {
-        id: "q23", type: "options", cols: "cols-2", title: "你希望自己的生日怎么过？",
+        id: "q23", type: "options", cols: "cols-2", title: "有人对对象示好被你刷到了，你会？",
         options: [
-          { emoji: "🫥", label: "不过，无所谓", score: 0 },
-          { emoji: "🍚", label: "和家人吃顿饭", score: 30 },
-          { emoji: "🎉", label: "和朋友聚会玩一下", score: 65 },
-          { emoji: "🎂", label: "大办特办，提前一个月策划", score: 100 }
+          { emoji: "🫐", label: "没看见，真的", score: 0 },
+          { emoji: "🍰", label: "跟对象聊别的，暗示一下", score: 30 },
+          { emoji: "💅", label: "在TA评论区发条显眼的存在感", score: 65 },
+          { emoji: "📋", label: "直接在对方评论区圈地打卡", score: 100 }
         ]
       },
       {
-        id: "q24", type: "finalSlider", title: "最后，抛开所有伪装，你觉得自己真正的位置在哪里？"
+        id: "q24", type: "finalSlider", title: "最后一个：撕开表面，你的占有欲到底有多强？"
       }
     ];
 
     const results = [
-      { max: 20, name: "【冰山淡人·人间佛系】", text: "🏷️ 专属标签：温水本水人｜你的情绪系统主打一个低功耗运行：菜卖完了就换一个，手机剩1%先找充电器，被放鸽子回一句没事就真翻篇了。开心最多嘴角动一下，难过睡一觉就代谢掉，口头禅永远是嗯、行、随便。优点是稳得像定海神针，朋友塌房都爱找你兜底，绝不添乱。小提醒是：太淡容易被误读成不在乎，重要的人面前偶尔把开心和在意说出口，别让喜欢你的人靠猜。" },
-      { max: 50, name: "【选择性浓淡·看人下菜碟】", text: "🏷️ 专属标签：双面切换王｜你是精准的双面派：陌生人面前惜字如金、表情管理满分，熟人面前立刻解封，抢最后一块肉、笑到拍桌子都是你。旅行能做满攻略也能随性出发，全看同行的是谁。优点是分寸感极强，既不得罪人，也不会委屈自己人，社交续航特别久。小提醒是：切换太丝滑，偶尔会让不熟的人觉得你忽冷忽热。遇到想走近的人，不妨提前漏一点真性情，省得对方一直站在门外试探。" },
-      { max: 80, name: "【情绪核弹·随时引爆】", text: "🏷️ 专属标签：情绪过山车｜你的情绪来得快、挂相更明显：看到好笑视频能笑到肚子疼，刷到感人片段眼泪说来就来，账单能让你瞳孔地震还要发朋友圈哀嚎。晴天多云雷暴能在一天内轮播，朋友早习惯了你上一秒发疯、下一秒装死。优点是感染力超强，跟你在一起永远不冷场，快乐会被你放大好几倍。小提醒是：上头时先给大话和决定留十分钟冷静期，尤其别在雷暴天气里发长消息，睡醒再看多半想撤回。" },
-      { max: 100, name: "【超浓预警·行走的火山】", text: "🏷️ 专属标签：人形烟花机｜你的人生信条就是要么不活、要么活成烟花：喜欢要喊出来，生日要提前一个月策划，壁纸要色彩爆炸，聊天全是啊啊啊和救命叠加感叹号。哭是真哭、笑是真笑，爱恨都从不打折，表达欲强到一天不分享就浑身难受。优点是生命力拉满，你在的地方自动升温，朋友的低谷期最需要你这种强行续命。小提醒是：火山也要留灭火通道，情绪最满时别替所有人做决定，先喝口水，你的真诚不差这几分钟。" }
+      { max: 20, name: "【自留地·散养模式】", text: "🏷️ 专属标签：散养随缘本体｜你的领地意识基本为零，主打一个散养随缘：对象说今晚和朋友聚餐，你回一句玩得开心就继续忙自己的，三小时没回消息也不会启动雷达，想去哪去哪、想几点回几点回。就算合照里站了不认识的异性，你扫一眼就划过去了，压根没往心里去。你的世界很大，朋友、爱好、自己的计划排得满满的，感情只是其中一格。优点是给足空间、相处零压力，这种松弛感特别稀有。小提醒是散养别散成失联，偶尔主动问一句到家没，对方会更暖。" },
+      { max: 50, name: "【门禁·正常范围】", text: "🏷️ 专属标签：门禁刚刚好呀｜你的围栏是门禁款，进出说一声就好。对象出门你会顺口问一句跟谁、几点回，不是盘问就是图个安心；消息晚回会小小嘀咕两句，看到合照会随口问这是谁呀，得到答案就翻篇了。你既要一点安全感，也真心愿意给自由，行程大致同步但不会步步紧盯，连吃醋都带着商量语气。优点是松紧有度、特别宜人，很容易长久相处。小提醒是那句随口一问别变成每日打卡，信任这东西，给得越多回得越多，门禁刷个脸就够了。" },
+      { max: 80, name: "【围墙·知情布控】", text: "🏷️ 专属标签：围墙布控中尉｜你已经进入围墙布控模式：对象提过的名字你全记得，合照要放大过目，行程要基本同步，三小时没回消息就忍不住点开动态找线索，再发一条在忙吗探探虚实。表面上你总说随便你呀，雷达却一直在转，连对方关系好的异性朋友长什么样、上次什么时候见的都门儿清。你不是想管人，就是知情了才踏实。优点是心细如发、守护感很强。小提醒是暗中标线不如直接开口，把我想知道你在哪说出来，比翻三遍动态更能换来安心。" },
+      { max: 100, name: "【全域·圈地封顶】", text: "🏷️ 专属标签：全域圈地封顶｜你的领地已经全域拉线封顶了：对象没接电话你要打到接为止，想独自旅行你恨不得买同航班跟上，有人给对象示好你直接去评论区圈地打卡，连深夜睡不着都在推演对方和某个名字的关系网。你的口头禅从几点回一路升级到带我一个、不许去，爱意全写成了布控表。优点是认定一个人就全心守护、绝不敷衍。小提醒是领地圈得太死，里面的人会想透气，先把自己的生活填满一点，安全感接上自己的电源，焦虑自然退潮。" }
     ];
 
     const state = {
@@ -1508,15 +1508,15 @@
       state.temporary.outer = Number.isFinite(q.outer) ? q.outer : 50;
       area.innerHTML = `
         <div class="slider-block">
-          <div class="slider-tops"><span>❄️ 宇宙级淡</span><span class="value-pill" id="innerPill">50</span><span>宇宙级浓 🔥</span></div>
+          <div class="slider-tops"><span>🍀 松开手也安心</span><span class="value-pill" id="innerPill">50</span><span>圈起来才放心主演 🔒</span></div>
           <div class="range-wrap dual-track">
             <input id="innerRange" type="range" min="0" max="100" value="${state.temporary.inner}" aria-label="真实内心">
             <input id="outerRange" type="range" min="0" max="100" value="${state.temporary.outer}" aria-label="对外表现">
           </div>
-          <div class="range-scale"><span>心如止水</span><span>热情喷发</span></div>
+          <div class="range-scale"><span>心里不设防</span><span>领地全拉线</span></div>
           <div class="dual-labels">
             <div class="mini-card"><strong>真实内心</strong><br>只拿它计分：<span id="innerVal">50</span></div>
-            <div class="mini-card"><strong>对外表现</strong><br>仅用于内外差对比：<span id="outerVal">50</span></div>
+            <div class="mini-card"><strong>表面人设</strong><br>仅用于内外差对比：<span id="outerVal">50</span></div>
           </div>
         </div>`;
       const ir = el("innerRange"), or = el("outerRange");
@@ -1541,7 +1541,7 @@
           <div class="dial"><div class="dial-face"><div class="dial-pointer" id="dialPointer"></div><div class="dial-hub"></div></div></div>
           <div style="text-align:center"><span class="value-pill" id="dialPill">${val}</span></div>
           <div class="range-wrap"><input id="dialRange" type="range" min="0" max="10" value="${val}"></div>
-          <div class="range-scale"><span>0 心如止水</span><span>10 掀翻屋顶</span></div>
+          <div class="range-scale"><span>0 转身就忘</span><span>10 全域拉线</span></div>
         </div>`;
       const r = el("dialRange");
       const sync = () => {
@@ -1654,15 +1654,15 @@
         const s = (input.value || "").trim().toLowerCase();
         if (!s) { out.textContent = "先说点什么吧，空白也是一种态度，但机器不收。"; delete state.answers[q.id]; updateLive(); updateNav(q); return; }
         q.text = input.value; q.analyzed = true;
-        const strongHot = ["啊啊", " aaa ", "救命", "太好", "超爱", "绝了", "疯了", "爆", "炸裂", "哭死"];
-        const mildHot = ["哈哈", "好好看", "太棒了", "喜欢", "开心", "爱了", "冲", "哇"];
-        const lightCold = ["嗯", "哦", "行", "随便", "都行", "还好", "无所谓", "算了"];
-        let score = 50, reason = "没抓到明显情绪词，按中位数处理。";
-        if (strongHot.some(w => s.includes(w))) { score = s.includes("啊啊啊") || s.includes("救命") || s.includes("炸裂") ? 100 : 85; reason = "检测到高浓度表达欲。"; }
-        else if (mildHot.some(w => s.includes(w))) { score = 80; reason = "情绪外放，浓度在线。"; }
+        const strongHot = ["你在哪", "跟谁", "几点回", "别去了", "陪我", "听我的", "我说了算", "不许", "只能是我的", "带我一个"];
+        const mildHot = ["在吗", "干嘛呢", "什么时候回", "到了吗", "和谁啊", "早点回来", "少喝点"];
+        const lightCold = ["忙", "没事", "随便", "可以", "哦", "嗯", "加油"];
+        let score = 50, reason = "雷达没扫到明显圈地信号，按中位数处理。";
+        if (strongHot.some(w => s.includes(w))) { score = s.includes("只能是我的") ? 100 : 85; reason = "检测到高强度圈地行为。"; }
+        else if (mildHot.some(w => s.includes(w))) { score = 80; reason = "低强度领地意识在线。"; }
         else if (lightCold.some(w => s.includes(w))) {
           score = /^(嗯+|哦+|行|随便|都行|还好|无所谓|算了)$/.test(s) ? 0 : (s.includes("无所谓") || s.includes("随便") ? 5 : 20);
-          reason = "字数越少，事儿越少。";
+          reason = "越冷淡越省事。";
         }
         out.textContent = `${reason} 本题：${score} 分。`;
         setAnswer(q, score);
@@ -1673,9 +1673,9 @@
       const val = Number.isFinite(Number(state.answers[q.id])) ? Number(state.answers[q.id]) : 50;
       area.innerHTML = `
         <div class="slider-block">
-          <div class="slider-tops"><span>❄️ 攻略做满</span><span class="value-pill" id="voteVal">${val}</span><span>随性出发 🔥</span></div>
+          <div class="slider-tops"><span>🍀 各玩各的</span><span class="value-pill" id="voteVal">${val}</span><span>必须同步进行 🔒</span></div>
           <div class="range-wrap"><input id="voteRange" type="range" min="0" max="100" value="${val}"></div>
-          <div class="range-scale"><span>每一步都要确认</span><span>走到哪算哪</span></div>
+          <div class="range-scale"><span>当场问完</span><span>心里推演关系网</span></div>
         </div>`;
       const r = el("voteRange");
       r.oninput = () => { el("voteVal").textContent = r.value; setAnswer(q, r.value); };
@@ -1692,7 +1692,7 @@
       const hour = Number.isFinite(saved) ? 6 + saved * 16 / 100 : 14;
       area.innerHTML = `
         <div class="slider-block">
-          <div class="slider-tops"><span>🌅 早上6点</span><span class="value-pill" id="timeVal">${formatHour(hour)}</span><span>🌙 晚上10点</span></div>
+          <div class="slider-tops"><span>🌅 清晨6点</span><span class="value-pill" id="timeVal">${formatHour(hour)}</span><span>🌙 晚上10点</span></div>
           <div class="range-wrap"><input id="timeRange" type="range" min="6" max="22" step="0.25" value="${hour}"></div>
           <div class="range-scale"><span>早上</span><span>中午</span><span>晚上</span></div>
         </div>`;
@@ -1710,9 +1710,9 @@
       const val = Number.isFinite(Number(state.answers[q.id])) ? Number(state.answers[q.id]) : 50;
       area.innerHTML = `
         <div class="slider-block">
-          <div class="slider-tops"><span>灰白低电量</span><span class="value-pill" id="specVal">${val}</span><span>荧光高饱和</span></div>
+          <div class="slider-tops"><span>通透自在</span><span class="value-pill" id="specVal">${val}</span><span>圈地入骨</span></div>
           <div class="range-wrap"><input id="specRange" class="spectrum" type="range" min="0" max="100" value="${val}"></div>
-          <div class="range-scale"><span>接近透明</span><span>浓到结晶</span></div>
+          <div class="range-scale"><span>散养体质</span><span>人形雷达</span></div>
         </div>`;
       const r = el("specRange");
       r.oninput = () => { el("specVal").textContent = r.value; setAnswer(q, r.value); };
@@ -1726,7 +1726,7 @@
           <div class="knob-scene"><div class="knob"><div class="needle" id="speedNeedle">🗣️</div></div></div>
           <div style="text-align:center"><span class="value-pill" id="speedVal">${val}</span></div>
           <div class="range-wrap"><input id="speedRange" class="thin" type="range" min="0" max="100" value="${val}"></div>
-          <div class="range-scale"><span>🐢 语速慢</span><span>🐇 语速快</span></div>
+          <div class="range-scale"><span>💬 有话直说</span><span>🌧️ 看到了也要晾</span></div>
         </div>`;
       const r = el("speedRange");
       const sync = () => {
@@ -1745,7 +1745,7 @@
           <div class="volume-bars" id="volBars"></div>
           <div style="text-align:center"><span class="value-pill" id="volumeVal">${val}</span></div>
           <div class="range-wrap"><input id="volumeRange" type="range" min="0" max="100" value="${val}"></div>
-          <div class="range-scale"><span>静音模式</span><span>全场都能听见</span></div>
+          <div class="range-scale"><span>谁也看不出来</span><span>全世界都看得出来</span></div>
         </div>`;
       const r = el("volumeRange"), bars = el("volBars");
       for (let i = 0; i < 9; i++) {
@@ -1770,7 +1770,7 @@
       const box = el("voteBox");
       function sync() {
         const chosen = q.votes.filter(v => v === "hot").length;
-        // 5个场景各20分，选浓人行为得20分/次。
+        // 5个场景各20分，选圈地行为得20分/次。
         setAnswer(q, chosen * 20);
       }
       q.scenarios.forEach((scene, si) => {
@@ -1779,8 +1779,8 @@
         row.innerHTML = `
           <div class="vote-title">${si + 1}. ${scene[0]}</div>
           <div class="vote-btns">
-            <button class="vote-btn" data-kind="cold" type="button">👎 淡人行为<br>${scene[1]}</button>
-            <button class="vote-btn" data-kind="hot" type="button">👍 浓人行为<br>${scene[2]}</button>
+            <button class="vote-btn" data-kind="cold" type="button">☀️ 阳光行为<br>${scene[1]}</button>
+            <button class="vote-btn" data-kind="hot" type="button">🚨 圈地行为<br>${scene[2]}</button>
           </div>`;
         const btns = [...row.querySelectorAll(".vote-btn")];
         const paint = () => btns.forEach(b => b.classList.toggle(b.dataset.kind === "hot" ? "selected-hot" : "selected-cold", q.votes[si] === b.dataset.kind));
@@ -1794,19 +1794,19 @@
       const val = Number.isFinite(Number(state.answers[q.id])) ? Number(state.answers[q.id]) : 50;
       area.innerHTML = `
         <div class="slider-block">
-          <div class="slider-tops"><span>❄️ 我是宇宙级淡人</span><span class="value-pill" id="finalVal">${val}</span><span>我是行走的浓人核弹 🔥</span></div>
+          <div class="slider-tops"><span>🍀 我是散养系</span><span class="value-pill" id="finalVal">${val}</span><span>我是圈地本主 🔒</span></div>
           <div class="range-wrap"><input id="finalRange" type="range" min="0" max="100" value="${val}"></div>
-          <div class="range-scale"><span>毫无波澜</span><span>原地喷发</span></div>
+          <div class="range-scale"><span>松紧自如</span><span>领地封顶</span></div>
         </div>`;
       const r = el("finalRange");
       r.oninput = () => { el("finalVal").textContent = r.value; setAnswer(q, r.value); };
       setAnswer(q, val);
     }
 
-    /* ------------------ 淡人/浓人指数计算逻辑 ------------------
+    /* ------------------ 占有欲指数计算逻辑 ------------------
        每道题独立计算得分（0-100）。
-       最终浓人指数 = Math.round(24道题得分总和 / 24)。
-       淡人指数 = 100 - 浓人指数。
+       最终占有欲指数 = Math.round(24道题得分总和 / 24)。
+       留白指数 = 100 - 占有欲指数。
     ---------------------------------------------------------- */
     function finish() {
       const scores = questions.map(q => clampScore(state.answers[q.id]));
@@ -1832,7 +1832,7 @@
       showScreen("testScreen"); renderQuestion();
     };
     el("restartBtn").onclick = () => el("startBtn").click();
-    el("shareBtn").onclick = () => toast("你朋友可能比你更了解你...");
+    el("shareBtn").onclick = () => toast("截图给朋友，看TA觉得你圈地多强...");
     window.addEventListener("keydown", e => {
       if (!el("testScreen").classList.contains("active")) return;
       if (e.key === "ArrowLeft") el("prevBtn").click();
