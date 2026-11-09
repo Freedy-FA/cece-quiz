@@ -6,18 +6,18 @@
   <script>if((localStorage.getItem("cece_plus_code")||"")!=="cece599"){location.replace("../");}</script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>完整版 · 💘 恋爱脑指数 · 你有多上头</title>
-  <meta name="description" content="24道题，测测你的恋爱脑浓度：理智还剩多少、会不会为爱降智。仅供娱乐。">
+  <title>完整版 · 🫠 恋爱脑浓度 · 你上头到什么程度</title>
+  <meta name="description" content="24道题，测测你的恋爱脑浓度：恋爱滤镜、脑内小剧场、为爱降智指数。清醒的人和上头的人都来测。仅供娱乐。">
   <style>
     :root {
-      --cold-1: #2F4858;
-      --cold-2: #46647A;
-      --cold-3: #223845;
-      --hot-1: #FF6FA5;
-      --hot-2: #E8336D;
-      --hot-3: #B3124C;
-      --ink: #2A1622;
-      --card: rgba(255, 248, 250, .94);
+      --cold-1: #2C3A44;
+      --cold-2: #46605C;
+      --cold-3: #1F2D2A;
+      --hot-1: #E15A5A;
+      --hot-2: #C0392B;
+      --hot-3: #7B1E12;
+      --ink: #201A14;
+      --card: rgba(250, 248, 244, .94);
       --shadow: 0 18px 60px rgba(38, 48, 57, .18);
     }
 
@@ -33,7 +33,7 @@
     body {
       margin: 0;
       color: var(--ink);
-      background: #170A12;
+      background: #120D0A;
       font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
       line-height: 1.5;
       overflow-x: hidden;
@@ -460,12 +460,12 @@
 
     input[type=range].spectrum::-webkit-slider-runnable-track {
       height: 26px;
-      background: linear-gradient(90deg, #eceff1, #b9c6cf, #ffe066, #ff8c42, #ff2e63);
+      background: linear-gradient(90deg, #eef4f6, #cfe4ec, #a8cfe0, #eb9a8a, #e15a5a);
     }
 
     input[type=range].spectrum::-moz-range-track {
       height: 26px;
-      background: linear-gradient(90deg, #eceff1, #b9c6cf, #ffe066, #ff8c42, #ff2e63);
+      background: linear-gradient(90deg, #eef4f6, #cfe4ec, #a8cfe0, #eb9a8a, #e15a5a);
     }
 
     .range-scale {
@@ -1114,14 +1114,14 @@
   <main class="app">
     <section id="homeScreen" class="screen active">
       <div class="glass home">
-        <p class="eyebrow">LOVE-BRAIN DETECTOR</p>
-        <h1>💘 恋爱脑指数<br>检测中心</h1>
-        <p class="subtitle">24道题测测你的恋爱脑浓度：理智还剩几成、为爱能降多少智。结果仅供娱乐，不构成心理评估。</p>
+        <p class="eyebrow">LOVEBRAIN DETECTOR</p>
+        <h1>🫠 恋爱脑<br>浓度检测</h1>
+        <p class="subtitle">测测你恋爱上头的浓度：恋爱滤镜、脑内小剧场、为爱降智指数。表面人间清醒，还是已经冒泡？结果仅供娱乐，不构成心理评估。</p>
         <div class="polar-tags">
-          <span class="tag cold">人间清醒 / 爱情是调剂</span>
-          <span class="tag hot">恋爱最大 / 对象说什么都对</span>
+          <span class="tag cold">人间清醒 / 绝不上头</span>
+          <span class="tag hot">滤镜全开 / 为爱降智</span>
         </div>
-        <p class="home-author">🎀 测测就知道 · 原创趣味测试</p>
+        <p class="home-author">🫠 测测就知道 · 原创趣味测试</p>
         <button id="startBtn" class="btn primary">开始测定 ▶</button>
       </div>
     </section>
@@ -1130,7 +1130,7 @@
       <div class="glass test-head">
         <div class="head-row">
           <div class="progress-label">第<span id="currentNum">1</span>/24题</div>
-          <div class="live-score">当前状态：清醒 <span id="liveCold">50</span>% / 恋爱脑 <span id="liveHot">50</span>%</div>
+          <div class="live-score">当前状态：清醒 <span id="liveCold">50</span>% / 上头 <span id="liveHot">50</span>%</div>
         </div>
         <div class="progress"><div id="progressFill" class="progress-fill"></div></div>
       </div>
@@ -1141,11 +1141,11 @@
       <div class="glass result-card">
         <p class="eyebrow">VERDICT READY</p>
         <h2 class="result-title">判定书已生成</h2>
-        <div class="meter" aria-label="清醒和恋爱脑比例条">
+        <div class="meter" aria-label="清醒和上头比例条">
           <div id="coldSide" class="meter-side cold-side">🧊 清醒 <span id="coldPercent">50</span>%</div>
-          <div id="hotSide" class="meter-side hot-side">💘 恋爱脑 <span id="hotPercent">50</span>%</div>
+          <div id="hotSide" class="meter-side hot-side">🫠 上头 <span id="hotPercent">50</span>%</div>
         </div>
-        <div class="meter-caption">左边是理智区，右边是为爱降智区</div>
+        <div class="meter-caption">上头不是错：越上头越甜，但记得留 20% 电量爱自己</div>
         <div class="verdict">
           <h3 id="resultName" class="verdict-name"></h3>
           <p id="resultText" class="verdict-text"></p>
@@ -1154,8 +1154,8 @@
           <h3 class="verdict-name">🎁 隐藏款结果</h3>
           <p class="verdict-text" id="plusHiddenLock">这是完整版才有的彩蛋人格，点下面按钮揭晓。</p>
           <div id="plusHiddenBody" style="display:none">
-            <h4 style="margin:12px 0 6px;font-size:19px">为爱改命程序员</h4>
-            <p class="verdict-text">🏷️ 专属标签：人生围TA转｜隐藏款警告：你的人生系统已经把对方设成了唯一管理员权限，起床先查消息、吃饭先问他吃没吃、做梦都在给他写使用说明。为了他你能连夜补完他随口提的剧、改掉全年的计划、把朋友圈排版都调成他喜欢的风格，朋友喊你名字你第一反应是他找我吗。你不是恋爱脑，你是把整个人生都开源给了他一个人。友情提示：再爱也要给自己留一个超级管理员账号，密码千万别也写成他的生日。</p>
+            <h4 style="margin:12px 0 6px;font-size:19px">恋爱脑永动机·人间恋综编剧</h4>
+            <p class="verdict-text">🏷️ 专属标签：无对象也上头｜隐藏款本款：你根本不需要对象就能上头，给你一个眼神你能剪出一整季恋综，给你一句晚安你能写完同人文三部曲，连路边擦肩而过的人都能在你脑内拥有姓名和前世今生。别人的恋爱脑靠心动供能，你的靠想象力永动，越没回应越能脑补，越虐越有创作欲。朋友劝你清醒，你点头说得对，转头就把劝告写进了新一集的虐心台词。友情提示：这台永动机要是拿去写小说，你早财富自由了。</p>
           </div>
           <button class="btn small" style="margin-top:12px" onclick="document.getElementById('plusHiddenBody').style.display='block';document.getElementById('plusHiddenLock').style.display='none';this.style.display='none'">揭晓隐藏款 ✨</button>
         </div>
@@ -1175,7 +1175,7 @@
   </main>
 
   <div class="brand-bar" aria-label="作者信息">
-    💗 测测就知道 · 仅供娱乐，不构成心理评估 💘
+    🫠 测测就知道 · 仅供娱乐，不构成心理评估 🫠
   </div>
 
   <div id="toast" class="toast"></div>
@@ -1187,184 +1187,186 @@
     // 每道题独立产出 0-100 的分数，answers[id] 只保存数值。
     const questions = [
       {
-        id: "q01", type: "dual", title: "请在下面两个滑块上分别标注：你的「真实恋爱脑浓度」和「嘴硬程度」。",
-        desc: "一个柄是心里话，另一个柄是你在朋友面前装出来的样子。",
+        id: "q01", type: "dual", title: "请在下面两个滑块上分别标注：你的「真实恋爱脑浓度」和「表面清醒度」。",
+        desc: "一个柄是恋爱里上头的你，另一个柄是你给外人看的样子。",
         extra: {}
       },
       {
-        id: "q02", type: "options", cols: "cols-2", title: "喜欢的人（或对象）说「今天有点忙」，你会？",
+        id: "q02", type: "options", cols: "cols-2", title: "喜欢的人已读不回，你的大脑先干嘛？",
         options: [
-          { emoji: "😴", label: "回个「好」，继续干自己的事", score: 0 },
-          { emoji: "🤔", label: "有点奇怪，晚点再问问", score: 25 },
-          { emoji: "😟", label: "反复琢磨是不是我做错了什么", score: 55 },
-          { emoji: "🫠", label: "脑补TA不喜欢我了，凌晨三点写小作文", score: 100 }
+          { emoji: "🧊", label: "在忙，放下手机", score: 0 },
+          { emoji: "🤔", label: "有点在意，忍住不想", score: 25 },
+          { emoji: "👀", label: "开始逐帧分析那句「嗯」", score: 55 },
+          { emoji: "🫠", label: "小剧场已经拍到第三集", score: 100 }
         ]
       },
       {
-        id: "q03", type: "dial", title: "TA随口说了句「最近在看某部剧」，你去找来看完的冲动是？",
-        desc: "拖到最高就是熬夜四小时一口气补完的程度。"
+        id: "q03", type: "dial", title: "朋友说「他可能没那么喜欢你」，你的清醒度剩多少？",
+        desc: "拖到最高就是完全听不进去的程度。"
       },
       {
-        id: "q04", type: "tags", title: "选出所有符合你状态的词（越多浓度越高）。",
+        id: "q04", type: "tags", title: "选出所有符合你恋爱状态的词（越多越上头）。",
         desc: "可多选，取最上头的那个标签计分。",
         items: [
-          ["自我优先", 0], ["边界感强", 10], ["会主动", 25], ["想黏着", 40], ["秒回专业户", 55],
-          ["情绪随TA走", 70], ["翻TA每条动态", 85], ["TA是我人生主线", 100]
+          ["独身贵族", 0], ["偶尔心动", 10], ["开始期待聊天", 25], ["翻聊天记录循环", 40], ["头像点开又退出", 55],
+          ["全程嘴角上扬", 70], ["朋友都看出来了", 85], ["为爱降智实锤", 100]
         ]
       },
       {
         id: "q05", type: "sort", title: "请将以下消息按「最像你会发」到「最不可能发」排序。",
-        desc: "第一名就是你真实的样子，自己保重。",
+        desc: "第一名就是你真实的样子，自己品。",
         items: [
-          { label: "好的，你先忙", score: 0 },
-          { label: "好，忙完找我", score: 25 },
-          { label: "在忙什么呀？", score: 50 },
-          { label: "是不是不想理我", score: 75 },
-          { label: "我是不是打扰到你了（认真问）", score: 100 }
+          { label: "有事说事，逻辑在线", score: 0 },
+          { label: "正常聊，偶尔皮一下", score: 25 },
+          { label: "发出去又撤回重写", score: 50 },
+          { label: "消息写了删删了写", score: 75 },
+          { label: "纠结半天最后发了「在吗」", score: 100 }
         ]
       },
       {
-        id: "q06", type: "options", cols: "cols-5", title: "TA回你消息的速度，你的接受度是？",
+        id: "q06", type: "options", cols: "cols-5", title: "喜欢的人随口夸你一句，你能嗨多久？",
         options: [
-          { emoji: "😌", label: "轮回也行，都自由", score: 0 },
-          { emoji: "🙂", label: "今天回就好", score: 25 },
-          { emoji: "😐", label: "半天内吧，久了会想多", score: 50 },
-          { emoji: "😫", label: "一小时没回开始刷对话记录", score: 75 },
-          { emoji: "💘", label: "必须秒回，我都在秒回", score: 100 }
+          { emoji: "😶", label: "三秒，然后忘掉", score: 0 },
+          { emoji: "😏", label: "嘴上说「还行」，心里有数", score: 25 },
+          { emoji: "😊", label: "开心一晚上", score: 50 },
+          { emoji: "💓", label: "回味三天", score: 75 },
+          { emoji: "🫠", label: "已经脑补到领证", score: 100 }
         ]
       },
       {
-        id: "q07", type: "toggles", title: "以下行为，你做过几样？（打开＝做过）",
+        id: "q07", type: "toggles", title: "以下恋爱脑行为，你做过几样？（打开＝做过）",
         items: [
-          { label: "把聊天记录逐条重读过三遍以上", score: 100 },
-          { label: "为TA改了已经约好的计划", score: 60 },
-          { label: "存了TA所有照片当备用壁纸", score: 30 }
+          { label: "把 TA 的动态翻到三年前", score: 100 },
+          { label: "共同好友那套 TA 的情报", score: 60 },
+          { label: "TA 用的表情包你都存了", score: 30 }
         ]
       },
       {
-        id: "q08", type: "text", title: "请随便输一句你会发给TA的话，看看恋爱脑浓度。",
+        id: "q08", type: "text", title: "输入一句你想起 TA 时最真实的话，测测上头浓度。",
         desc: "输入你最自然的说法，然后点击分析。"
       },
       {
-        id: "q09", type: "rangeVote", title: "你更倾向哪一种相处模式？",
-        desc: "左端「各过各的，周末见面」，右端「住进彼此日程表，事事同行」。"
+        id: "q09", type: "rangeVote", title: "朋友吐槽你上头的那位，你更倾向哪种反应？",
+        desc: "左端「清醒旁听」，右端「当场护短翻脸」。"
       },
       {
-        id: "q10", type: "options", cols: "cols-2", title: "TA说这周末要陪朋友，不带你，你会？",
+        id: "q10", type: "options", cols: "cols-2", title: "TA 忘了回你消息却发了朋友圈，你会？",
         options: [
-          { emoji: "😶", label: "正好，我也有安排", score: 0 },
-          { emoji: "😅", label: "有点失落，自己找点事做", score: 30 },
-          { emoji: "🤨", label: "反复问是和哪些朋友", score: 70 },
-          { emoji: "🧨", label: "取消自己一切安排，在家等TA想起我", score: 100 }
+          { emoji: "😎", label: "无所谓，先忙自己的", score: 0 },
+          { emoji: "🤔", label: "有点介意，忍住不提", score: 30 },
+          { emoji: "🫢", label: "给那条朋友圈点个赞装大度", score: 70 },
+          { emoji: "🫠", label: "不生气，开始想「是不是我的问题」", score: 100 }
         ]
       },
       {
-        id: "q11", type: "timeline", title: "你一天中「想TA」的开关从几点开始？"
+        id: "q11", type: "timeline", title: "你一天中「想起 TA」的高峰时段是？"
       },
       {
-        id: "q12", type: "spectrum", title: "用一个颜色代表你现在聊天的心情，你会选？"
+        id: "q12", type: "spectrum", title: "用一个颜色形容你想起 TA 的心情，你会选？"
       },
       {
-        id: "q13", type: "speed", title: "收到TA消息时，你的回复速度是？"
+        id: "q13", type: "speed", title: "别人劝你「别上头了」，你的「下头速度」是？"
       },
       {
-        id: "q14", type: "volume", title: "你想公开这段关系的程度是？"
+        id: "q14", type: "volume", title: "你的恋爱脑浓度会被朋友一眼看穿的程度是？"
       },
       {
-        id: "q15", type: "options", cols: "cols-2", title: "你最近一周的心情最像哪种天气？",
+        id: "q15", type: "options", cols: "cols-2", title: "朋友说「你最近好像变恋爱脑了」，你的第一反应是？",
         options: [
-          { emoji: "☀️", label: "晴，跟我自己有关", score: 0 },
-          { emoji: "🌤️", label: "多云，TA理我就晴", score: 35 },
-          { emoji: "🌧️", label: "小雨，取决于TA语气", score: 65 },
-          { emoji: "⛈️", label: "暴风雨，全看TA回没回", score: 100 }
+          { emoji: "👌", label: "「没有，我很清醒」", score: 0 },
+          { emoji: "😅", label: "有一点点，但不承认", score: 30 },
+          { emoji: "😍", label: "「就一点，可控的」", score: 65 },
+          { emoji: "🫠", label: "「对，恋爱脑怎么了」", score: 100 }
         ]
       },
       {
-        id: "q16", type: "votes", title: "以下场景，请为每个选择你更接近的行为。",
+        id: "q16", type: "votes", title: "以下场景，请为每个场景选你更接近的反应。",
         scenarios: [
-          ["对方说晚安", "好，晚安", "再聊五分钟嘛，就五分钟"],
-          ["对方说在打游戏", "那你玩", "游戏和我谁重要（随口但认真）"],
-          ["对方发了新头像", "挺好看", "放大看背景里有没有别人"],
-          ["对方夸别人优秀", "是挺厉害", "那我呢？我哪里不好"],
-          ["对方要出差一周", "注意安全", "每天三个视频电话，标配"]
+          ["TA 半夜发「睡了吗」", "肯定群发的", "瞬间清醒开始回稿"],
+          ["TA 朋友圈内涵某人", "跟我无关", "逐字猜是不是说自己"],
+          ["TA 夸了别人一句", "那人是不错", "「那你看我哪里不好」"],
+          ["偶遇 TA 和异性吃饭", "朋友很正常", "已经脑补完全剧透"],
+          ["TA 说「你挺特别的」", "客气话罢了", "当晚失眠细细回味"]
         ]
       },
       {
-        id: "q17", type: "options", cols: "cols-2", title: "如果给爱情在你的生活里排座次，它是？",
+        id: "q17", type: "options", cols: "cols-2", title: "如果把心动装成一个系统，它是？",
         options: [
-          { emoji: "🎞️", label: "点缀，自己才是主线", score: 0 },
-          { emoji: "👒", label: "重要，但和事业友情并列", score: 30 },
-          { emoji: "🧶", label: "前排，情绪常被它牵引", score: 65 },
-          { emoji: "💘", label: "置顶，其他人其他事都往后排", score: 100 }
+          { emoji: "🚿", label: "手动启动，随时关机", score: 0 },
+          { emoji: "🪩", label: "定时开关，自动断电", score: 30 },
+          { emoji: "🔌", label: "插电就拔不下来", score: 65 },
+          { emoji: "🥶", label: "一碰就死机重启", score: 100 }
         ]
       },
       {
-        id: "q18", type: "options", cols: "cols-6", title: "你最常对TA说的是哪句？",
+        id: "q18", type: "options", cols: "cols-6", title: "和朋友聊到 TA，你最常说哪句？",
         options: [
-          { emoji: "🕊️", label: "都行", score: 0 },
-          { emoji: "🙂", label: "我这边看时间安排", score: 15 },
-          { emoji: "😐", label: "你什么时候有空", score: 30 },
-          { emoji: "😳", label: "你今天话好少", score: 55 },
-          { emoji: "🔥", label: "你是不是不喜欢我了", score: 80 },
-          { emoji: "💘", label: "没你我真的不行", score: 100 }
+          { emoji: "😶", label: "「谁？」", score: 0 },
+          { emoji: "👍", label: "「还行吧」", score: 15 },
+          { emoji: "😂", label: "「别提了哈哈」", score: 30 },
+          { emoji: "💕", label: "「TA 今天…」", score: 55 },
+          { emoji: "💞", label: "「你说 TA 什么意思」", score: 80 },
+          { emoji: "🫠", label: "「你说我是不是没戏了」", score: 100 }
         ]
       },
       {
-        id: "q19", type: "options", cols: "cols-5", title: "用「重心偏移程度」形容你现在的状态：",
+        id: "q19", type: "options", cols: "cols-5", title: "用「喝酒」形容你的上头程度：",
         options: [
-          { emoji: "🧍", label: "稳如泰山", score: 0 },
-          { emoji: "🤏", label: "微微倾斜", score: 25 },
-          { emoji: "🙇", label: "半个人过去了", score: 50 },
-          { emoji: "🏋️", label: "整个重心都过去了", score: 75 },
-          { emoji: "💘", label: "人已过去，原地只剩爱情", score: 100 }
+          { emoji: "🚰", label: "滴酒不沾", score: 0 },
+          { emoji: "🧊", label: "以茶代酒", score: 25 },
+          { emoji: "🍻", label: "微醺刚好", score: 50 },
+          { emoji: "🍺", label: "已经开始转圈", score: 75 },
+          { emoji: "🥃", label: "断片式上头", score: 100 }
         ]
       },
       {
-        id: "q20", type: "options", cols: "cols-2", title: "一个人待着的时候，你脑子里通常是？",
+        id: "q20", type: "options", cols: "cols-2", title: "TA 说「周末有空吗」，你脑子里先是？",
         options: [
-          { emoji: "😴", label: "自己的事都排不完", score: 0 },
-          { emoji: "📝", label: "规划自己的安排", score: 25 },
-          { emoji: "🌙", label: "经常想起TA说过的话", score: 60 },
-          { emoji: "🌀", label: "单曲循环TA，连洗澡都在想怎么回消息", score: 100 }
+          { emoji: "🗺", label: "「干嘛，有事说事」", score: 0 },
+          { emoji: "😌", label: "「大概是有事找我」", score: 30 },
+          { emoji: "📸", label: "「要约会？穿什么」", score: 65 },
+          { emoji: "🫠", label: "婚期已经排到明年", score: 100 }
         ]
       },
       {
-        id: "q21", type: "options", cols: "cols-2", title: "你的相册里关于TA的内容比例是？",
+        id: "q21", type: "options", cols: "cols-2", title: "TA 随口说「这家店还挺好吃的」，你会？",
         options: [
-          { emoji: "🗂️", label: "没存过", score: 0 },
-          { emoji: "🌄", label: "有少量合影", score: 30 },
-          { emoji: "🖼️", label: "截图相册全是聊天记录", score: 65 },
-          { emoji: "📸", label: "TA的每个瞬间我都存了档", score: 100 }
+          { emoji: "😶", label: "「哦，回头试试」", score: 0 },
+          { emoji: "😌", label: "默默收藏了店铺", score: 30 },
+          { emoji: "🧐", label: "已经查好位置和营业时间", score: 65 },
+          { emoji: "🫠", label: "「周末去？我请」秒发", score: 100 }
         ]
       },
       {
-        id: "q22", type: "options", cols: "cols-2", title: "朋友吐槽「你最近满脑子都是TA」，你的反应是？",
+        id: "q22", type: "options", cols: "cols-2", title: "朋友泼冷水「TA 对谁都这样」，你会？",
         options: [
-          { emoji: "😌", label: "胡说，我明明还有工作", score: 0 },
-          { emoji: "🤔", label: "反驳，但心里虚了一下", score: 25 },
-          { emoji: "😟", label: "沉默，因为朋友是对的", score: 65 },
-          { emoji: "🧯", label: "跟朋友吵起来：你不懂我们的感情", score: 100 }
+          { emoji: "👌", label: "「对，我早知道」", score: 0 },
+          { emoji: "😌", label: "嘴上认，心里保留意见", score: 25 },
+          { emoji: "😢", label: "有点下头，第二天又上头", score: 60 },
+          { emoji: "🫠", label: "「不一样，TA 对我是不一样的」", score: 100 }
         ]
       },
       {
-        id: "q23", type: "options", cols: "cols-2", title: "TA忘了你们约好的事，你会？",
+        id: "q23", type: "options", cols: "cols-2", title: "深夜十二点，手机弹出 TA 的消息，你会？",
         options: [
-          { emoji: "🫥", label: "正好，我也忘了", score: 0 },
-          { emoji: "🍰", label: "重新约一次就好", score: 30 },
-          { emoji: "💅", label: "嘴上没事，记在小本本上", score: 65 },
-          { emoji: "📋", label: "把TA所有失约记录汇总成时间线", score: 100 }
+          { emoji: "😎", label: "明天再回，先睡", score: 0 },
+          { emoji: "😌", label: "淡定回复，五分钟下线", score: 30 },
+          { emoji: "🥺", label: "秒回，然后聊到两点", score: 65 },
+          { emoji: "🫠", label: "截图闺蜜团连夜开会", score: 100 }
         ]
       },
       {
-        id: "q24", type: "finalSlider", title: "最后一个：撕开嘴硬，你的恋爱脑浓度到底在哪里？"
+        id: "q24", type: "finalSlider", title: "最后一个：撕开表面，你的恋爱脑浓度到底有多少？"
       }
     ];
 
+
+
     const results = [
-      { max: 20, name: "【铁树本树·顶级清醒】", text: "🏷️ 专属标签：铁树守门员｜从行为上看，你的恋爱脑几乎零外显：消息轮回也行、对方忙就回个好继续干自己的事，周末不带你正好自己有安排，相册里连对方的存档都懒得建。你的生活主线排得满满当当，爱情只能拿号排队，谁也别想让你改行程、乱作息。优点是边界感顶级，绝不讨好、绝不患得患失，相处起来反而让人轻松自在。小提醒是：铁树太稳，喜欢的人可能以为没机会，偶尔主动一次、秒回一次，对你来说只是抬手，对对方是发令枪。" },
-      { max: 50, name: "【心动但在线·健康范围】", text: "🏷️ 专属标签：理智留闸人｜你的行为是心动但带闸的版本：会想秒回、会为对方空出一个晚上、心情多云转晴多少跟对方的语气有关，但为他改一次行程可以，取消自己原定的安排不行。朋友说你满脑子都是他，你会反驳完心里虚一下，然后该上班上班。优点是黏度适中、进退有据，既给足回应又不丢自我，是最容易长久相处的类型。小提醒是：别总用忙完再说拖住真心话，你的在乎表达得越具体，对方越不用猜，关系越省电。" },
-      { max: 80, name: "【中度恋爱脑·上头预警】", text: "🏷️ 专属标签：日程让渡者｜你的行为已经开始让渡了：对方一句在忙你能琢磨是不是自己做错了什么，一小时没回就刷对话记录，为他改掉约好的计划，睡前单曲循环他说过的话。爱情在你生活里坐到了前排，朋友约你要先看他的空档，情绪开关慢慢交到了别人手里。优点是行动力极强，喜欢就付出、想见就安排，被你爱着的人从不缺陪伴。小提醒是：每周至少守住一件只属于自己的安排，工作、朋友和爱好别全停摆，你的世界越稳，他在里面才越安心。" },
-      { max: 100, name: "【重度恋爱脑·为爱降智】", text: "🏷️ 专属标签：重心全偏移｜你的行为清单已经全面置顶对方了：必须秒回、聊天记录逐条重读三遍、相册全是截图存档，对方忘约你能汇总出完整时间线，朋友吐槽一句你甚至能当场翻脸护短。你的重心整个挪了过去，原地只剩下爱情在值班，连洗澡都在想怎么回消息。优点是执行力和忠诚度没人能比，认定一个人就全力以赴。小提醒是：把分给他的注意力先匀回一成给自己，饭要吃、觉要睡、朋友要见，你先是你自己，才是他的谁。" }
+      { max: 20, name: "【人间清醒·恋爱脑绝缘体】", text: "🏷️ 专属标签：清醒绝缘体｜从上头程度看，你的浓度几乎探不到底：对方已读不回你默认人家在忙，夸你一句三秒就忘，朋友说他可能没那么喜欢你，你听完还能冷静复盘证据链。你的心动开关是手动挡，没确认过的人连小剧场的门票都拿不到。优点是绝不内耗、绝不自我感动，恋爱对你只是加分项不是必答题，时间和自尊都守得稳稳的。小提醒是：绝缘太彻底也可能把真心动挡在门外，偶尔允许自己多回味一晚，不算失守。" },
+      { max: 50, name: "【轻度上头·正常波动】", text: "🏷️ 专属标签：微醺刚刚好｜你的上头是微醺款：被夸一句能开心一晚上，聊天时会嘴角上扬，偶尔翻翻记录，但到点该睡睡、该忙忙，滤镜只开薄薄一层。朋友点你一句你会笑说就一点点、可控的，第二天照样能客观评价对方。优点是甜而不腻，既享受心动的快乐，又保留随时抽身的清醒，属于成年人恋爱的舒服浓度。小提醒是：别因为怕显得上头就全程嘴硬装没事，适度承认喜欢，反而会让对方更敢靠近你。" },
+      { max: 80, name: "【中度恋爱脑·滤镜全开】", text: "🏷️ 专属标签：滤镜收藏家｜你的滤镜已经全开自动美颜了：对方随口一句话你能回味三天，缺点被你翻译成有个性，已读不回先反省是不是自己说错话，连朋友圈点个赞都要琢磨是不是在装大度。嘴上说我很清醒，聊天框里全是小心心，半夜还会截图拉闺蜜团开会分析语气。优点是爱得细腻投入，被你喜欢的人很难感受不到诚意。小提醒是：每周给滤镜做一次对焦，把对方做过的事和说过的话分开记，别让脑补替他交作业。" },
+      { max: 100, name: "【重度恋爱脑·为爱降智】", text: "🏷️ 专属标签：小剧场导演｜你的上头已经是断片级的：一句在忙能脑补出甜宠连续剧，一次偶遇就当命中注定，被夸一句直接快进到领证，朋友泼冷水你只会说不一样、他对我是不一样的。你同时兼任编剧、主角和场务，大脑二十四小时循环播放对方。优点是爱得毫无保留、热烈坦荡，喜欢一个人就拿出全部真心，这份投入本身很动人。小提醒是：再上头也请给自己留两成电量，吃饭睡觉和朋友别停供，你好好的，爱情才有地方落脚。" }
     ];
 
     const state = {
@@ -1509,15 +1511,15 @@
       state.temporary.outer = Number.isFinite(q.outer) ? q.outer : 50;
       area.innerHTML = `
         <div class="slider-block">
-          <div class="slider-tops"><span>🧊 绝对理智</span><span class="value-pill" id="innerPill">50</span><span>恋爱脑晚期 💘</span></div>
+          <div class="slider-tops"><span>🧊 人间清醒</span><span class="value-pill" id="innerPill">50</span><span>上头本头 🫠</span></div>
           <div class="range-wrap dual-track">
             <input id="innerRange" type="range" min="0" max="100" value="${state.temporary.inner}" aria-label="真实内心">
             <input id="outerRange" type="range" min="0" max="100" value="${state.temporary.outer}" aria-label="对外表现">
           </div>
-          <div class="range-scale"><span>自我优先</span><span>对象优先</span></div>
+          <div class="range-scale"><span>全程清醒</span><span>上头到冒泡</span></div>
           <div class="dual-labels">
             <div class="mini-card"><strong>真实内心</strong><br>只拿它计分：<span id="innerVal">50</span></div>
-            <div class="mini-card"><strong>嘴硬程度</strong><br>仅用于内外差对比：<span id="outerVal">50</span></div>
+            <div class="mini-card"><strong>对外形象</strong><br>仅用于内外差对比：<span id="outerVal">50</span></div>
           </div>
         </div>`;
       const ir = el("innerRange"), or = el("outerRange");
@@ -1542,7 +1544,7 @@
           <div class="dial"><div class="dial-face"><div class="dial-pointer" id="dialPointer"></div><div class="dial-hub"></div></div></div>
           <div style="text-align:center"><span class="value-pill" id="dialPill">${val}</span></div>
           <div class="range-wrap"><input id="dialRange" type="range" min="0" max="10" value="${val}"></div>
-          <div class="range-scale"><span>0 完全没影响</span><span>10 全天围着转</span></div>
+          <div class="range-scale"><span>0 人间清醒</span><span>10 为爱降智</span></div>
         </div>`;
       const r = el("dialRange");
       const sync = () => {
@@ -1655,12 +1657,12 @@
         const s = (input.value || "").trim().toLowerCase();
         if (!s) { out.textContent = "先说点什么吧，空白也是一种态度，但机器不收。"; delete state.answers[q.id]; updateLive(); updateNav(q); return; }
         q.text = input.value; q.analyzed = true;
-        const strongHot = ["想你", "在干嘛", "怎么不回", "爱你", "宝贝", "宝宝", "亲亲", "抱抱", "梦里都是", "满脑子", "上头", "离不开", "复合", "娶", "嫁"];
-        const mildHot = ["晚安", "哈哈", "开心", "等你", "好呀", "在吗", "睡了吗", "嘛"];
+        const strongHot = ["恋爱脑", "上头", "沦陷", "非他不可", "他也喜欢我", "非她不可", "心动", "贴贴", "亲亲", "抱抱"];
+        const mildHot = ["脸红", "心跳", "小鹿", "想你", "喜欢", "在意", "偷看", "甜甜", "回味"];
         const lightCold = ["忙", "没事", "随便", "可以", "哦", "嗯", "加油"];
-        let score = 50, reason = "没抓到明显占有词，按中位数处理。";
-        if (strongHot.some(w => s.includes(w))) { score = s.includes("啊啊啊") || s.includes("救命") || s.includes("离不开") ? 100 : 85; reason = "检测到高浓度恋爱脑。"; }
-        else if (mildHot.some(w => s.includes(w))) { score = 75; reason = "语气里全是粉红泡泡。"; }
+        let score = 50, reason = "没抓到明显上头词，按中位数处理。";
+        if (strongHot.some(w => s.includes(w))) { score = s.includes("恋爱脑") || s.includes("非他不可") ? 100 : 85; reason = "检测到高浓度恋爱脑信号。"; }
+        else if (mildHot.some(w => s.includes(w))) { score = 80; reason = "心动信号在线，浓度飙升。"; }
         else if (lightCold.some(w => s.includes(w))) {
           score = /^(嗯+|哦+|行|随便|都行|还好|无所谓|算了)$/.test(s) ? 0 : (s.includes("无所谓") || s.includes("随便") ? 5 : 20);
           reason = "越冷淡越省事。";
@@ -1674,9 +1676,9 @@
       const val = Number.isFinite(Number(state.answers[q.id])) ? Number(state.answers[q.id]) : 50;
       area.innerHTML = `
         <div class="slider-block">
-          <div class="slider-tops"><span>🧊 各过各的</span><span class="value-pill" id="voteVal">${val}</span><span>以TA为中心 💘</span></div>
+          <div class="slider-tops"><span>🧊 清醒旁观</span><span class="value-pill" id="voteVal">${val}</span><span>上头冒泡 🫠</span></div>
           <div class="range-wrap"><input id="voteRange" type="range" min="0" max="100" value="${val}"></div>
-          <div class="range-scale"><span>生活照旧</span><span>行程全改</span></div>
+          <div class="range-scale"><span>毫无波澜</span><span>滤镜全开</span></div>
         </div>`;
       const r = el("voteRange");
       r.oninput = () => { el("voteVal").textContent = r.value; setAnswer(q, r.value); };
@@ -1711,9 +1713,9 @@
       const val = Number.isFinite(Number(state.answers[q.id])) ? Number(state.answers[q.id]) : 50;
       area.innerHTML = `
         <div class="slider-block">
-          <div class="slider-tops"><span>冷静蓝</span><span class="value-pill" id="specVal">${val}</span><span>粉红泡泡</span></div>
+          <div class="slider-tops"><span>清醒蓝</span><span class="value-pill" id="specVal">${val}</span><span>上头红</span></div>
           <div class="range-wrap"><input id="specRange" class="spectrum" type="range" min="0" max="100" value="${val}"></div>
-          <div class="range-scale"><span>心如止水</span><span>满屏都是TA</span></div>
+          <div class="range-scale"><span>心如止水</span><span>一碰就沦陷</span></div>
         </div>`;
       const r = el("specRange");
       r.oninput = () => { el("specVal").textContent = r.value; setAnswer(q, r.value); };
@@ -1727,7 +1729,7 @@
           <div class="knob-scene"><div class="knob"><div class="needle" id="speedNeedle">🗣️</div></div></div>
           <div style="text-align:center"><span class="value-pill" id="speedVal">${val}</span></div>
           <div class="range-wrap"><input id="speedRange" class="thin" type="range" min="0" max="100" value="${val}"></div>
-          <div class="range-scale"><span>🐢 轮回风格</span><span>🐇 秒回还怕TA等</span></div>
+          <div class="range-scale"><span>🧊 心如止水</span><span>🫠 甜到冒泡</span></div>
         </div>`;
       const r = el("speedRange");
       const sync = () => {
@@ -1746,7 +1748,7 @@
           <div class="volume-bars" id="volBars"></div>
           <div style="text-align:center"><span class="value-pill" id="volumeVal">${val}</span></div>
           <div class="range-wrap"><input id="volumeRange" type="range" min="0" max="100" value="${val}"></div>
-          <div class="range-scale"><span>悄悄喜欢</span><span>全网官宣</span></div>
+          <div class="range-scale"><span>谁也拿捏不了</span><span>一个眼神就沦陷</span></div>
         </div>`;
       const r = el("volumeRange"), bars = el("volBars");
       for (let i = 0; i < 9; i++) {
@@ -1771,7 +1773,7 @@
       const box = el("voteBox");
       function sync() {
         const chosen = q.votes.filter(v => v === "hot").length;
-        // 5个场景各20分，选病娇行为得20分/次。
+        // 5个场景各20分，选上头行为得20分/次。
         setAnswer(q, chosen * 20);
       }
       q.scenarios.forEach((scene, si) => {
@@ -1781,7 +1783,7 @@
           <div class="vote-title">${si + 1}. ${scene[0]}</div>
           <div class="vote-btns">
             <button class="vote-btn" data-kind="cold" type="button">🧊 清醒行为<br>${scene[1]}</button>
-            <button class="vote-btn" data-kind="hot" type="button">💘 恋爱脑行为<br>${scene[2]}</button>
+            <button class="vote-btn" data-kind="hot" type="button">🫠 恋爱脑行为<br>${scene[2]}</button>
           </div>`;
         const btns = [...row.querySelectorAll(".vote-btn")];
         const paint = () => btns.forEach(b => b.classList.toggle(b.dataset.kind === "hot" ? "selected-hot" : "selected-cold", q.votes[si] === b.dataset.kind));
@@ -1795,19 +1797,19 @@
       const val = Number.isFinite(Number(state.answers[q.id])) ? Number(state.answers[q.id]) : 50;
       area.innerHTML = `
         <div class="slider-block">
-          <div class="slider-tops"><span>🧊 我是清醒系</span><span class="value-pill" id="finalVal">${val}</span><span>我是恋爱脑本脑 💘</span></div>
+          <div class="slider-tops"><span>🧊 我清醒本醒</span><span class="value-pill" id="finalVal">${val}</span><span>我上头本头 🫠</span></div>
           <div class="range-wrap"><input id="finalRange" type="range" min="0" max="100" value="${val}"></div>
-          <div class="range-scale"><span>收放自如</span><span>全盘投入</span></div>
+          <div class="range-scale"><span>立刻下头</span><span>无限循环</span></div>
         </div>`;
       const r = el("finalRange");
       r.oninput = () => { el("finalVal").textContent = r.value; setAnswer(q, r.value); };
       setAnswer(q, val);
     }
 
-    /* ------------------ 病娇指数计算逻辑 ------------------
+    /* ------------------ 恋爱脑浓度计算逻辑 ------------------
        每道题独立计算得分（0-100）。
-       最终病娇指数 = Math.round(24道题得分总和 / 24)。
-       佛系指数 = 100 - 病娇指数。
+       最终恋爱脑浓度 = Math.round(24道题得分总和 / 24)。
+       清醒指数 = 100 - 恋爱脑浓度。
     ---------------------------------------------------------- */
     function finish() {
       const scores = questions.map(q => clampScore(state.answers[q.id]));
@@ -1833,7 +1835,7 @@
       showScreen("testScreen"); renderQuestion();
     };
     el("restartBtn").onclick = () => el("startBtn").click();
-    el("shareBtn").onclick = () => toast("截图发给朋友，看TA敢不敢说真话…");
+    el("shareBtn").onclick = () => toast("截图给朋友，看你上头到什么程度...");
     window.addEventListener("keydown", e => {
       if (!el("testScreen").classList.contains("active")) return;
       if (e.key === "ArrowLeft") el("prevBtn").click();
